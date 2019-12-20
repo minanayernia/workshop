@@ -1,45 +1,35 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class SplashScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: MyHomePage()
-    );
-  }
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class MyHomePage extends StatefulWidget {
-  
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       
       backgroundColor: Colors.redAccent,
-      body: Center(
+      body: Center( 
         child:
         Column(children: <Widget>[
             
-            CircleAvatar(child: Image.asset('assets/logo.png'), radius: 100,)
+            CircleAvatar(child: Image.asset('assets/logo.png'), radius: 100,),
+            RaisedButton(
+              child: Text('home'),
+              onPressed: 
+                (){
+                  // Navigator.pop(context);
+                  // Navigator.pushNamed(context, '/home');
+                  Navigator.popAndPushNamed(context, '/home');
+                }
+              )
           ],
           mainAxisAlignment: MainAxisAlignment.center,),
       
       ),
       
     );
-    }
+  }
 }

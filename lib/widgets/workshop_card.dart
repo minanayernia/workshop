@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workshop/workshop_image_box.dart';
+import 'package:workshop/widgets/workshop_image_box.dart';
 
 class WorkshopCard extends StatefulWidget {
   @override

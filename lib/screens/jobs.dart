@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workshop/mmd.dart';
+import 'package:workshop/widgets/mmd.dart';
 
 class Jobs extends StatefulWidget {
   @override

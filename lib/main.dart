@@ -1,13 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:workshop/profile.dart';
-import 'package:workshop/splash.dart';
-import 'package:workshop/home.dart';
-import 'Search.dart';
-import 'splash.dart';
-import 'profile.dart';
-import 'jobs.dart';
+import 'package:workshop/screens/profile.dart';
+import 'package:workshop/screens/splash.dart';
+import 'package:workshop/screens/home.dart';
+import 'screens/Search.dart';
+import 'screens/splash.dart';
+import 'screens/profile.dart';
+import 'screens/home.dart';
+import 'screens/jobs.dart';
 
 
 

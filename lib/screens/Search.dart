@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'workshop_card.dart';
+import 'package:workshop/widgets/workshop_card.dart';
 
 class Search extends StatefulWidget {
   @override

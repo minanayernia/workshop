@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class MmdCard extends StatefulWidget {
   @override
@@ -55,6 +56,16 @@ class CardThumb extends StatefulWidget {
 }
 
 class _CardThumbState extends State<CardThumb> {
+
+  static const List colors1 = [ Colors.green, Colors.yellow];
+  static const List colors2 = [Colors.red, Colors.yellow];
+  static const List colors3 = [Colors.red, Colors.green,];
+  List colors = [colors1, colors2, colors3];
+  
+  
+  Random random = new Random();
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -63,6 +74,7 @@ class _CardThumbState extends State<CardThumb> {
        margin: new EdgeInsets.only(left: 40.0,right: 30),
        decoration: new BoxDecoration(
          color: new Color(0xFF333366),
+        // color: colors[random.nextInt(3)][random.nextInt(2)],
          shape: BoxShape.rectangle,
          borderRadius: new BorderRadius.circular(8.0),
          boxShadow: <BoxShadow>[

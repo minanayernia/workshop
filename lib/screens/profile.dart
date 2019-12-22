@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/widgets/profileCard.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -9,8 +10,9 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('profile',)),
       backgroundColor:Color(12),
-      body: Center(child: Text('profile'),),
+      body: ProCard(),
     );
   }
 }

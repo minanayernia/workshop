@@ -10,11 +10,10 @@ class _WorkshopCardState extends State<WorkshopCard> {
   @override
   Widget build(BuildContext context) {
     return Center(
-          child: Column(children: <Widget>[Padding(padding: EdgeInsets.only(top: 20),), 
+          child: Column(children: <Widget>[
+      Padding(padding: EdgeInsets.only(top: 20),), 
       Card(
-        
       child: Container(
-       
         height: 100,
         width: MediaQuery.of(context).size.width * 0.8,
         
@@ -30,9 +29,6 @@ class _WorkshopCardState extends State<WorkshopCard> {
          ImageBox(),
 
           //Icon(Icons.add_a_photo , size: 30,),
-          
-          
-          
         ],),
 
       

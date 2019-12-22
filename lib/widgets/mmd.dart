@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class MmdCard extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class _MmdCardState extends State<MmdCard> {
       // color: Colors.red,
       margin: const EdgeInsets.symmetric(
          vertical: 10.0,
-         horizontal: 24.0,
+         horizontal: 14.0,
        ),
        height: 110,
       child: Stack(
@@ -44,7 +43,7 @@ class _CardPicState extends State<CardPic> {
     //    vertical: 16.0
     //  ),
         alignment: FractionalOffset.centerLeft,
-        child: Image(image: AssetImage('assets/py.png'), height: 80,width: 80,),
+        child: Image(image: AssetImage('assets/pc.png'), height: 80,width: 80,),
     ));
   }
 }
@@ -57,21 +56,13 @@ class CardThumb extends StatefulWidget {
 
 class _CardThumbState extends State<CardThumb> {
 
-  static const List colors1 = [ Colors.green, Colors.yellow];
-  static const List colors2 = [Colors.red, Colors.yellow];
-  static const List colors3 = [Colors.red, Colors.green,];
-  List colors = [colors1, colors2, colors3];
-  
-  
-  Random random = new Random();
-
 
   @override
   Widget build(BuildContext context) {
     return Center(
           child: Container(
-       height: 130.0,
-       margin: new EdgeInsets.only(left: 40.0,right: 30),
+       height: 110.0,
+       margin: new EdgeInsets.only(left: 40.0,right: 20),
        decoration: new BoxDecoration(
          color: new Color(0xFF333366),
         // color: colors[random.nextInt(3)][random.nextInt(2)],
@@ -80,8 +71,8 @@ class _CardThumbState extends State<CardThumb> {
          boxShadow: <BoxShadow>[
            new BoxShadow(  
             color: Colors.black12,
-            blurRadius: 10.0,
-            offset: new Offset(0.0, 10.0),
+            blurRadius: 100.0,
+            offset: new Offset(0.0, 50.0),
           ),
         ],
       ),
@@ -109,7 +100,8 @@ class _CardThumbState extends State<CardThumb> {
                 decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(8.0),color: Colors.green),
                 // color: Colors.green,
                 height: 5,
-                child: Text('.......................'),
+                width: 60,
+                child: Text(''),
               ),
               Container(
                 margin: EdgeInsets.only(top: 10),

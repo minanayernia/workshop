@@ -15,10 +15,30 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Stack(children: <Widget>[
         Background(),
-        Topimage(),
-        // WorkshopCard(),
-        LoginCard(),
+        Foregrand()
+        
       ],),
+      
+    );
+  }
+}
+
+
+class Foregrand extends StatefulWidget {
+  @override
+  _ForegrandState createState() => _ForegrandState();
+}
+
+class _ForegrandState extends State<Foregrand> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Topimage(),
+        LoginCard()
+        ],
       
     );
   }
@@ -32,32 +52,32 @@ class LoginCard extends StatefulWidget {
 class _LoginCardState extends State<LoginCard> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-    
-      children: <Widget>[
-        Column(
-       mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: 140,
-      // color: Colors.yellow,
-      // alignment: Alignment.center,
-      margin: EdgeInsets.only(
-        bottom: 60
+    return Container(
+        margin: EdgeInsets.only(top: 100),
+        // color: Colors.green,
+          child: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.end,
+         mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+      Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: 140,
+        // color: Colors.yellow,
+        // alignment: Alignment.center,
+        margin: EdgeInsets.only(
+      top: 60
+        ),
+        decoration: BoxDecoration(color: Colors.deepPurple[700].withOpacity(0.5) ,borderRadius: BorderRadius.circular(10)),
+        child: Column(children: <Widget>[
+      Row(mainAxisAlignment: MainAxisAlignment.center,),
+      Nationalcard(),
+      Padding(padding: EdgeInsets.only(top: 15),),
+      SubmitButtom()
+        ],),
       ),
-      decoration: BoxDecoration(color: Colors.deepPurple[700].withOpacity(0.5) ,borderRadius: BorderRadius.circular(10)),
-      child: Column(children: <Widget>[
-        Row(mainAxisAlignment: MainAxisAlignment.center,),
-        Nationalcard(),
-        Padding(padding: EdgeInsets.only(top: 15),),
-        SubmitButtom()
-      ],),
-    ),
-      ],
-    )
-      ],
+        ],
+      ),
     );
 
   }
@@ -91,25 +111,13 @@ class Topimage extends StatefulWidget {
 class _TopimageState extends State<Topimage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/login-img.png'),
-        
-        )
-      ),
-
-        ),
-
-      ],
-      mainAxisAlignment: MainAxisAlignment.start,
-      
-      
-      
+    return Container(child: Image.asset('assets/login-img.png'),
+    // color: Colors.red,
     );
   }
 }
+
+
 
 class SubmitButtom extends StatefulWidget {
   @override

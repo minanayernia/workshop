@@ -11,6 +11,7 @@ class _MinaState extends State<Mina> {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       body: Center(child:Column(children: <Widget>[
+        Padding(padding: EdgeInsets.only(top: 100),),
               RaisedButton(
               child: Text('login'),
               onPressed: 
@@ -37,6 +38,7 @@ class _MinaState extends State<Mina> {
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
                   Navigator.pushNamed(context, '/workshop');
+
                 }
               ),
       ],)

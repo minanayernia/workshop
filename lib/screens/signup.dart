@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/background.dart';
+import 'package:workshop/screens/login.dart';
 
 
 class SignUp extends StatefulWidget {
@@ -40,21 +41,18 @@ class _SignupCardState extends State<SignupCard> {
         Container(
       width: MediaQuery.of(context).size.width * 0.9,
       height: 400,
-      // color: Colors.yellow,
-      // alignment: Alignment.center,
-      margin: EdgeInsets.only(
-        bottom: 60
-      ),
+      margin: EdgeInsets.only(bottom: 60),
       decoration: BoxDecoration(color: Colors.deepPurple[700].withOpacity(0.5) ,borderRadius: BorderRadius.circular(10)),
       child: Column(children: <Widget>[
-        Row(mainAxisAlignment: MainAxisAlignment.center,),
+        Padding(padding: EdgeInsets.only(top: 10 , left: 10),),
+        ProPic(),
+        FullName(),
+        Nationalcard(),
+        
+      ],
+      ),
+    )])]);
 
-      ],),
-    ),
-      ],
-    )
-      ],
-    );
   }
 }
 
@@ -80,6 +78,24 @@ class _FullNameState extends State<FullName> {
       margin: EdgeInsets.only(top: 15),
       decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(15),color: Colors.white,),
 
+      
+    );
+  }
+}
+
+class ProPic extends StatefulWidget {
+  @override
+  _ProPicState createState() => _ProPicState();
+}
+
+class _ProPicState extends State<ProPic> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      child: Icon(Icons.person),
+      decoration: BoxDecoration(shape: BoxShape.rectangle , borderRadius:new BorderRadius.circular(25),  color: Colors.white, ), 
       
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:workshop/screens/login.dart';
 import 'package:workshop/screens/profile.dart';
+import 'package:workshop/screens/signup.dart';
 import 'package:workshop/screens/splash.dart';
 import 'package:workshop/screens/home.dart';
 import 'screens/Search.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        accentColor: Colors.blueGrey,
+        accentColor: Colors.deepPurple,
       ),
       initialRoute: '/',
       routes: {
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         '/home' : (context) => MyHomePage(),
         //'/profile' : (context) => Profile() ,
         //'/jobs': (context) => Jobs() ,
+        '/login' : (context) => Login(),
+        '/signup' : (context) => SignUp(),
       }
       ,
     );
@@ -50,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _widgetOptions = <Widget>[
     Mina(),
     Search(),
-    Jobs(),
+    // Jobs(),
    Profile(),
   ];
 
@@ -67,32 +71,45 @@ class _MyHomePageState extends State<MyHomePage> {
       onWillPop: () async => false,
           child: Scaffold(
         backgroundColor: Theme.of(context).accentColor,
-
-  bottomNavigationBar: ClipRRect(
-  
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(25),
-          topLeft: Radius.circular(25),
-        ),
-        child: BottomNavigationBar(
-          selectedIconTheme: IconThemeData(size:40),
-          backgroundColor: Colors.orangeAccent,
-          currentIndex: _selectedIndex,
-          type: BottomNavigationBarType.fixed,
-          iconSize: 30,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home ), title: Text('1'), ),
-            BottomNavigationBarItem(icon: Icon(Icons.search ), title: Text('2')),
-            BottomNavigationBarItem(icon: Icon(Icons.work ), title: Text('3')),
-            BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
-          ],
-          onTap: _onItemTapped ,
-          unselectedItemColor: Colors.black,
-          selectedItemColor: Colors.black,
-          showUnselectedLabels: false,
-          showSelectedLabels: false,
-        ),
+        
+        bottomNavigationBar:
+        
+        Container(
+          height: 70,
+          padding: EdgeInsets.only(bottom: 10 , right:10 , left:10 ),
+          child: ClipRRect(
+            clipBehavior: Clip.hardEdge,
+            borderRadius: BorderRadius.only(
+            topRight: Radius.circular(25),
+            topLeft: Radius.circular(25),
+            bottomLeft: Radius.circular(25),
+            bottomRight: Radius.circular(25),
+          ),
+          
+          child: BottomNavigationBar(
+            
+            // selectedIconTheme: IconThemeData(size:30),
+            backgroundColor: Colors.deepPurple[700],
+            currentIndex: _selectedIndex,
+            type: BottomNavigationBarType.fixed,
+            iconSize: 30,
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.home ), title: Text('1'), ),
+              BottomNavigationBarItem(icon: Icon(Icons.search ), title: Text('2')),
+              // BottomNavigationBarItem(icon: Icon(Icons.work ), title: Text('3')),
+              BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('3')),
+            ],
+            onTap: _onItemTapped ,
+            unselectedItemColor: Colors.grey,
+            selectedItemColor: Colors.white,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
+            
+            
+          ),
       ),
+        ),
+      
   body: Container(
       
   child: _widgetOptions.elementAt(_selectedIndex) ,

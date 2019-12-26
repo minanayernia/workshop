@@ -46,6 +46,8 @@ flutter:
    - assets/logo.png
    - assets/py.png
    - assets/pc.png
+   - assets/learnoo-pattern.png
+   - assets/login-img.png
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

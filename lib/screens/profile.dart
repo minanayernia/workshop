@@ -10,8 +10,18 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('profile',)),
-      backgroundColor:Color(12),
+      backgroundColor: Colors.deepPurple,
+      appBar: AppBar(title: Text('profile',) ,
+      backgroundColor: Colors.deepPurple[700],
+      shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(200),
+        bottom: Radius.circular(200),
+      ),
+    ),
+    
+    ),
+      
       body: ProCard(),
     );
   }

@@ -95,8 +95,7 @@ class _ProPicState extends State<ProPic> {
       width: 50,
       height: 50,
       child: Icon(Icons.person),
-      color: Colors.white,
-      decoration: BoxDecoration(shape: BoxShape.rectangle , borderRadius:new BorderRadius.circular(radius) ), 
+      decoration: BoxDecoration(shape: BoxShape.rectangle , borderRadius:new BorderRadius.circular(25),  color: Colors.white, ), 
       
     );
   }

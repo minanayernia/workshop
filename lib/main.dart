@@ -6,6 +6,7 @@ import 'package:workshop/screens/profile.dart';
 import 'package:workshop/screens/signup.dart';
 import 'package:workshop/screens/splash.dart';
 import 'package:workshop/screens/home.dart';
+import 'package:workshop/screens/workshop-details.dart';
 import 'screens/Search.dart';
 import 'screens/splash.dart';
 import 'screens/profile.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         //'/jobs': (context) => Jobs() ,
         '/login' : (context) => Login(),
         '/signup' : (context) => SignUp(),
+        '/workshop' : (context) => Workshopdetails(),
       }
       ,
     );

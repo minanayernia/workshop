@@ -17,7 +17,7 @@ class _MinaState extends State<Mina> {
                 (){
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
-                  Navigator.popAndPushNamed(context, '/login');
+                  Navigator.pushNamed(context, '/login');
                 }
               ),
 
@@ -27,7 +27,16 @@ class _MinaState extends State<Mina> {
                 (){
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
-                  Navigator.popAndPushNamed(context, '/signup');
+                  Navigator.pushNamed(context, '/signup');
+                }
+              ),
+              RaisedButton(
+              child: Text('workshop'),
+              onPressed: 
+                (){
+                  // Navigator.pop(context);
+                  // Navigator.pushNamed(context, '/home');
+                  Navigator.pushNamed(context, '/workshop');
                 }
               ),
       ],)

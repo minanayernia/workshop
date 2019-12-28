@@ -16,10 +16,10 @@ class _ProCardState extends State<ProCard> {
         overflow: Overflow.clip,
         // fit: StackFit.loose,
         children: <Widget>[
-            BackCircle(),
-            PersonCard(),
-            BackInsideCircle(),
-            FrontInsideCircle(),
+            // BackCircle(),
+            // PersonCard(),
+            // BackInsideCircle(),
+            // FrontInsideCircle(),
         ],
       
       ),

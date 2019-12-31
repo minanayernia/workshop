@@ -97,7 +97,7 @@ class _CardThumbState extends State<CardThumb> {
               ),
               Container(
                 margin: EdgeInsets.only(top: 2),
-                decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(8.0),color: Colors.green),
+                
                 // color: Colors.green,
                 height: 5,
                 width: 60,

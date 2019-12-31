@@ -15,11 +15,29 @@ class _LoginState extends State<Login> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: true,
-      body: Stack(children: <Widget>[
-        Background(),
-        Foregrand()
-        
-      ],),
+      body: SingleChildScrollView(
+        //       child: Stack(children: <Widget>[
+        //   Background(),
+        //   Foregrand()
+          
+        // ],),
+
+        child: new GestureDetector(
+                  onTap: (){
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  },
+                child: Container(
+                    height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
+          fit: BoxFit.cover
+          )
+          ),
+                    child: Center(child:Foregrand()),
+        ),
+                )
+
+      ),
       
     );
   }

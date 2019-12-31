@@ -16,10 +16,10 @@ class _ProCardState extends State<ProCard> {
         overflow: Overflow.clip,
         // fit: StackFit.loose,
         children: <Widget>[
-            BackCircle(),
-            PersonCard(),
-            BackInsideCircle(),
-            FrontInsideCircle(),
+            // BackCircle(),
+            // PersonCard(),
+            // BackInsideCircle(),
+            // FrontInsideCircle(),
         ],
       
       ),
@@ -80,74 +80,74 @@ class _PersonCardState extends State<PersonCard> {
   }
 }
 
-class BackCircle extends StatefulWidget {
-  @override
-  _BackCircleState createState() => _BackCircleState();
-}
+// class BackCircle extends StatefulWidget {
+//   @override
+//   _BackCircleState createState() => _BackCircleState();
+// }
 
-class _BackCircleState extends State<BackCircle> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+// class _BackCircleState extends State<BackCircle> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
       
-        alignment: Alignment.center,
-        // color: Colors.red,
-        height: 200,
-        margin: EdgeInsets.only(top: 0, ),
-        child: CircleAvatar( radius: 100, backgroundColor: Colors.greenAccent[400] ),
-      );
-  }
-}
+//         alignment: Alignment.center,
+//         // color: Colors.red,
+//         height: 200,
+//         margin: EdgeInsets.only(top: 0, ),
+//         child: CircleAvatar( radius: 100, backgroundColor: Colors.greenAccent[400] ),
+//       );
+//   }
+// }
 
 
-class BackInsideCircle extends StatefulWidget {
-  @override
-  _BackInsideCircleState createState() => _BackInsideCircleState();
-}
+// class BackInsideCircle extends StatefulWidget {
+//   @override
+//   _BackInsideCircleState createState() => _BackInsideCircleState();
+// }
 
-class _BackInsideCircleState extends State<BackInsideCircle> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+// class _BackInsideCircleState extends State<BackInsideCircle> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
   
-      mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget> [ Container(
-            margin: EdgeInsets.only(top: 90),
-            alignment: FractionalOffset.bottomRight,
-        // color: Colors.red,
-        height: 110,
-        width: 330,
+//       mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget> [ Container(
+//             margin: EdgeInsets.only(top: 90),
+//             alignment: FractionalOffset.bottomRight,
+//         // color: Colors.red,
+//         height: 110,
+//         width: 330,
         
-        child: CircleAvatar(radius: 55, backgroundColor: Colors.purple[900],),
-      ),]
-    );
-  }
-}
+//         child: CircleAvatar(radius: 55, backgroundColor: Colors.purple[900],),
+//       ),]
+//     );
+//   }
+// }
 
-class FrontInsideCircle extends StatefulWidget {
-  @override
-  _FrontInsideCircleState createState() => _FrontInsideCircleState();
-}
+// class FrontInsideCircle extends StatefulWidget {
+//   @override
+//   _FrontInsideCircleState createState() => _FrontInsideCircleState();
+// }
 
-class _FrontInsideCircleState extends State<FrontInsideCircle> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+// class _FrontInsideCircleState extends State<FrontInsideCircle> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
   
-      mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget> [ Container(
-            // color: Colors.indigo,
-            margin: EdgeInsets.only(top: 90),
-            alignment: FractionalOffset.centerRight,
-        // color: Colors.red,
-        height: 110,
-        width: 315,
+//       mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget> [ Container(
+//             // color: Colors.indigo,
+//             margin: EdgeInsets.only(top: 90),
+//             alignment: FractionalOffset.centerRight,
+//         // color: Colors.red,
+//         height: 110,
+//         width: 315,
         
-        child: CircleAvatar(radius: 47, backgroundColor: Colors.grey,),
-      ),]
-    );
-  }
-}
+//         child: CircleAvatar(radius: 47, backgroundColor: Colors.grey,),
+//       ),]
+//     );
+//   }
+// }
 
 
 

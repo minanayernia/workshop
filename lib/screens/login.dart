@@ -13,6 +13,8 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       body: Stack(children: <Widget>[
         Background(),
         Foregrand()
@@ -163,12 +165,16 @@ class _NationalcardState extends State<Nationalcard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(children: <Widget>[
-        Padding(padding: EdgeInsets.only(left: 10)),
-        Icon(Icons.people ),
-        Padding(padding: EdgeInsets.only(left: 10),),
-        Text('NationalCard')
-      ],),
+      padding: EdgeInsets.only(left: 10),
+      child: TextField(
+        textInputAction: TextInputAction.go,
+        keyboardType: TextInputType.number,
+
+        
+        decoration: InputDecoration(icon: Icon(Icons.person, color: Colors.black,),
+        border: InputBorder.none,
+        hintText: 'National Card'
+        ),),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.85,
       

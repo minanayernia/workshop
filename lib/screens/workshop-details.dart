@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/main.dart';
 import 'package:workshop/widgets/background.dart';
+import 'package:workshop/screens/workshop-details.dart';
 
 class Workshopdetails extends StatefulWidget {
   @override

@@ -85,7 +85,7 @@ class _IntroTextBoxState extends State<IntroTextBox> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.6 ,
       width:  MediaQuery.of(context).size.width *0.4 ,
-      margin:EdgeInsets.only(top: MediaQuery.of(context).size.height *0.55 , left: MediaQuery.of(context).size.width *0.5 ) ,
+      margin:EdgeInsets.only(top: MediaQuery.of(context).size.height *0.58 , left: MediaQuery.of(context).size.width *0.5 ) ,
       child: Column(
         children: <Widget>[
           Container(

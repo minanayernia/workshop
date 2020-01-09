@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:workshop/screens/Workshop-details-TA.dart';
+import 'package:workshop/screens/intro1.dart';
+import 'package:workshop/screens/intro2.dart';
 import 'package:workshop/screens/login.dart';
 import 'package:workshop/screens/profile.dart';
 import 'package:workshop/screens/signup.dart';
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
         '/workshop' : (context) => Workshopdetails(),
         '/sup' : (context) => WorkshopdetailsSupervisor(),
         '/ta' : (context) => WorkshopDetailsTA(),
+        '/intro1': (context) => FirstIntroPage(),
+        '/intro2' : (context) => SecondIntroPage(),
       }
       ,
     );
@@ -60,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _widgetOptions = <Widget>[
     Mina(),
     Search(),
-    // Jobs(),
+    Jobs(),
    Profile(),
   ];
 
@@ -102,8 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home ), title: Text('1'), ),
               BottomNavigationBarItem(icon: Icon(Icons.search ), title: Text('2')),
-              // BottomNavigationBarItem(icon: Icon(Icons.work ), title: Text('3')),
-              BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('3')),
+              BottomNavigationBarItem(icon: Icon(Icons.notifications ), title: Text('3')),
+              BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
             ],
             onTap: _onItemTapped ,
             unselectedItemColor: Colors.grey,

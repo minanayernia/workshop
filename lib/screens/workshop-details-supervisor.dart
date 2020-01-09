@@ -17,12 +17,16 @@ class _WorkshopdetailsSupervisorState extends State<WorkshopdetailsSupervisor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Background(),
-          Page(),
-        ],
-      ),
+      // resizeToAvoidBottomInset: true,
+      // resizeToAvoidBottomPadding: true,
+         body: Container(
+                 height: MediaQuery.of(context).size.height,
+                 decoration: BoxDecoration(
+                   image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
+                   fit: BoxFit.cover)
+          ),
+                 child: SingleChildScrollView(child: Center(child:Page())),
+        ),
     );
   }
 }

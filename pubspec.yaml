@@ -48,6 +48,13 @@ flutter:
    - assets/pc.png
    - assets/learnoo-pattern.png
    - assets/login-img.png
+   - assets/id-card.png
+   - assets/intro-bg.png
+   - assets/dokhtare.png
+   - assets/pesare.png
+   
+
+   
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

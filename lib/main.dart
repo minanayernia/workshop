@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _widgetOptions = <Widget>[
     Mina(),
     Search(),
-    // Jobs(),
+    Jobs(),
    Profile(),
   ];
 
@@ -106,8 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home ), title: Text('1'), ),
               BottomNavigationBarItem(icon: Icon(Icons.search ), title: Text('2')),
-              // BottomNavigationBarItem(icon: Icon(Icons.work ), title: Text('3')),
-              BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('3')),
+              BottomNavigationBarItem(icon: Icon(Icons.notifications ), title: Text('3')),
+              BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
             ],
             onTap: _onItemTapped ,
             unselectedItemColor: Colors.grey,

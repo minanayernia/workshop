@@ -20,7 +20,7 @@ class _FirstIntroPageState extends State<FirstIntroPage> {
           Dokhtaroo() ,
           IntroTextBox(),
           DownButton(),
-          ColoryShaps(),
+          ColoryShapes(),
        ],)
             
       ),)
@@ -131,14 +131,15 @@ class _DownButtonState extends State<DownButton> {
       )
     );
   }
+
 }
 
-class ColoryShaps extends StatefulWidget {
+class ColoryShapes extends StatefulWidget {
   @override
-  _ColoryShapsState createState() => _ColoryShapsState();
+  _ColoryShapesState createState() => _ColoryShapesState();
 }
 
-class _ColoryShapsState extends State<ColoryShaps> {
+class _ColoryShapesState extends State<ColoryShapes> {
   @override
   Widget build(BuildContext context) {
     return Container(

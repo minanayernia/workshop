@@ -48,16 +48,21 @@ class MinaAppBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.red,
       height: 100,
           child: Center(
-                      child: Container(
-        height: 60,
+            child: Container(
+              
+        height: 50,
         width: MediaQuery.of(context).size.width * 0.9,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-        //  color: Colors.purple
+         color: Colors.yellow
          ),
-        child: Center(child: Center(
-                  child: AppBar(title: Center(child:Text('maing')),
+        child: AppBar(
+          
+          
+          title: Container(child: Center(child: Text('profile')) , margin: EdgeInsets.only(bottom: 20),),
+          
           automaticallyImplyLeading: false,
           shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -66,9 +71,6 @@ class MinaAppBar extends StatelessWidget implements PreferredSizeWidget{
       ),
           ),
           ),
-        ),
-        
-      ),
           ),)
     );
   }

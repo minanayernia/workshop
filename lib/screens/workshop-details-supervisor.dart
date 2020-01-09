@@ -17,29 +17,16 @@ class _WorkshopdetailsSupervisorState extends State<WorkshopdetailsSupervisor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      resizeToAvoidBottomPadding: true,
-         body: SingleChildScrollView(
-              child: new GestureDetector(
-                  onTap: (){
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-              child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
-                      fit: BoxFit.cover)
+      // resizeToAvoidBottomInset: true,
+      // resizeToAvoidBottomPadding: true,
+         body: Container(
+                 height: MediaQuery.of(context).size.height,
+                 decoration: BoxDecoration(
+                   image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
+                   fit: BoxFit.cover)
           ),
-                    child: Center(child:Page()),
+                 child: SingleChildScrollView(child: Center(child:Page())),
         ),
-                ),
-        //       child: Stack(
-        //   children: <Widget>[
-        //     Background(),
-        //     Page(),
-        //   ],
-        // ),
-      ),
     );
   }
 }

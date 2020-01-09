@@ -48,6 +48,33 @@ class _PageState extends State<Page> {
   }
 }
 
+
+class Workshopimage extends StatefulWidget {
+  @override
+  _WorkshopimageState createState() => _WorkshopimageState();
+}
+
+class _WorkshopimageState extends State<Workshopimage> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          decoration: BoxDecoration(
+              color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+          width: 100,
+          height: 100,
+        )
+      ],
+    );
+  }
+}
+
+
+
+
 class Detailcard extends StatefulWidget {
   @override
   _DetailcardState createState() => _DetailcardState();

@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar:
         
         Container(
-          height: 70,
+          height: 71,
           padding: EdgeInsets.only(bottom: 10 , right:10 , left:10 ),
           child: ClipRRect(
             clipBehavior: Clip.hardEdge,

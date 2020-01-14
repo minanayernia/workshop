@@ -2,12 +2,15 @@
 
 // import 'dart:js';
 
+// import 'dart:js';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:workshop/screens/Workshop-details-TA.dart';
 import 'package:workshop/screens/addGroup.dart';
 import 'package:workshop/screens/form.dart';
+import 'package:workshop/screens/instalments.dart';
 import 'package:workshop/screens/intro1.dart';
 import 'package:workshop/screens/intro2.dart';
 import 'package:workshop/screens/login.dart';
@@ -56,6 +59,7 @@ class MyApp extends StatelessWidget {
         '/form' : (context) => FormPage() ,
         '/payment' : (context) => PaymentPage(),
         '/addGroup' : (context) =>AddGroupPage(),
+        '/instalment' : (context) => InstalmentPage(),
       }
       ,
     );

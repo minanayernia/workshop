@@ -18,11 +18,7 @@ class _TopBarState extends State<TopBar> {
       height: 50,
       width: MediaQuery.of(context).size.width*0.9,
       decoration: BoxDecoration(color: Colors.white , borderRadius: BorderRadius.circular(25)),
-<<<<<<< HEAD
-      // child: Text(),
-=======
       child: Text(widget.foo),
->>>>>>> 1548fa5159e2872d321464f4e2b1821b701db71b
       
     );
   }

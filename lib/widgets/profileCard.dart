@@ -42,7 +42,7 @@ class _ProCardState extends State<ProCard> {
             Text('Participant' , style: TextStyle(color: Colors.white),) ,
             Padding(padding: EdgeInsets.only(top: 5),),
             Container(
-              height: 150,
+              height: 149,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                 children: <Widget>[
@@ -66,7 +66,7 @@ class _ProCardState extends State<ProCard> {
 
       Container(
         // color: Colors.red,
-        height:171 ,
+        height:173 ,
         margin: EdgeInsets.only(top: 10),
         width:  MediaQuery.of(context).size.width*1 ,
         padding: EdgeInsets.only(left: 10),

@@ -88,6 +88,14 @@ class _MinaState extends State<Mina> {
                 Navigator.pushNamed(context, '/payment');
               }),
 
+              RaisedButton(
+              child: Text('addgroup'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/addGroup');
+              }),
+
 
         ],
       )),

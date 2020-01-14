@@ -12,7 +12,8 @@ class _MinaState extends State<Mina> {
       backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(),
       body: Center(
-          child: Column(
+          child: ListView(
+            scrollDirection: Axis.vertical,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 100),

@@ -17,7 +17,7 @@ class _PaymentPageState extends State<PaymentPage> {
       body: Center(
               child: Column(
           children: <Widget>[
-            TopBar() ,
+            TopBar(foo: "adf",) ,
             PaymentBox()
 
 

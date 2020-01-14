@@ -54,7 +54,7 @@ class _FormPageState extends State<FormPage> {
       // ),
       body: Column(
         children: <Widget>[
-          TopBar() ,
+          TopBar(foo: "hi",) ,
           FormCard(),
           SubmmitButton(),
         ],
@@ -201,6 +201,7 @@ class _DesciptiveAnswerState extends State<DesciptiveAnswer> {
         textInputAction: TextInputAction.go,
         keyboardType: TextInputType.text ,
         decoration: InputDecoration(
+          border: InputBorder.none,
           hintText: "   Answer..."
         ),
       ),

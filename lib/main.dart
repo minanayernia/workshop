@@ -15,9 +15,9 @@ import 'package:workshop/screens/home.dart';
 import 'package:workshop/screens/workshop-details-supervisor.dart';
 import 'package:workshop/screens/workshop-details.dart';
 import 'screens/Search.dart';
-import 'screens/splash.dart';
-import 'screens/profile.dart';
-import 'screens/home.dart';
+// import 'screens/splash.dart';
+// import 'screens/profile.dart';
+// import 'screens/home.dart';
 import 'screens/jobs.dart';
 import 'screens/form.dart';
 

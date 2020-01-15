@@ -77,7 +77,7 @@ class _DetailcardState extends State<Detailcard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          width: MediaQuery.of(context).size.width * 0.85,
+          width: MediaQuery.of(context).size.width * 0.9,
           height: 200,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(10)),
@@ -119,7 +119,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          width: MediaQuery.of(context).size.width * 0.85,
+          width: MediaQuery.of(context).size.width * 0.9,
           height: 150,
           decoration: BoxDecoration(
               color: Colors.deepPurple[700].withOpacity(0.5),
@@ -132,22 +132,40 @@ class _TimePlcecardState extends State<TimePlcecard> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                  Icon(Icons.calendar_today , color: Colors.white,), Text('Sat,05 Oct',
-                  style: TextStyle(color: Colors.white , fontSize: 20.0), )],
-                ),
-                Row(
-                  children: <Widget>[Icon(Icons.time_to_leave , color: Colors.white,), Text('bahar',
-                  style: TextStyle(color: Colors.white , fontSize: 20.0),
+                  Icon(Icons.calendar_today , color: Colors.white,), Container(margin: EdgeInsets.only(left: 5),
+                    child: Text('Sat,05 Oct',
+                    style: TextStyle(color: Colors.white , fontSize: 20.0), ),
                   )],
                 ),
                 Row(
-                  children: <Widget>[Icon(Icons.place , color: Colors.white,), Text('bahar',
-                  style: TextStyle(color: Colors.white , fontSize: 20.0),)],
+                  children: <Widget>[Icon(Icons.time_to_leave , color: Colors.white,), Container(margin: EdgeInsets.only(left: 5),
+                    child: Text('bahar',
+                    style: TextStyle(color: Colors.white , fontSize: 20.0),
+                    ),
+                  )],
                 ),
                 Row(
-                  children: <Widget>[Icon(Icons.person , color: Colors.white,), Text('bahar',
+                  children: <Widget>[Icon(Icons.place , color: Colors.white,), Container(margin: EdgeInsets.only(left: 5),
+                    child: Text('bahar',
+                    style: TextStyle(color: Colors.white , fontSize: 20.0),),
+                  )],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[Container(child: Row(
+                    children: <Widget>[
+                      Icon(Icons.place , color: Colors.white,),
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Text('bahar',
                   style: TextStyle(color: Colors.white , fontSize: 20.0),),
-                 // Price(),
+                      )
+                    ],
+                  )),
+                  
+                 Container(
+                   margin: EdgeInsets.only(right: 10),
+                   child: Price()),
                   ],
                 )
                 
@@ -171,7 +189,7 @@ class _EnrollbuttonState extends State<Enrollbutton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.85,
+      width: MediaQuery.of(context).size.width * 0.9,
       child: RaisedButton(
         child: Text(
           'Enroll',
@@ -203,7 +221,7 @@ class _TAcardState extends State<TAcard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          width: MediaQuery.of(context).size.width * 0.85,
+          width: MediaQuery.of(context).size.width * 0.9,
           height: 150,
           decoration: BoxDecoration(
               color: Colors.deepPurple[700].withOpacity(0.5),
@@ -283,3 +301,7 @@ class _PriceState extends State<Price> {
     );
   }
 }
+
+
+
+

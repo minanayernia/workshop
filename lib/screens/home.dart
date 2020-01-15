@@ -72,6 +72,33 @@ class _MinaState extends State<Mina> {
                 Navigator.pushNamed(context, '/intro2');
               }),
 
+              RaisedButton(
+              child: Text('add form'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/add form');
+              }),
+
+
+
+              RaisedButton(
+              child: Text('add workshop'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/add workshop');
+              }),
+
+
+              RaisedButton(
+              child: Text('workshopAccountor'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/workshopAccountor');
+              }),
+
 
         ],
       )),

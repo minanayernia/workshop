@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class TAImageCard extends StatefulWidget {
   @override
   _TAImageCardState createState() => _TAImageCardState();

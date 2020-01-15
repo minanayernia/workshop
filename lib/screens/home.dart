@@ -100,6 +100,16 @@ class _MinaState extends State<Mina> {
               }),
 
 
+
+              RaisedButton(
+              child: Text('course'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/course');
+              }),
+
+
         ],
       )),
     );

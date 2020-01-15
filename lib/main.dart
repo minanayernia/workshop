@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:workshop/screens/AddForm.dart';
 import 'package:workshop/screens/AddWorkshop.dart';
+import 'package:workshop/screens/Course.dart';
 import 'package:workshop/screens/Workshop-details-TA.dart';
 import 'package:workshop/screens/WorkshopAccountor.dart';
 import 'package:workshop/screens/intro1.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/add form': (context) => AddForm(),
         '/add workshop': (context) => AddWorkshop(),
         '/workshopAccountor': (context) => WorkshopAccountor(),
+        '/course': (context) => Course(),
       },
     );
   }

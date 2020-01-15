@@ -78,7 +78,7 @@ class InstalmentCard extends StatefulWidget {
 }
 
 class _InstalmentCardState extends State<InstalmentCard> {
-  // String selected = ""
+  String selected = "Not Payed" ;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -104,11 +104,23 @@ class _InstalmentCardState extends State<InstalmentCard> {
                   ],
                 ),
             ),
-            Container(
-                height: 30,
-                width:MediaQuery.of(context).size.width*0.2 ,
-                decoration: BoxDecoration(color: Colors.deepPurple[600] , borderRadius: BorderRadius.circular(19)),
-                child: Center(child: Text("payed" ,style: TextStyle(color: Colors.deepPurple),),),
+            GestureDetector(
+              onTap: (){
+                setState(() {
+            if(selected == "Payed"){
+              selected = "Not Payed" ;
+            }else{
+              selected = "Payed" ;
+            }
+            
+          });
+              },
+                  child: Container(
+                  height: 30,
+                  width:MediaQuery.of(context).size.width*0.2 ,
+                  decoration: BoxDecoration(color: selected == "Payed" ? Colors.greenAccent[400]: Colors.deepPurple[600] , borderRadius: BorderRadius.circular(19)),
+                  child: Center(child: Text(selected ,style: TextStyle(color: Colors.deepPurple),),),
+              ),
             )
           ],
         ),

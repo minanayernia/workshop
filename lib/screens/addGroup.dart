@@ -15,7 +15,7 @@ class _AddGroupPageState extends State<AddGroupPage> {
       body: Center(
             child: Column(
             children: <Widget>[
-        TopBar() ,
+        TopBar(foo: "Add Group",) ,
         AddGroupBox() ,
         SubmittButton(),
 

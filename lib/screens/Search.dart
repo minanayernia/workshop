@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/widgets/topbar.dart';
 import 'package:workshop/widgets/workshop_card.dart';
 
 class Search extends StatefulWidget {
@@ -10,13 +11,14 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      leading: IconButton(icon: Icon(Icons.search),onPressed: (){},),
-      title: Text('search'),
-      titleSpacing: 0,
-
+      backgroundColor: Colors.deepPurple,
+      body:Center(
+        child: Column(
+          children: <Widget>[
+            TopBar(foo: "search",) 
+          ],
+        ),
       ),
-      body:  WorkshopCard(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/widgets/topbar.dart';
 
 class Mina extends StatefulWidget {
   @override
@@ -10,8 +11,40 @@ class _MinaState extends State<Mina> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: AppBar(),
-      body: Center(
+      body:Center(
+        child: Column(children: <Widget>[
+          TopBar(foo: "Home",),
+          HomeBody(),
+          
+        ],),
+      ) ,
+    );
+  }
+}
+
+class SignupCard extends StatefulWidget {
+  @override
+  _SignupCardState createState() => _SignupCardState();
+}
+
+class _SignupCardState extends State<SignupCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+class HomeBody extends StatefulWidget {
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height*0.8,
+      width: MediaQuery.of(context).size.width*0.9,
+      child: Center(
           child: ListView(
             scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -108,18 +141,7 @@ class _MinaState extends State<Mina> {
 
         ],
       )),
+      
     );
-  }
-}
-
-class SignupCard extends StatefulWidget {
-  @override
-  _SignupCardState createState() => _SignupCardState();
-}
-
-class _SignupCardState extends State<SignupCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

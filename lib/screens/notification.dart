@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/widgets/topbar.dart';
 
 import 'form.dart';
 
@@ -12,6 +13,8 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) { 
     return Scaffold(
+
+      backgroundColor: Colors.deepPurple,
 
       
      

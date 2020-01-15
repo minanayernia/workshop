@@ -85,7 +85,7 @@ class _InstalmentCardState extends State<InstalmentCard> {
       margin: EdgeInsets.only(top: 7),
       height: 60,
       width: MediaQuery.of(context).size.width*0.7,
-      decoration: BoxDecoration(color: Colors.deepPurple , borderRadius: BorderRadius.circular(15)),
+      decoration: BoxDecoration(color: selected == "Payed" ? Colors.white: Colors.deepPurple , borderRadius: BorderRadius.circular(15)),
       child: Center(
               child: Container(
                 width: MediaQuery.of(context).size.width*0.7,
@@ -98,8 +98,8 @@ class _InstalmentCardState extends State<InstalmentCard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text("sat 05 oct" , style: TextStyle(color: Colors.white , fontSize: 15),),//Date
-                    Text("75 " , style: TextStyle(color: Colors.white , fontSize: 15)) ,//price
+                    Text("sat 05 oct" , style: TextStyle(color: selected == "Payed" ? Colors.deepPurple: Colors.white, fontSize: 15),),//Date
+                    Text("75 " , style: TextStyle(color: selected == "Payed" ? Colors.deepPurple: Colors.white, fontSize: 15)) ,//price
                   ],
                 ),
             ),

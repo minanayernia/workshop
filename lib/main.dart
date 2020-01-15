@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: BottomNavigationBar(
             
             // selectedIconTheme: IconThemeData(size:30),
-            backgroundColor: Colors.deepPurple[700],
+            backgroundColor: Colors.white,
             currentIndex: _selectedIndex,
             type: BottomNavigationBarType.fixed,
             iconSize: 30,
@@ -126,8 +126,8 @@ class _MyHomePageState extends State<MyHomePage> {
               // BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
             ],
             onTap: _onItemTapped ,
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.deepPurple[300],
+            selectedItemColor: Colors.deepPurple[600],
             showUnselectedLabels: false,
             showSelectedLabels: false,
             

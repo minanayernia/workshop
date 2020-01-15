@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/profileCard.dart';
+import 'package:workshop/widgets/topbar.dart';
 // import 'package:workshop/screens/splash.dart';
 
 class Profile extends StatefulWidget {
@@ -12,22 +13,18 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
-    //   appBar: AppBar(title: Container(margin: EdgeInsets.only(right: 100),
-    //   child: Text('Profile',)) ,
-    //   automaticallyImplyLeading: false,
-    //   // leading: Container(),
-    //   backgroundColor: Colors.deepPurple[700],
-    //   shape: RoundedRectangleBorder(
-    //   borderRadius: BorderRadius.vertical(
-    //     top: Radius.circular(200),
-    //     bottom: Radius.circular(200),
-    //   ),
-    // ),
-    
-    // ),
       
-      appBar: MinaAppBar(height: 100),
-      body: SingleChildScrollView(child: ProCard()),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            TopBar(foo: "Profile",),
+            Container(
+              height:MediaQuery.of(context).size.height*0.8 ,
+              width: MediaQuery.of(context).size.width*0.95,
+              child: SingleChildScrollView(child: ProCard())),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -164,7 +164,7 @@ class _SubmitButtomState extends State<SubmitButtom> {
                 (){
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
-                  Navigator.popAndPushNamed(context, '/login');
+                  Navigator.popAndPushNamed(context, '/home');
                 }
               
       

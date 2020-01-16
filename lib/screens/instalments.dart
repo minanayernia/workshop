@@ -91,7 +91,6 @@ class _InstalmentCardState extends State<InstalmentCard> {
                 width: MediaQuery.of(context).size.width*0.7,
                   child: Row(
           children: <Widget>[
-
             Container(
                 height:60 ,
                 width: MediaQuery.of(context).size.width*0.5,

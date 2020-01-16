@@ -27,7 +27,19 @@ class _SplashScreenState extends State<SplashScreen> {
           decoration: BoxDecoration(image: DecorationImage(
             image: AssetImage("assets/Learnoo_new.gif")
           )),
-        ),) 
+          child: Container(
+            height:50 ,
+            width: 50,
+              child: RaisedButton(
+            
+              child: Text("home"),
+              onPressed: (){
+                Navigator.pushNamed(context, "/home");
+              },
+            ),
+          ),
+        ),
+        ) 
       ),
  
       

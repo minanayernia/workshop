@@ -11,9 +11,9 @@ class _NotifCardState extends State<NotifCard> {
     return Container(
       height: 72,
       width:MediaQuery.of(context).size.width*0.8 ,
-      margin: EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only(top: 10 , left: 10 , right: 10),
       decoration: BoxDecoration(
-          color: Colors.deepPurple[800].withOpacity(0.8),
+          color: Colors.deepPurple[700],
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: <Widget>[

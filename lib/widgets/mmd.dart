@@ -64,7 +64,7 @@ class _CardThumbState extends State<CardThumb> {
        height: 110.0,
        margin: new EdgeInsets.only(left: 40.0,right: 20),
        decoration: new BoxDecoration(
-         color: new Color(0xFF333366),
+         color: Colors.deepPurple[700].withOpacity(0.8),
         // color: colors[random.nextInt(3)][random.nextInt(2)],
          shape: BoxShape.rectangle,
          borderRadius: new BorderRadius.circular(8.0),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Course extends StatefulWidget {
+class Sections extends StatefulWidget {
   @override
-  _CourseState createState() => _CourseState();
+  _SectionsState createState() => _SectionsState();
 }
 
-class _CourseState extends State<Course> {
+class _SectionsState extends State<Sections> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +21,16 @@ class _CourseState extends State<Course> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(left: 10 , top: 10),
+                    margin: EdgeInsets.only(left: 10),
                     child: Text(
-                      'All Courses',
+                      'All Sections',
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
                   ),
                   Center(
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.8,
-                      height:MediaQuery.of(context).size.width * 0.8 ,
+                      height: MediaQuery.of(context).size.width * 0.8,
                       child: ListView(
                         scrollDirection: Axis.vertical,
                         children: <Widget>[
@@ -39,12 +39,12 @@ class _CourseState extends State<Course> {
                       ),
                     ),
                   )
-                  
                 ],
               )),
         ));
   }
 }
+
 
 class CourseCard extends StatefulWidget {
   @override
@@ -56,7 +56,7 @@ class _CourseCardState extends State<CourseCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        // margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(top: 10),
         width: MediaQuery.of(context).size.width * 0.85,
         height: 72,
         decoration: BoxDecoration(
@@ -91,7 +91,7 @@ class _CourseCardState extends State<CourseCard> {
                   color: Colors.deepPurple[800].withOpacity(0.5),
                   borderRadius: BorderRadius.circular(15)),
               child: Center(
-                child: Text('3 Sections' ,
+                child: Text('bahar' ,
                 style: TextStyle(color: Colors.white),),
               ),
             ),

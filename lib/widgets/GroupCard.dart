@@ -13,7 +13,7 @@ class _GroupCardState extends State<GroupCard> {
       height: 30,
       margin: EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
-          color: Colors.deepPurple[800].withOpacity(0.8),
+          color: Colors.purple[900],
           borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

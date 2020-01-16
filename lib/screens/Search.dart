@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/workshop_card.dart';
+import 'package:workshop/widgets/mmd.dart';
+
 
 class Search extends StatefulWidget {
   @override
@@ -16,7 +18,8 @@ class _SearchState extends State<Search> {
       titleSpacing: 0,
 
       ),
-      body:  WorkshopCard(),
+      backgroundColor: Theme.of(context).accentColor,
+      body:  MmdCard(),
     );
   }
 }

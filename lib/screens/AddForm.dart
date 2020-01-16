@@ -52,6 +52,8 @@ class WhoAnswersCard extends StatefulWidget {
 }
 
 class _WhoAnswersCardState extends State<WhoAnswersCard> {
+  bool selected = false;
+  bool selected2 = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,6 +77,32 @@ class _WhoAnswersCardState extends State<WhoAnswersCard> {
                   child: Text('Participant',
                       style: TextStyle(color: Colors.purple, fontSize: 17.0)),
                 ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selected = !selected;
+                      if (selected2 == true) {
+                        selected2 = !selected2;
+                      }
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.pinkAccent,
+                        borderRadius: BorderRadius.circular(5)),
+                    width: 20,
+                    height: 20,
+                    child: Container(
+                      margin: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                          color: selected == true
+                              ? Colors.pinkAccent
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(2)),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -85,6 +113,32 @@ class _WhoAnswersCardState extends State<WhoAnswersCard> {
                   child: Text('T.A',
                       style: TextStyle(color: Colors.purple, fontSize: 17.0)),
                 ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selected2 = !selected2;
+                      if (selected == true) {
+                        selected = !selected;
+                      }
+                    });
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.pinkAccent,
+                        borderRadius: BorderRadius.circular(5)),
+                    width: 20,
+                    height: 20,
+                    child: Container(
+                      margin: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                          color: selected2 == true
+                              ? Colors.pinkAccent
+                              : Colors.white,
+                          borderRadius: BorderRadius.circular(2)),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -156,7 +210,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: new BorderRadius.circular(15),
-              color: Colors.grey[350],
+              color: Colors.grey[300],
             ),
           ),
           Container(
@@ -165,33 +219,37 @@ class _QuestionContainerState extends State<QuestionContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
+                  height: 40,
                   width: 150,
-                  child: RaisedButton(
-                    child: Text(
-                      'One',
-                      style: TextStyle(
-                          color: Colors.purple[600].withOpacity(0.5), fontSize: 15.0),
+                  decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Container(
+                      width: 150,
+                      height: 40,
+                      child: TextField(
+                        textInputAction: TextInputAction.go,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            border: InputBorder.none, hintText: 'One'),
+                      ),
                     ),
-                    color: Colors.grey[350],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0),
-                    ),
-                    onPressed: () {},
                   ),
                 ),
                 Container(
+                  height: 40,
                   width: 150,
-                  child: RaisedButton(
-                    child: Text(
-                      'Two',
-                      style: TextStyle(
-                          color: Colors.purple[600].withOpacity(0.5), fontSize: 15.0),
+                  decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: TextField(
+                      textInputAction: TextInputAction.go,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'Two'),
                     ),
-                    color: Colors.grey[350],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0),
-                    ),
-                    onPressed: () {},
                   ),
                 ),
               ],

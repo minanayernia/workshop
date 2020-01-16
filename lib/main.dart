@@ -11,13 +11,11 @@ import 'package:workshop/screens/AddForm.dart';
 import 'package:workshop/screens/AddWorkshop.dart';
 import 'package:workshop/screens/Course.dart';
 import 'package:workshop/screens/Workshop-details-TA.dart';
-<<<<<<< HEAD
 import 'package:workshop/screens/WorkshopAccountor.dart';
 import 'package:workshop/screens/intro1.dart';
 import 'package:workshop/screens/intro2.dart';
 import 'package:workshop/screens/login.dart';
 import 'package:workshop/screens/notification.dart';
-=======
 import 'package:workshop/screens/addGroup.dart';
 import 'package:workshop/screens/form.dart';
 import 'package:workshop/screens/instalments.dart';
@@ -25,7 +23,6 @@ import 'package:workshop/screens/intro1.dart';
 import 'package:workshop/screens/intro2.dart';
 import 'package:workshop/screens/login.dart';
 import 'package:workshop/screens/payment.dart';
->>>>>>> 114996a8e659f89bf4f32189a787cbffdd60107b
 import 'package:workshop/screens/profile.dart';
 import 'package:workshop/screens/signup.dart';
 import 'package:workshop/screens/splash.dart';
@@ -64,22 +61,17 @@ class MyApp extends StatelessWidget {
         '/sup': (context) => WorkshopdetailsSupervisor(),
         '/ta': (context) => WorkshopDetailsTA(),
         '/intro1': (context) => FirstIntroPage(),
-<<<<<<< HEAD
         '/intro2': (context) => SecondIntroPage(),
         '/add form': (context) => AddForm(),
         '/add workshop': (context) => AddWorkshop(),
         '/workshopAccountor': (context) => WorkshopAccountor(),
         '/course': (context) => Course(),
-      },
-=======
-        '/intro2' : (context) => SecondIntroPage(),
         '/form' : (context) => FormPage() ,
         '/payment' : (context) => PaymentPage(),
         '/addGroup' : (context) =>AddGroupPage(),
         '/instalment' : (context) => InstalmentPage(),
       }
       ,
->>>>>>> 114996a8e659f89bf4f32189a787cbffdd60107b
     );
   }
 }
@@ -95,12 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _widgetOptions = <Widget>[
     Mina(),
     Search(),
-<<<<<<< HEAD
     //Jobs(),
     NotificationPage(),
-=======
-    Jobs(),
->>>>>>> 114996a8e659f89bf4f32189a787cbffdd60107b
+    // Jobs(),
     Profile(),
   ];
 
@@ -116,18 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Theme.of(context).accentColor,
-<<<<<<< HEAD
-        bottomNavigationBar: Container(
-          height: 70,
-          padding: EdgeInsets.only(bottom: 10, right: 10, left: 10),
-=======
         
         bottomNavigationBar:
         
         Container(
           height: 71,
           padding: EdgeInsets.only(bottom: 10 , right:10 , left:10 ),
->>>>>>> 114996a8e659f89bf4f32189a787cbffdd60107b
           child: ClipRRect(
             clipBehavior: Clip.hardEdge,
             borderRadius: BorderRadius.only(
@@ -137,37 +120,6 @@ class _MyHomePageState extends State<MyHomePage> {
               bottomRight: Radius.circular(25),
             ),
             child: BottomNavigationBar(
-              // selectedIconTheme: IconThemeData(size:30),
-              backgroundColor: Colors.deepPurple[700],
-              currentIndex: _selectedIndex,
-              type: BottomNavigationBarType.fixed,
-              iconSize: 30,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text('1'),
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.search), title: Text('2')),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.notifications), title: Text('3')),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person,
-                    ),
-                    title: Text('4')),
-              ],
-              onTap: _onItemTapped,
-              unselectedItemColor: Colors.grey,
-              selectedItemColor: Colors.white,
-              showUnselectedLabels: false,
-              showSelectedLabels: false,
-            ),
-          ),
-<<<<<<< HEAD
-=======
-          
-          child: BottomNavigationBar(
             
             // selectedIconTheme: IconThemeData(size:30),
             backgroundColor: Colors.white,
@@ -189,13 +141,14 @@ class _MyHomePageState extends State<MyHomePage> {
             
             
           ),
+          ),
+          
+          
       ),
->>>>>>> 114996a8e659f89bf4f32189a787cbffdd60107b
-        ),
-        body: Container(
+      body: Container(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-      ),
+        ),
     );
   }
 }

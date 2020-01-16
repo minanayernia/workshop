@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/widgets/topbar.dart';
 
 class AddForm extends StatefulWidget {
   @override
@@ -9,15 +10,11 @@ class _AddFormState extends State<AddForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Form'),
-        leading: Icon(Icons.ac_unit),
-        actions: <Widget>[Icon(Icons.wb_sunny)],
-      ),
       backgroundColor: Theme.of(context).accentColor,
       body: Center(
         child: Column(
           children: <Widget>[
+            TopBar(foo: "Add form",),
             Page(),
           ],
         ),
@@ -165,7 +162,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                  width: 150,
+                  width: MediaQuery.of(context).size.width*0.4,
                   child: RaisedButton(
                     child: Text(
                       'One',
@@ -180,7 +177,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
                   ),
                 ),
                 Container(
-                  width: 150,
+                  width: MediaQuery.of(context).size.width*0.4,
                   child: RaisedButton(
                     child: Text(
                       'Two',
@@ -218,7 +215,7 @@ class _AddContainerState extends State<AddContainer> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            width: 180,
+            width: MediaQuery.of(context).size.width*0.43,
             height: 40,
             child: RaisedButton(
               child: Text(
@@ -233,7 +230,7 @@ class _AddContainerState extends State<AddContainer> {
             ),
           ),
           Container(
-            width: 180,
+            width: MediaQuery.of(context).size.width*0.43,
             height: 40,
             child: RaisedButton(
               child: Text(

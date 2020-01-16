@@ -13,7 +13,6 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
       body:Center(
         child: Column(
           children: <Widget>[
@@ -21,11 +20,7 @@ class _SearchState extends State<Search> {
           ],
         ),
       ),
-<<<<<<< HEAD
       backgroundColor: Theme.of(context).accentColor,
-      body:  MmdCard(),
-=======
->>>>>>> 114996a8e659f89bf4f32189a787cbffdd60107b
     );
   }
 }

@@ -11,11 +11,14 @@ class WorkshopAccountor extends StatefulWidget {
 class _WorkshopAccountorState extends State<WorkshopAccountor> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Background(),
-        Page(),
-      ],
+    return Material(
+      type: MaterialType.transparency,
+      child: Stack(
+        children: <Widget>[
+          Background(),
+          Page(),
+        ],
+      ),
     );
   }
 }
@@ -50,7 +53,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
     return Container(
       margin: EdgeInsets.only(top: 10),
       width: MediaQuery.of(context).size.width * 0.9,
-      height: 120,
+      height: 130,
       decoration: BoxDecoration(
           color: Colors.deepPurple[700].withOpacity(0.5),
           borderRadius: BorderRadius.circular(10)),
@@ -84,13 +87,21 @@ class _ParticipantCardState extends State<ParticipantCard> {
             ),
           ),
           Container(
-              margin: EdgeInsets.only(left: 10, top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  EachParticipantCard(),
-                ],
-              )),
+            height: 80,
+            width: MediaQuery.of(context).size.width * 0.85,
+
+            margin: EdgeInsets.only(left: 10, top: 5 , right: 10 , bottom: 10),
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                EachParticipantCard(),
+                EachParticipantCard(),
+                EachParticipantCard(),
+                EachParticipantCard(),
+              ],
+            ),
+            // child: EachParticipantCard(),
+          ),
         ],
       ),
     );
@@ -108,6 +119,7 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
     return Container(
       width: 140,
       height: 72,
+      margin: EdgeInsets.only(right:10),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: new BorderRadius.circular(15),
@@ -127,8 +139,10 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
           ),
           Container(
             margin: EdgeInsets.only(left: 10),
-            child: Text('bahar' , 
-            style: TextStyle(fontSize: 12.0 , color: Colors.purple[600]),),
+            child: Text(
+              'bahar',
+              style: TextStyle(fontSize: 12.0, color: Colors.purple[600]),
+            ),
           ),
         ],
       ),

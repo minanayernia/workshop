@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/main.dart';
+import 'package:workshop/widgets/TA_ImageCard.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
 
@@ -83,24 +84,53 @@ class _DetailcardState extends State<Detailcard> {
               color: Colors.white, borderRadius: BorderRadius.circular(10)),
           padding: EdgeInsets.all(10),
           margin: EdgeInsets.only(top: 15),
-          child: Column(children: <Widget>[
-            Row(children: <Widget>[
-              Text('Android' ,
-              style: TextStyle(color: Colors.purple , fontSize: 30.0), )
-            ],) , 
-            Row(children: <Widget>[
-              Text('Dr hamze' , 
-              style: TextStyle(color: Colors.purple[300] , fontSize: 20.0),)
-            ],) , 
-            Row(children: <Widget>[
-              Text('Prerequisite' , 
-              style: TextStyle(color: Colors.purple[200] , fontSize: 15.0),)
-            ],) , 
-            Row(children: <Widget>[
-              Text('hihihihihih' , 
-              style: TextStyle(color: Colors.black , fontSize: 20.0),)
-            ],) , 
-          ],),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Android',
+                    style: TextStyle(color: Colors.purple, fontSize: 30.0),
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Dr hamze',
+                    style: TextStyle(color: Colors.purple[300], fontSize: 20.0),
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Prerequisite',
+                    style: TextStyle(color: Colors.purple[200], fontSize: 15.0),
+                    
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: 20,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[],
+                    ),
+                  )
+                  ,
+
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    'hihihihihih',
+                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                  )
+                ],
+              ),
+            ],
+          ),
         )
       ],
     );
@@ -120,61 +150,93 @@ class _TimePlcecardState extends State<TimePlcecard> {
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
-          height: 150,
+          height: 160,
           decoration: BoxDecoration(
               color: Colors.deepPurple[700].withOpacity(0.5),
               borderRadius: BorderRadius.circular(10)),
-          margin: EdgeInsets.only(top: 15,),
+          margin: EdgeInsets.only(
+            top: 15,
+          ),
           child: Container(
             margin: EdgeInsets.only(left: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                  Icon(Icons.calendar_today , color: Colors.white,), Container(margin: EdgeInsets.only(left: 5),
-                    child: Text('Sat,05 Oct',
-                    style: TextStyle(color: Colors.white , fontSize: 20.0), ),
-                  )],
-                ),
-                Row(
-                  children: <Widget>[Icon(Icons.time_to_leave , color: Colors.white,), Container(margin: EdgeInsets.only(left: 5),
-                    child: Text('bahar',
-                    style: TextStyle(color: Colors.white , fontSize: 20.0),
+                    Icon(
+                      Icons.calendar_today,
+                      color: Colors.white,
                     ),
-                  )],
+                    Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: Text(
+                        'Sat,05 Oct',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
+                    )
+                  ],
                 ),
                 Row(
-                  children: <Widget>[Icon(Icons.place , color: Colors.white,), Container(margin: EdgeInsets.only(left: 5),
-                    child: Text('bahar',
-                    style: TextStyle(color: Colors.white , fontSize: 20.0),),
-                  )],
+                  children: <Widget>[
+                    Icon(
+                      Icons.time_to_leave,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: Text(
+                        'bahar',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: Colors.white,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: Text(
+                        'bahar',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      ),
+                    )
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[Container(child: Row(
-                    children: <Widget>[
-                      Icon(Icons.place , color: Colors.white,),
-                      Container(
-                        margin: EdgeInsets.only(left: 5),
-                        child: Text('bahar',
-                  style: TextStyle(color: Colors.white , fontSize: 20.0),),
-                      )
-                    ],
-                  )),
-                  
-                 Container(
-                   margin: EdgeInsets.only(right: 10),
-                   child: Price()),
+                  children: <Widget>[
+                    Container(
+                        child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.place,
+                          color: Colors.white,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 5),
+                          child: Text(
+                            'bahar',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20.0),
+                          ),
+                        )
+                      ],
+                    )),
+                    Container(
+                        margin: EdgeInsets.only(right: 10), child: Container(
+                          height: 30,
+                          child: Price())),
                   ],
                 )
-                
               ],
             ),
           ),
-          
         ),
-         
       ],
     );
   }
@@ -222,30 +284,48 @@ class _TAcardState extends State<TAcard> {
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
-          height: 150,
+          height: 170,
           decoration: BoxDecoration(
               color: Colors.deepPurple[700].withOpacity(0.5),
               borderRadius: BorderRadius.circular(10)),
           margin: EdgeInsets.only(top: 10),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 10 , left: 10),
-                child: Row(
-                
-                children: <Widget>[
-                Text('TAs' , 
-                style: TextStyle(color: Colors.white , fontSize: 20.0),),
-              ],),
+                margin: EdgeInsets.only(top: 10, left: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'TAs',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                    Container(
+                      height: 80,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          TAImageCard(),
+                          TAImageCard(),
+                          TAImageCard(),
+                          TAImageCard(),
+                        ],
+                      ),
+                    )
+                    
+                  ],
+                ),
               ),
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                Requestbutton(),
-              ],) ,
-              
+                  Requestbutton(),
+                ],
+              ),
             ],
           ),
         )
@@ -253,6 +333,7 @@ class _TAcardState extends State<TAcard> {
     );
   }
 }
+
 class Requestbutton extends StatefulWidget {
   @override
   _RequestbuttonState createState() => _RequestbuttonState();
@@ -281,7 +362,6 @@ class _RequestbuttonState extends State<Requestbutton> {
   }
 }
 
-
 class Price extends StatefulWidget {
   @override
   _PriceState createState() => _PriceState();
@@ -293,15 +373,17 @@ class _PriceState extends State<Price> {
     return Container(
       width: 100,
       height: 40,
-      child: Center(child: Text('150',
-      style: TextStyle(color: Colors.deepPurple[900], fontSize: 35.0), ),
+      child: Center(
+        child: Text(
+          '150',
+          style: TextStyle(color: Colors.deepPurple[900], fontSize: 30.0),
+        ),
       ),
-      decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(25),color: Colors.white,),
-      
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(25),
+        color: Colors.white,
+      ),
     );
   }
 }
-
-
-
-

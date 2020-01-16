@@ -66,10 +66,11 @@ class MyApp extends StatelessWidget {
         '/add workshop': (context) => AddWorkshop(),
         '/workshopAccountor': (context) => WorkshopAccountor(),
         '/course': (context) => Course(),
-        '/form' : (context) => FormPage() ,
-        '/payment' : (context) => PaymentPage(),
-        '/addGroup' : (context) =>AddGroupPage(),
-        '/instalment' : (context) => InstalmentPage(),
+        '/form': (context) => FormPage(),
+        '/payment': (context) => PaymentPage(),
+        '/addGroup': (context) => AddGroupPage(),
+        '/instalment': (context) => InstalmentPage(),
+        
       }
       ,
     );
@@ -105,12 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: Theme.of(context).accentColor,
-        
-        bottomNavigationBar:
-        
-        Container(
+        bottomNavigationBar: Container(
           height: 71,
-          padding: EdgeInsets.only(bottom: 10 , right:10 , left:10 ),
+          padding: EdgeInsets.only(bottom: 10, right: 10, left: 10),
           child: ClipRRect(
             clipBehavior: Clip.hardEdge,
             borderRadius: BorderRadius.only(
@@ -120,32 +118,36 @@ class _MyHomePageState extends State<MyHomePage> {
               bottomRight: Radius.circular(25),
             ),
             child: BottomNavigationBar(
-            
-            // selectedIconTheme: IconThemeData(size:30),
-            backgroundColor: Colors.white,
-            currentIndex: _selectedIndex,
-            type: BottomNavigationBarType.fixed,
-            iconSize: 30,
-            items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home ), title: Text('1'), ),
-              BottomNavigationBarItem(icon: Icon(Icons.search ), title: Text('2')),
-              BottomNavigationBarItem(icon: Icon(Icons.notifications ), title: Text('3')),
-              BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
-              // BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
-            ],
-            onTap: _onItemTapped ,
-            unselectedItemColor: Colors.deepPurple[300],
-            selectedItemColor: Colors.deepPurple[600],
-            showUnselectedLabels: false,
-            showSelectedLabels: false,
-            
-            
+              // selectedIconTheme: IconThemeData(size:30),
+              backgroundColor: Colors.white,
+              currentIndex: _selectedIndex,
+              type: BottomNavigationBarType.fixed,
+              iconSize: 30,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  title: Text('1'),
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.search), title: Text('2')),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.notifications), title: Text('3')),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    title: Text('4')),
+                // BottomNavigationBarItem(icon: Icon(Icons.person,), title: Text('4')),
+              ],
+              onTap: _onItemTapped,
+              unselectedItemColor: Colors.deepPurple[300],
+              selectedItemColor: Colors.deepPurple[600],
+              showUnselectedLabels: false,
+              showSelectedLabels: false,
+            ),
           ),
-          ),
-          
-          
-      ),
-      body: Container(
+        ),
+        body: Container(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
         ),

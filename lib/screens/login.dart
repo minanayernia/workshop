@@ -191,8 +191,10 @@ class _NationalcardState extends State<Nationalcard> {
         
         decoration: InputDecoration(icon: Icon(Icons.person, color: Colors.black,),
         border: InputBorder.none,
-        hintText: 'National Card'
-        ),),
+        hintText: 'National Code' ,
+        ),
+        // onSubmitted: ,
+        ),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.85,
       

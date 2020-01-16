@@ -17,13 +17,11 @@ class _AddWorkshopState extends State<AddWorkshop> {
           children: <Widget>[
             TopBar(foo: "Add workshop",),
             SingleChildScrollView(
-          child: GestureDetector(
+            child: GestureDetector(
               onTap: (){
                     FocusScope.of(context).requestFocus(new FocusNode());
                   },
-            child: Center(
-              child: Page(),
-        ),
+            child: Page(),
               ),
       ),
           ],

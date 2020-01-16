@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:workshop/main.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/widgets/workshop_card.dart';
 
+final nationalCode = TextEditingController() ;
 
 class Login extends StatefulWidget {
   @override
@@ -164,13 +166,20 @@ class _SubmitButtomState extends State<SubmitButtom> {
                 (){
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
-                  Navigator.popAndPushNamed(context, '/home');
+                  print(nationalCode.text);
+                  // Navigator.popAndPushNamed(context, '/home');
                 }
               
       
     )
     );
     
+  }
+  @override
+  void dispose(){
+    // nationalCode.clear();
+    nationalCode.dispose();
+    super.dispose();
   }
 }
 
@@ -180,11 +189,13 @@ class Nationalcard extends StatefulWidget {
 }
 
 class _NationalcardState extends State<Nationalcard> {
+   
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10),
       child: TextField(
+        controller: nationalCode,
         textInputAction: TextInputAction.go,
         keyboardType: TextInputType.number,
 

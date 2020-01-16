@@ -4,7 +4,6 @@ import 'package:workshop/widgets/topbar.dart';
 
 import 'form.dart';
 
-
 class NotificationPage extends StatefulWidget {
   @override
   _NotificationPageState createState() => _NotificationPageState();
@@ -12,27 +11,37 @@ class NotificationPage extends StatefulWidget {
 
 class _NotificationPageState extends State<NotificationPage> {
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('NOTIFICATION'),
-        leading: Icon(Icons.ac_unit),
-        actions: <Widget>[Icon(Icons.wb_sunny)],
-      ),
-      backgroundColor: Theme.of(context).accentColor,
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          NotifCard(),
-          NotifCard(),
-        ],
-      ),
-
-     
-
-      
-     
-      
-    );
+        backgroundColor: Theme.of(context).accentColor,
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              TopBar(
+                foo: "Notification",
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width*0.9,
+                height: MediaQuery.of(context).size.height*0.8,
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  children: <Widget>[
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                    NotifCard(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

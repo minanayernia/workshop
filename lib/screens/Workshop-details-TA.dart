@@ -311,6 +311,7 @@ class _TADetailsState extends State<TADetails> {
                   ),
                 ),
                 Container(
+                  
                   height: 90,
                   width: MediaQuery.of(context).size.width*0.9,
                   child: ListView(

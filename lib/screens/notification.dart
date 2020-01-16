@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/NotificationCard.dart';
+import 'package:workshop/widgets/topbar.dart';
+
+import 'form.dart';
+
 
 class NotificationPage extends StatefulWidget {
   @override
@@ -8,7 +12,7 @@ class NotificationPage extends StatefulWidget {
 
 class _NotificationPageState extends State<NotificationPage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
       appBar: AppBar(
         title: Text('NOTIFICATION'),
@@ -23,6 +27,12 @@ class _NotificationPageState extends State<NotificationPage> {
           NotifCard(),
         ],
       ),
+
+     
+
+      
+     
+      
     );
   }
 }

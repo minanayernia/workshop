@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/widgets/topbar.dart';
 
 class Mina extends StatefulWidget {
   @override
@@ -10,9 +11,42 @@ class _MinaState extends State<Mina> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: AppBar(),
-      body: Center(
-          child: Column(
+      body:Center(
+        child: Column(children: <Widget>[
+          TopBar(foo: "Home",),
+          HomeBody(),
+          
+        ],),
+      ) ,
+    );
+  }
+}
+
+class SignupCard extends StatefulWidget {
+  @override
+  _SignupCardState createState() => _SignupCardState();
+}
+
+class _SignupCardState extends State<SignupCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+class HomeBody extends StatefulWidget {
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height*0.8,
+      width: MediaQuery.of(context).size.width*0.9,
+      child: Center(
+          child: ListView(
+            scrollDirection: Axis.vertical,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 100),
@@ -108,22 +142,44 @@ class _MinaState extends State<Mina> {
                 // Navigator.pushNamed(context, '/home');
                 Navigator.pushNamed(context, '/course');
               }),
+              RaisedButton(
+                child: Text('form'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/form');
+              
+              
+              }),
+
+              RaisedButton(
+              child: Text('payment'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/payment');
+              }),
+
+              RaisedButton(
+              child: Text('addgroup'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/addGroup');
+              }),
+
+              RaisedButton(
+              child: Text('instalment'),
+              onPressed: () {
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/instalment');
+              }),
 
 
         ],
       )),
+      
     );
-  }
-}
-
-class SignupCard extends StatefulWidget {
-  @override
-  _SignupCardState createState() => _SignupCardState();
-}
-
-class _SignupCardState extends State<SignupCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

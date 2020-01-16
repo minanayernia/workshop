@@ -261,7 +261,7 @@ class _SignupbuttonState extends State<Signupbutton> {
                 (){
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
-                  Navigator.pushNamed(context, '/login');
+                  Navigator.pushNamed(context, '/home');
                 }
               
       

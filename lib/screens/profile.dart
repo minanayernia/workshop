@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/profileCard.dart';
+import 'package:workshop/widgets/topbar.dart';
+// import 'package:workshop/screens/splash.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -11,22 +13,18 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
-    //   appBar: AppBar(title: Container(margin: EdgeInsets.only(right: 100),
-    //   child: Text('Profile',)) ,
-    //   automaticallyImplyLeading: false,
-    //   // leading: Container(),
-    //   backgroundColor: Colors.deepPurple[700],
-    //   shape: RoundedRectangleBorder(
-    //   borderRadius: BorderRadius.vertical(
-    //     top: Radius.circular(200),
-    //     bottom: Radius.circular(200),
-    //   ),
-    // ),
-    
-    // ),
       
-      appBar: MinaAppBar(height: 100),
-      body: SingleChildScrollView(child: ProCard()),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            TopBar(foo: "Profile",),
+            Container(
+              height:MediaQuery.of(context).size.height*0.8 ,
+              width: MediaQuery.of(context).size.width*0.95,
+              child: SingleChildScrollView(child: ProCard())),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -50,28 +48,32 @@ class MinaAppBar extends StatelessWidget implements PreferredSizeWidget{
     return Container(
       color: Colors.red,
       height: 100,
-          child: Center(
-            child: Container(
-              
-        height: 50,
-        width: MediaQuery.of(context).size.width * 0.9,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-         color: Colors.yellow
-         ),
-        child: AppBar(
-          
-          
-          title: Container(child: Center(child: Text('profile')) , margin: EdgeInsets.only(bottom: 20),),
-          
-          automaticallyImplyLeading: false,
-          shape: RoundedRectangleBorder(
+          child: Center(child:
+        //     child: Container(
+        
+        // height: 50,
+        // width: MediaQuery.of(context).size.width * 0.9,
+        // decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
+        //  color: Colors.yellow
+        //  ),
+        // child: 
+        Container(
+          height: 20,
+                  child: AppBar(
+            backgroundColor: Colors.green,
+            
+            title: Container(child: Text('PROFILE'),),
+            
+            automaticallyImplyLeading: false,
+            shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
-          top: Radius.circular(200),
-          bottom: Radius.circular(200),
+            top: Radius.circular(200),
+            bottom: Radius.circular(200),
       ),
-          ),
-          ),
-          ),)
+            ),
+            // ),
+            ),
+        ),)
     );
   }
 }

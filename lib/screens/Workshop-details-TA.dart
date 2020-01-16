@@ -13,11 +13,14 @@ class WorkshopDetailsTA extends StatefulWidget {
 class _WorkshopDetailsTAState extends State<WorkshopDetailsTA> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Background(),
-        Page(),
-      ],
+    return Material(
+      type: MaterialType.transparency,
+      child: Stack(
+        children: <Widget>[
+          Background(),
+          Page(),
+        ],
+      ),
     );
   }
 }
@@ -136,7 +139,8 @@ class _GroupDetailsState extends State<GroupDetails> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Container(margin: EdgeInsets.only(top: 15),
+        Container(
+          margin: EdgeInsets.only(top: 15),
           width: MediaQuery.of(context).size.width * 0.85,
           height: 130,
           decoration: BoxDecoration(
@@ -152,7 +156,7 @@ class _GroupDetailsState extends State<GroupDetails> {
                     children: <Widget>[
                       Container(
                         child: Text('My Group',
-                        style:
+                            style:
                                 TextStyle(color: Colors.white, fontSize: 12.0)),
                       ),
                       Container(
@@ -171,7 +175,17 @@ class _GroupDetailsState extends State<GroupDetails> {
                   ),
                 ),
                 Container(
-                  child: ParticipantCard(),
+                  height: 90,
+                  width: MediaQuery.of(context).size.width*0.9,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      ParticipantCard(),
+                      ParticipantCard(),
+                      ParticipantCard(),
+
+                    ],
+                  )
                 ),
               ],
             ),
@@ -181,9 +195,6 @@ class _GroupDetailsState extends State<GroupDetails> {
     );
   }
 }
-
-
-
 
 class ParticipantDetails extends StatefulWidget {
   @override
@@ -196,7 +207,8 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Container(margin: EdgeInsets.only(top: 15),
+        Container(
+          margin: EdgeInsets.only(top: 15),
           width: MediaQuery.of(context).size.width * 0.85,
           height: 130,
           decoration: BoxDecoration(
@@ -212,7 +224,7 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                     children: <Widget>[
                       Container(
                         child: Text('Participants',
-                        style:
+                            style:
                                 TextStyle(color: Colors.white, fontSize: 12.0)),
                       ),
                       Container(
@@ -231,7 +243,17 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                   ),
                 ),
                 Container(
-                  child: ParticipantCard(),
+                  height: 90,
+                  width: MediaQuery.of(context).size.width*0.9,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      ParticipantCard(),
+                      ParticipantCard(),
+                      ParticipantCard(),
+                      ParticipantCard(),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -241,8 +263,6 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
     );
   }
 }
-
-
 
 class TADetails extends StatefulWidget {
   @override
@@ -255,7 +275,8 @@ class _TADetailsState extends State<TADetails> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Container(margin: EdgeInsets.only(top: 15),
+        Container(
+          margin: EdgeInsets.only(top: 15),
           width: MediaQuery.of(context).size.width * 0.85,
           height: 130,
           decoration: BoxDecoration(
@@ -271,7 +292,7 @@ class _TADetailsState extends State<TADetails> {
                     children: <Widget>[
                       Container(
                         child: Text('TAs',
-                        style:
+                            style:
                                 TextStyle(color: Colors.white, fontSize: 12.0)),
                       ),
                       Container(
@@ -290,8 +311,17 @@ class _TADetailsState extends State<TADetails> {
                   ),
                 ),
                 Container(
-                  child: TAImageCard(),
-
+                  height: 90,
+                  width: MediaQuery.of(context).size.width*0.9,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      TAImageCard(),
+                      TAImageCard(),
+                      TAImageCard(),
+                      TAImageCard(),
+                    ],
+                  ),
                 ),
               ],
             ),

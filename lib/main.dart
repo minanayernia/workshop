@@ -70,7 +70,9 @@ class MyApp extends StatelessWidget {
         '/payment': (context) => PaymentPage(),
         '/addGroup': (context) => AddGroupPage(),
         '/instalment': (context) => InstalmentPage(),
-      },
+        
+      }
+      ,
     );
   }
 }
@@ -88,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Search(),
     //Jobs(),
     NotificationPage(),
+    // Jobs(),
     Profile(),
   ];
 
@@ -147,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-      ),
+        ),
     );
   }
 }

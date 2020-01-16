@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/screens/AddForm.dart';
+import 'package:workshop/widgets/topbar.dart';
 
 class AddWorkshop extends StatefulWidget {
   @override
@@ -10,16 +11,21 @@ class _AddWorkshopState extends State<AddWorkshop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Form'),
-        leading: Icon(Icons.ac_unit),
-        actions: <Widget>[Icon(Icons.wb_sunny)],
-      ),
       backgroundColor: Theme.of(context).accentColor,
       body: Center(
         child: Column(
           children: <Widget>[
-            Page(),
+            TopBar(foo: "Add workshop",),
+            SingleChildScrollView(
+          child: GestureDetector(
+              onTap: (){
+                    FocusScope.of(context).requestFocus(new FocusNode());
+                  },
+            child: Center(
+              child: Page(),
+        ),
+              ),
+      ),
           ],
         ),
       ),
@@ -61,8 +67,8 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
       child: Row(
         children: <Widget>[
           Container(
-            height: 80,
-            width: 80,
+            height: MediaQuery.of(context).size.height* 0.1,
+            width: MediaQuery.of(context).size.width*0.18,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
           ),
@@ -89,7 +95,7 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
                 ),
                 Container(
                   height: 28,
-                  width: MediaQuery.of(context).size.width * 0.67,
+                  width: MediaQuery.of(context).size.width * 0.65,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)),

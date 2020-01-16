@@ -12,7 +12,11 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       body: Center(
+=======
+      body:Center(
+>>>>>>> b2556869288a686293311249be311dd160f2b187
         child: Column(
           children: <Widget>[
             TopBar(

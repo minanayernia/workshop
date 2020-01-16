@@ -3,6 +3,7 @@ import 'package:workshop/main.dart';
 import 'package:workshop/widgets/TA_ImageCard.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
+import 'package:workshop/widgets/PreCourseCard.dart';
 
 class Workshopdetails extends StatefulWidget {
   @override
@@ -16,7 +17,12 @@ class _WorkshopdetailsState extends State<Workshopdetails> {
       body: Stack(
         children: <Widget>[
           Background(),
-          Page(),
+          ListView(
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+              Page(),
+            ],
+          )
         ],
       ),
     );
@@ -107,18 +113,21 @@ class _DetailcardState extends State<Detailcard> {
                   Text(
                     'Prerequisite',
                     style: TextStyle(color: Colors.purple[200], fontSize: 15.0),
-                    
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width*0.9,
+                    width: MediaQuery.of(context).size.width * 0.65,
                     height: 20,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children: <Widget>[],
+                      children: <Widget>[
+                        PreCorseCard(),
+                        PreCorseCard(),
+                        PreCorseCard(),
+                        PreCorseCard(),
+                        PreCorseCard(),
+                      ],
                     ),
-                  )
-                  ,
-
+                  ),
                 ],
               ),
               Row(
@@ -228,9 +237,8 @@ class _TimePlcecardState extends State<TimePlcecard> {
                       ],
                     )),
                     Container(
-                        margin: EdgeInsets.only(right: 10), child: Container(
-                          height: 30,
-                          child: Price())),
+                        margin: EdgeInsets.only(right: 10),
+                        child: Container(height: 30, child: Price())),
                   ],
                 )
               ],
@@ -316,7 +324,6 @@ class _TAcardState extends State<TAcard> {
                         ],
                       ),
                     )
-                    
                   ],
                 ),
               ),

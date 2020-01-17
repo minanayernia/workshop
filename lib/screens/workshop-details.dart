@@ -132,9 +132,12 @@ class _DetailcardState extends State<Detailcard> {
               ),
               Row(
                 children: <Widget>[
-                  Text(
-                    'hihihihihih',
-                    style: TextStyle(color: Colors.black, fontSize: 20.0),
+                  Container(
+                    height: 100,
+                    child: Text(
+                      'hihihihihih',
+                      style: TextStyle(color: Colors.black, fontSize: 20.0),
+                    ),
                   )
                 ],
               ),

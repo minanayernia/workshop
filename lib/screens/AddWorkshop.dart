@@ -78,11 +78,14 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
                 Container(
                   height: 28,
                   margin: EdgeInsets.only(left: 10, top: 5),
-                  child: TextField(
-                    textInputAction: TextInputAction.go,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Workshop Name'),
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10 , top: 5),
+                    child: TextField(
+                      textInputAction: TextInputAction.go,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'Workshop Name'),
+                    ),
                   ),
                   width: MediaQuery.of(context).size.width * 0.65,
                   decoration: BoxDecoration(
@@ -145,11 +148,14 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
             decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(10)),
-            child: TextField(
-              textInputAction: TextInputAction.go,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                  border: InputBorder.none, hintText: 'Question ? '),
+            child: Container(
+              margin: EdgeInsets.only(left: 10),
+              child: TextField(
+                textInputAction: TextInputAction.go,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'About Workshop ...'),
+              ),
             ),
           ),
         ],
@@ -255,11 +261,14 @@ class _SchedualCardState extends State<SchedualCard> {
                 Container(
                   height: 35,
                   margin: EdgeInsets.only(left: 10, top: 5),
-                  child: TextField(
-                    textInputAction: TextInputAction.go,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Location'),
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: TextField(
+                      textInputAction: TextInputAction.go,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'Location'),
+                    ),
                   ),
                   width: MediaQuery.of(context).size.width * 0.75,
                   decoration: BoxDecoration(

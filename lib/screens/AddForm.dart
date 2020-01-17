@@ -157,9 +157,9 @@ class _QuestionCardState extends State<QuestionCard> {
       padding: EdgeInsets.only(left: 10),
       child: TextField(
         textInputAction: TextInputAction.go,
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.text,
         decoration:
-            InputDecoration(border: InputBorder.none, hintText: 'Question ? '),
+            InputDecoration(border: InputBorder.none, hintText: 'Question ? ' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
       ),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.9,
@@ -195,9 +195,9 @@ class _QuestionContainerState extends State<QuestionContainer> {
             padding: EdgeInsets.only(left: 10),
             child: TextField(
               textInputAction: TextInputAction.go,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  border: InputBorder.none, hintText: 'Question ? '),
+                  border: InputBorder.none, hintText: 'Question ? ' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
             ),
             height: 45,
             width: MediaQuery.of(context).size.width * 0.85,
@@ -227,9 +227,9 @@ class _QuestionContainerState extends State<QuestionContainer> {
                       height: 40,
                       child: TextField(
                         textInputAction: TextInputAction.go,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'One'),
+                            border: InputBorder.none, hintText: 'One' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
                       ),
                     ),
                   ),
@@ -243,9 +243,9 @@ class _QuestionContainerState extends State<QuestionContainer> {
                   child: Center(
                     child: TextField(
                       textInputAction: TextInputAction.go,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Two'),
+                          border: InputBorder.none, hintText: 'Two' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
                     ),
                   ),
                 ),

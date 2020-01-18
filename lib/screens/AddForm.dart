@@ -14,7 +14,9 @@ class _AddFormState extends State<AddForm> {
       body: Center(
         child: Column(
           children: <Widget>[
-            TopBar(foo: "Add form",),
+            TopBar(
+              foo: "Add form",
+            ),
             Page(),
           ],
         ),
@@ -156,10 +158,13 @@ class _QuestionCardState extends State<QuestionCard> {
     return Container(
       padding: EdgeInsets.only(left: 10),
       child: TextField(
+        cursorColor: Colors.purple,
         textInputAction: TextInputAction.go,
         keyboardType: TextInputType.text,
-        decoration:
-            InputDecoration(border: InputBorder.none, hintText: 'Question ? ' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Question ? ',
+            hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
       ),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.9,
@@ -194,10 +199,13 @@ class _QuestionContainerState extends State<QuestionContainer> {
           Container(
             padding: EdgeInsets.only(left: 10),
             child: TextField(
+              cursorColor: Colors.purple,
               textInputAction: TextInputAction.go,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  border: InputBorder.none, hintText: 'Question ? ' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
+                  border: InputBorder.none,
+                  hintText: 'Question ? ',
+                  hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
             ),
             height: 45,
             width: MediaQuery.of(context).size.width * 0.85,
@@ -217,7 +225,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
               children: <Widget>[
                 Container(
                   height: 40,
-                  width: MediaQuery.of(context).size.width*0.4,
+                  width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10)),
@@ -225,27 +233,39 @@ class _QuestionContainerState extends State<QuestionContainer> {
                     child: Container(
                       width: 150,
                       height: 40,
-                      child: TextField(
-                        textInputAction: TextInputAction.go,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'One' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        alignment: Alignment.center,
+                        child: TextField(
+                          cursorColor: Colors.purple,
+                          textInputAction: TextInputAction.go,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'One',
+                              hintStyle: TextStyle(
+                                  color: Colors.purple.withOpacity(0.5))),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Container(
                   height: 40,
-                  width: MediaQuery.of(context).size.width*0.4,
+                  width: MediaQuery.of(context).size.width * 0.4,
                   decoration: BoxDecoration(
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
                     child: TextField(
+                      cursorColor: Colors.purple,
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Two' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
+                          border: InputBorder.none,
+                          hintText: 'Two',
+                          hintStyle:
+                              TextStyle(color: Colors.purple.withOpacity(0.5))),
                     ),
                   ),
                 ),
@@ -273,7 +293,7 @@ class _AddContainerState extends State<AddContainer> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            width: MediaQuery.of(context).size.width*0.43,
+            width: MediaQuery.of(context).size.width * 0.43,
             height: 40,
             child: RaisedButton(
               child: Text(
@@ -288,7 +308,7 @@ class _AddContainerState extends State<AddContainer> {
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width*0.43,
+            width: MediaQuery.of(context).size.width * 0.43,
             height: 40,
             child: RaisedButton(
               child: Text(

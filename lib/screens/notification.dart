@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workshop/widgets/NotificationCard.dart';
 import 'package:workshop/widgets/topbar.dart';
 
-import 'form.dart';
+import 'form.dart'; 
 
 class NotificationPage extends StatefulWidget {
   @override

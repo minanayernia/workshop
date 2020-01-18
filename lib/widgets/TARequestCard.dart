@@ -6,6 +6,8 @@ class TARequestCard extends StatefulWidget {
 }
 
 class _TARequestCardState extends State<TARequestCard> {
+  String selected = "Yes";
+  String selected2 = "Yes";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,22 +43,40 @@ class _TARequestCardState extends State<TARequestCard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        height: 20,
-                        width: 50,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (selected == "Yes") {
+                              selected = "No";
+                              selected2 = "NO";
+                            } else {
+                              selected = "Yes";
+                              selected2 = "Yes";
+                            }
+                          });
+                        },
                         child: Container(
-                          margin: EdgeInsets.all(2),
+                          margin: EdgeInsets.only(left: 20),
+                          height: 20,
+                          width: 50,
                           decoration: BoxDecoration(
-                              color: Colors.purple[900],
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                            child: Text(
-                              'yes',
-                              style: TextStyle(color: Colors.white),
+                          child: Container(
+                            margin: EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                                color: selected == "Yes"
+                                    ? Colors.purple[900]
+                                    : Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                              child: Text(
+                                'Yes',
+                                style: TextStyle(
+                                    color: selected == "Yes"
+                                        ? Colors.white
+                                        : Colors.purple[900]),
+                              ),
                             ),
                           ),
                         ),
@@ -71,12 +91,17 @@ class _TARequestCardState extends State<TARequestCard> {
                         child: Container(
                           margin: EdgeInsets.all(2),
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: selected2 == "Yes"
+                                  ? Colors.purple[900]
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(10)),
                           child: Center(
                             child: Text(
                               'No',
-                              style: TextStyle(color: Colors.purple[900]),
+                              style: TextStyle(
+                                  color: selected2 == "Yes"
+                                      ? Colors.white
+                                      : Colors.purple[900]),
                             ),
                           ),
                         ),

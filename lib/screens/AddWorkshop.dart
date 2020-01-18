@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/screens/AddForm.dart';
+import 'package:workshop/widgets/PreCourseCard.dart';
 import 'package:workshop/widgets/topbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
@@ -19,15 +20,17 @@ class _AddWorkshopState extends State<AddWorkshop> {
       body: Center(
         child: Column(
           children: <Widget>[
-            TopBar(foo: "Add workshop",),
+            TopBar(
+              foo: "Add workshop",
+            ),
             SingleChildScrollView(
-            child: GestureDetector(
-              onTap: (){
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-            child: Page(),
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).requestFocus(new FocusNode());
+                },
+                child: Page(),
               ),
-      ),
+            ),
           ],
         ),
       ),
@@ -103,7 +106,7 @@ Future getImage() async {
                   height: 28,
                   margin: EdgeInsets.only(left: 10, top: 5),
                   child: Container(
-                    margin: EdgeInsets.only(left: 10 , top: 5),
+                    margin: EdgeInsets.only(left: 10, top: 5),
                     child: TextField(
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
@@ -159,11 +162,32 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
             ),
           ),
           Container(
-            
-            margin: EdgeInsets.only(left: 10),
-            child: Text(
-              'Prerquisite',
-              style: TextStyle(color: Colors.purple[800], fontSize: 12.0),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Prerquisite',
+                    style: TextStyle(color: Colors.purple[800], fontSize: 12.0),
+                  ),
+                ),
+                Container(
+                  height: 20,
+                  width: MediaQuery.of(context).size.width*0.7,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      PreCorseCard(),
+                      PreCorseCard(),
+                      PreCorseCard(),
+                      PreCorseCard(),
+                      PreCorseCard(),
+                      PreCorseCard(),
+                      PreCorseCard(),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
           Container(

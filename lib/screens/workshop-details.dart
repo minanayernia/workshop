@@ -115,7 +115,7 @@ class _DetailcardState extends State<Detailcard> {
                     style: TextStyle(color: Colors.purple[200], fontSize: 15.0),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.65,
+                    width: MediaQuery.of(context).size.width * 0.6,
                     height: 20,
                     child: ListView(
                       scrollDirection: Axis.horizontal,

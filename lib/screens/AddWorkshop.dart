@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:workshop/screens/AddForm.dart';
 import 'package:workshop/widgets/PreCourseCard.dart';
 import 'package:workshop/widgets/topbar.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:io';
+
 
 class AddWorkshop extends StatefulWidget {
   @override
@@ -59,6 +63,17 @@ class WorkshopInfo extends StatefulWidget {
 }
 
 class _WorkshopInfoState extends State<WorkshopInfo> {
+
+File _image ;
+Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,11 +82,20 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
       margin: EdgeInsets.only(top: 10),
       child: Row(
         children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * 0.1,
-            width: MediaQuery.of(context).size.width * 0.18,
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          GestureDetector(
+            onTap: (){
+              getImage();
+            },
+              child: Container(
+              height: MediaQuery.of(context).size.height* 0.1,
+              width: MediaQuery.of(context).size.width*0.18,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                  /////////////////////////
+                  child: _image == null
+            ? Icon(Icons.add_a_photo , color: Colors.deepPurple,)
+            : Image.file(_image),
+            ),
           ),
           Container(
             margin: EdgeInsets.only(left: 10),

@@ -2,48 +2,53 @@
 // import '';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:workshop/main.dart';
 import 'package:workshop/screens/intro1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
-class Splash extends StatefulWidget {
-  @override
-  SplashState createState() => new SplashState();
-}
+// class Splash extends StatefulWidget {
+//   @override
+//   SplashState createState() => new SplashState();
+// }
 
-class SplashState extends State<Splash> {
-  Future checkFirstSeen() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
+// class SplashState extends State<Splash> {
+//   Future checkFirstSeen() async {
+//     SharedPreferences prefs = await SharedPreferences.getInstance();
+//     bool _seen = (prefs.getBool('seen') ?? false);
 
-    if (_seen) {
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new MyHomePage()));
-    } else {
-      await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new FirstIntroPage()));
-    }
-  }
+//     if (_seen) {
+//       Navigator.of(context).pushReplacement(
+//           new MaterialPageRoute(builder: (context) => new MyHomePage()));
+//     } else {
+//       await prefs.setBool('seen', true);
+//       Navigator.of(context).pushReplacement(
+//           new MaterialPageRoute(builder: (context) => new FirstIntroPage()));
+//     }
+//   }
 
-  @override
-  void initState() {
-    super.initState();
-    new Timer(new Duration(milliseconds: 200), () {
-      checkFirstSeen();
-    });
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     new Timer(new Duration(milliseconds: 200), () {
+//       checkFirstSeen();
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Center(
-        child: new Text('Loading...'),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return new Scaffold(
+//       body: new Center(
+//         child: new Text('Loading...'),
+//       ),
+//     );
+//   }
+// }
+
+// SchedulerBinding.instance.addPostFrameCallback((_) {
+//   // your code after page opens,splash keeps open until work is done
+// });
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -51,6 +56,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Timer(Duration(seconds: 5), () => {});
+      print("boz");
+      Navigator.pushNamed(context, '/login');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

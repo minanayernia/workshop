@@ -7,9 +7,8 @@ class PreCourse with ChangeNotifier{
   String name ; 
 
 
-  PreCourse({
-    @required this.name});
+  PreCourse({@required this.name});
 
 }
 
-List<PreCourse> prc = [PreCourse(name: "mina") ,];
+List<PreCourse> prc = [PreCourse(name: "mina")];

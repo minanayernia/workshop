@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:async';
+import 'dart:io';
 
 
 class ProCard extends StatefulWidget {
@@ -114,6 +117,16 @@ class PersonCard extends StatefulWidget {
 }
 
 class _PersonCardState extends State<PersonCard> {
+File _image ;
+Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -146,12 +159,22 @@ class _PersonCardState extends State<PersonCard> {
               ],
           ),
         ),
+        
+        
+        GestureDetector(
+          onTap:(){
+            getImage();
 
-        Container(width: 50,height: 80,
+          } ,
+          
+          child:Container(width: 50,height: 80,
         
         margin: EdgeInsets.only(left: 20), 
-        decoration: BoxDecoration(color:Colors.grey ,borderRadius: BorderRadius.circular(10)),
-        ),
+        decoration: BoxDecoration(color:Colors.grey[200] ,borderRadius: BorderRadius.circular(10)),
+        child: _image == null
+            ? Icon(Icons.add_a_photo , color: Colors.deepPurple,)
+            : Image.file(_image),
+        ),)
         
       ],
       // mainAxisAlignment: MainAxisAlignment.start,

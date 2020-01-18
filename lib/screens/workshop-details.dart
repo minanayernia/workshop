@@ -116,7 +116,7 @@ class _DetailcardState extends State<Detailcard> {
                     style: TextStyle(color: Colors.purple[200], fontSize: 15.0),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.65,
+                    width: MediaQuery.of(context).size.width * 0.6,
                     height: 20,
                     // child: ListView(
                     //   scrollDirection: Axis.horizontal,
@@ -128,11 +128,11 @@ class _DetailcardState extends State<Detailcard> {
                     //     PreCorseCard(),
                     //   ],
                     // ),
-                    // child: ListView.builder(
-                    //     scrollDirection: Axis.vertical,
-                    //     itemBuilder: (_, i)=> PreCorseCard(prec: prc[i]),
-                    //     itemCount: prc.length,
-                    //   ),
+                    child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (_, i)=> PreCorseCard(prec: prc[i]),
+                        itemCount: prc.length,
+                      ),
                   ),
                 ],
               ),

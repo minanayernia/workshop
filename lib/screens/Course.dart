@@ -1,4 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/workshop.dart';
+
+
+// class Tile with ChangeNotifier{
+//   final String title ;
+
+//   Tile({@required this.title});
+// }
+
+// List<Tile> nfd =[Tile(title: "mina"),Tile(title: "midvna"),Tile(title: "mcvbxina"),Tile(title: "minadgsa"),Tile(title: "mizdvna")
+// ,Tile(title: "mxvina"),Tile(title: "minxa")];
+
+
+
 
 class Course extends StatefulWidget {
   @override
@@ -29,13 +43,18 @@ class _CourseState extends State<Course> {
                   ),
                   Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      height:MediaQuery.of(context).size.width * 0.8 ,
-                      child: ListView(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height:MediaQuery.of(context).size.height * 0.85 ,
+                      // child: ListView(
+                      //   scrollDirection: Axis.vertical,
+                      //   children: <Widget>[
+                      //     CourseCard(),
+                      //   ],
+                      // ),
+                      child: ListView.builder(
                         scrollDirection: Axis.vertical,
-                        children: <Widget>[
-                          CourseCard(),
-                        ],
+                        itemBuilder: (_, i)=> CourseCard(worksh: wsh[i]),
+                        itemCount: wsh.length,
                       ),
                     ),
                   )
@@ -47,16 +66,22 @@ class _CourseState extends State<Course> {
 }
 
 class CourseCard extends StatefulWidget {
+    final Workshop worksh;
+  CourseCard({@required this.worksh});
+
   @override
   _CourseCardState createState() => _CourseCardState();
 }
 
 class _CourseCardState extends State<CourseCard> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        // margin: EdgeInsets.only(top: 10),
+        margin: EdgeInsets.only(bottom: 10),
         width: MediaQuery.of(context).size.width * 0.85,
         height: 72,
         decoration: BoxDecoration(
@@ -77,7 +102,7 @@ class _CourseCardState extends State<CourseCard> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 5),
-                    child: Text('Android' , 
+                    child: Text(widget.worksh.name , 
                     style: TextStyle(color: Colors.white , fontSize: 15.0),),
                   ),
                 ],

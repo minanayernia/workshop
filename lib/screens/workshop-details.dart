@@ -223,6 +223,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
+                      height: 35,
                         child: Row(
                       children: <Widget>[
                         Icon(
@@ -230,6 +231,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                           color: Colors.white,
                         ),
                         Container(
+                          
                           margin: EdgeInsets.only(left: 5),
                           child: Text(
                             'bahar',
@@ -241,7 +243,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                     )),
                     Container(
                         margin: EdgeInsets.only(right: 10),
-                        child: Container(height: 30, child: Price())),
+                        child: Container(height: 35, child: Price())),
                   ],
                 )
               ],
@@ -382,7 +384,7 @@ class _PriceState extends State<Price> {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      height: 40,
+      height: 30,
       child: Center(
         child: Text(
           '150',

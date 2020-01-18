@@ -173,14 +173,8 @@ class _SubmitButtomState extends State<SubmitButtom> {
       
     )
     );
-     
+    
   }
-  // @override
-  // void dispose(){
-  //   // nationalCode.clear();
-  //   nationalCode.dispose();
-  //   super.dispose();
-  // }
 }
 
 class Nationalcard extends StatefulWidget {

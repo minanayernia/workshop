@@ -7,48 +7,17 @@ import 'package:workshop/main.dart';
 import 'package:workshop/screens/intro1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
+// import 'package:connectivity/connectivity.dart';
 
-// class Splash extends StatefulWidget {
-//   @override
-//   SplashState createState() => new SplashState();
+// SharedPreferences prefs;
+// make() async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   final bool is_new = prefs.getBool('is_new');
+//   return is_new;
 // }
 
-// class SplashState extends State<Splash> {
-//   Future checkFirstSeen() async {
-//     SharedPreferences prefs = await SharedPreferences.getInstance();
-//     bool _seen = (prefs.getBool('seen') ?? false);
+// final bool is_new = make();
 
-//     if (_seen) {
-//       Navigator.of(context).pushReplacement(
-//           new MaterialPageRoute(builder: (context) => new MyHomePage()));
-//     } else {
-//       await prefs.setBool('seen', true);
-//       Navigator.of(context).pushReplacement(
-//           new MaterialPageRoute(builder: (context) => new FirstIntroPage()));
-//     }
-//   }
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     new Timer(new Duration(milliseconds: 200), () {
-//       checkFirstSeen();
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Scaffold(
-//       body: new Center(
-//         child: new Text('Loading...'),
-//       ),
-//     );
-//   }
-// }
-
-// SchedulerBinding.instance.addPostFrameCallback((_) {
-//   // your code after page opens,splash keeps open until work is done
-// });
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -59,11 +28,34 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Timer(Duration(seconds: 5), () => {});
-      print("boz");
-      Navigator.pushNamed(context, '/login');
-    });
+    // SchedulerBinding.instance.addPostFrameCallback((_) {
+
+    // Timer(Duration(seconds: 2), () => {
+    //   prefs.getBool('is_new');
+    //   // SharedPreferences.getInstance()
+    //   Navigator.pushNamed(context, '/login')
+    // });
+    // print("boz");
+    // is_connected() async {
+    // try {
+    //   final result = await InternetAddress.lookup('google.com');
+    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+    //     print('connected');
+    //   }
+    // } on SocketException catch (_) {
+    //   print('not connected');
+    // }}
+
+  
+
+    // final bool is_new = prefs.getBool("is_new");
+    // if (is_new) {
+    //   // prefs.setBool('is_new', true);
+    //   Timer(Duration(seconds: 2), ()=>{Navigator.pushNamed(context, '/intro1')});
+    // } else {
+    //   // prefs.setBool('is_new', false);
+    //   Timer(Duration(seconds: 2), ()=>{Navigator.pushNamed(context, '/login')});
+    // }
   }
 
   @override

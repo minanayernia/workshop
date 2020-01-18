@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/PreCourse.dart';
 
 class PreCorseCard extends StatefulWidget {
+  //  PreCourse prec ;
+  // PreCourseCard({@required this.prec}),
   @override
   _PreCorseCardState createState() => _PreCorseCardState();
 }

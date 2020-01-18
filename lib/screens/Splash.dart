@@ -2,6 +2,48 @@
 // import '';
 
 import 'package:flutter/material.dart';
+import 'package:workshop/main.dart';
+import 'package:workshop/screens/intro1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:async';
+
+class Splash extends StatefulWidget {
+  @override
+  SplashState createState() => new SplashState();
+}
+
+class SplashState extends State<Splash> {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new MyHomePage()));
+    } else {
+      await prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new FirstIntroPage()));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    new Timer(new Duration(milliseconds: 200), () {
+      checkFirstSeen();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new Text('Loading...'),
+      ),
+    );
+  }
+}
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,40 +54,35 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/splash_bg.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(child: Container(
-          height: MediaQuery.of(context).size.height*0.4,
-          width: MediaQuery.of(context).size.width*0.6,
-          decoration: BoxDecoration(image: DecorationImage(
-            image: AssetImage("assets/Learnoo_new.gif")
-          )),
-          child: Container(
-            height:50 ,
-            width: 50,
-              child: RaisedButton(
-            
-              child: Text("home"),
-              onPressed: (){
-                Navigator.pushNamed(context, "/home");
-              },
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/splash_bg.png"),
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-        ) 
-      ),
- 
-      
+          child: Center(
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width * 0.6,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/Learnoo_new.gif"))),
+              child: Container(
+                height: 50,
+                width: 50,
+                child: RaisedButton(
+                  child: Text("home"),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/intro1");
+                  },
+                ),
+              ),
+            ),
+          )),
     );
   }
 }
-
 
 // class CountDownTimer extends StatefulWidget {
 //   const CountDownTimer({

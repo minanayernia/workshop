@@ -12,4 +12,4 @@ class PreCourse with ChangeNotifier{
 
 }
 
-List<PreCourse> prt = [PreCourse(name: "mina") ,];
+List<PreCourse> prc = [PreCourse(name: "mina") ,];

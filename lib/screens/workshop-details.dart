@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/main.dart';
+import 'package:workshop/models/PreCourse.dart';
 import 'package:workshop/widgets/TA_ImageCard.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
@@ -117,16 +118,21 @@ class _DetailcardState extends State<Detailcard> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.65,
                     height: 20,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        PreCorseCard(),
-                        PreCorseCard(),
-                        PreCorseCard(),
-                        PreCorseCard(),
-                        PreCorseCard(),
-                      ],
-                    ),
+                    // child: ListView(
+                    //   scrollDirection: Axis.horizontal,
+                    //   children: <Widget>[
+                    //     PreCorseCard(),
+                    //     PreCorseCard(),
+                    //     PreCorseCard(),
+                    //     PreCorseCard(),
+                    //     PreCorseCard(),
+                    //   ],
+                    // ),
+                    // child: ListView.builder(
+                    //     scrollDirection: Axis.vertical,
+                    //     itemBuilder: (_, i)=> PreCorseCard(prec: prc[i]),
+                    //     itemCount: prc.length,
+                    //   ),
                   ),
                 ],
               ),

@@ -57,14 +57,14 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() {
-    super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      Timer(Duration(seconds: 5), () => {});
-      print("boz");
-      Navigator.pushNamed(context, '/login');
-    });
-  }
+  // void initState() {
+  //   super.initState();
+    
+  //     Timer(Duration(seconds: 5), () => {});
+  //     print("boz");
+  //     Navigator.pushNamed(context, '/login');
+    
+  // }
 
   @override
   Widget build(BuildContext context) {

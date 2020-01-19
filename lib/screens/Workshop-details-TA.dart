@@ -4,6 +4,8 @@ import 'package:workshop/widgets/ParticipantCard.dart';
 import 'package:workshop/widgets/TA_ImageCard.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details-supervisor.dart';
+import 'package:workshop/models/Participant.dart';
+import 'package:workshop/models/TA.dart';
 
 class WorkshopDetailsTA extends StatefulWidget {
   @override
@@ -176,16 +178,22 @@ class _GroupDetailsState extends State<GroupDetails> {
                 ),
                 Container(
                   height: 90,
-                  width: MediaQuery.of(context).size.width*0.9,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      ParticipantCard(),
-                      ParticipantCard(),
-                      ParticipantCard(),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     ParticipantCard(),
+                  //     ParticipantCard(),
+                  //     ParticipantCard(),
 
-                    ],
-                  )
+                  //   ],
+                  // )
+
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                    itemCount: p.length,
+                  ),
                 ),
               ],
             ),
@@ -244,16 +252,21 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                 ),
                 Container(
                   height: 90,
-                  width: MediaQuery.of(context).size.width*0.9,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      ParticipantCard(),
-                      ParticipantCard(),
-                      ParticipantCard(),
-                      ParticipantCard(),
-                    ],
-                  ),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     ParticipantCard(),
+                  //     ParticipantCard(),
+                  //     ParticipantCard(),
+                  //     ParticipantCard(),
+                  //   ],
+                  // ),
+                  child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                  itemCount: p.length,
+                ),
                 ),
               ],
             ),
@@ -311,18 +324,23 @@ class _TADetailsState extends State<TADetails> {
                   ),
                 ),
                 Container(
-                  
                   height: 90,
-                  width: MediaQuery.of(context).size.width*0.9,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      TAImageCard(),
-                      TAImageCard(),
-                      TAImageCard(),
-                      TAImageCard(),
-                    ],
-                  ),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     TAImageCard(),
+                  //     TAImageCard(),
+                  //     TAImageCard(),
+                  //     TAImageCard(),
+                  //   ],
+                  // ),
+
+                  child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, i) => TAImageCard(ta: t[i]),
+                  itemCount: t.length,
+                ),
                 ),
               ],
             ),

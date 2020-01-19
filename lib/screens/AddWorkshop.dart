@@ -5,6 +5,7 @@ import 'package:workshop/widgets/topbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
+import 'package:workshop/models/PreCourse.dart';
 
 
 class AddWorkshop extends StatefulWidget {
@@ -174,18 +175,23 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                 Container(
                   height: 20,
                   width: MediaQuery.of(context).size.width*0.7,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      PreCorseCard(),
-                      PreCorseCard(),
-                      PreCorseCard(),
-                      PreCorseCard(),
-                      PreCorseCard(),
-                      PreCorseCard(),
-                      PreCorseCard(),
-                    ],
-                  ),
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     PreCorseCard(),
+                  //     PreCorseCard(),
+                  //     PreCorseCard(),
+                  //     PreCorseCard(),
+                  //     PreCorseCard(),
+                  //     PreCorseCard(),
+                  //     PreCorseCard(),
+                  //   ],
+                  // ),
+                  child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, i) => PreCorseCard(prec: prc[i]),
+                  itemCount: prc.length,
+                ),
                 )
               ],
             ),

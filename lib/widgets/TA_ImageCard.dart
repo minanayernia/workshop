@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/TA.dart';
 
 class TAImageCard extends StatefulWidget {
+  TA ta ;
+  TAImageCard({@required this.ta});
   @override
   _TAImageCardState createState() => _TAImageCardState();
 }
@@ -39,6 +42,7 @@ class ProfileImage extends StatefulWidget {
 }
 
 class _ProfileImageState extends State<ProfileImage> {
+  
   @override
   Widget build(BuildContext context) {
     return Container(

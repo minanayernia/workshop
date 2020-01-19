@@ -14,4 +14,4 @@ class Instalment with ChangeNotifier{
 
 }
 
-List<Instalment> prt = [Instalment(date: "mina" , money: 75) ,];
+List<Instalment> i = [Instalment(date: "mina" , money: 75) ,];

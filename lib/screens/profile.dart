@@ -109,7 +109,7 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
             onTap: () {
               setState(() {
                 if (menu == "...") {
-                  menu = "X";
+                  menu = "x";
                 } else {
                   menu = "...";
                 }
@@ -133,10 +133,12 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
                 // )
               });
             },
-            child: Container(
-              height: 30,
-              width: 30,
-              child: Text("..."),
+            child: Center(
+              child: Container(
+                height: 30,
+                width: 30,
+                child: Text(menu , style: TextStyle(fontSize: 20 , color: Colors.deepPurple),),
+              ),
             ),
           )
         ],

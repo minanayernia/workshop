@@ -137,11 +137,25 @@ Future getImage() async {
                   ),
                 ),
                 Container(
+                  margin: EdgeInsets.only(left: 10),
                   height: 28,
                   width: MediaQuery.of(context).size.width * 0.65,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)),
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween
+                        ,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 10), 
+                            child: Text('Super Visor' , style: TextStyle(color: Colors.deepPurple),),) ,
+                          Container(
+                            height: 28,
+                            margin: EdgeInsets.only(right: 10 , top: 2.5), child: Text('...' , style: TextStyle(color:  Colors.deepPurple , fontSize: 15),),) , 
+                        ],
+                      ),
                 ),
               ],
             ),

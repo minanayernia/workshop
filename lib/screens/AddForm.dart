@@ -45,11 +45,15 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         WhoAnswersCard(),
-        ListView(
-          children: <Widget>[
-            QuestionCard(),
-            QuestionContainer(),
-          ],
+        Container(
+          height: 300,
+          width: MediaQuery.of(context).size.width*0.9,
+          child: ListView(
+            children: <Widget>[
+              QuestionCard(),
+              QuestionContainer(),
+            ],
+          ),
         ),
         AddContainer(),
         SubmitioButton(),

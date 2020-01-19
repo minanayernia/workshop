@@ -13,4 +13,4 @@ class TA with ChangeNotifier{
 
 }
 
-List<TA> t = [TA(name: "mina") ,];
+List<TA> t = [TA(name: "mina") , TA(name: "bahar")];

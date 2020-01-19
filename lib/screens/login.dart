@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workshop/main.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/widgets/workshop_card.dart';
@@ -176,7 +177,9 @@ class _SubmitButtomState extends State<SubmitButtom> {
                     body: json.encode(data),
                 headers: {"Accept": "application/json", "content-type": "application/json"}
                 );
-                print(json.decode(response.body));
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String b = (json.decode(response.body[0]));
+                prefs.setString("token", b);
                   }
                   sendcode();
                   // Navigator.pop(context);

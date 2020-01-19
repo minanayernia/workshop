@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/login.dart';
 import 'package:http/http.dart' as http;
@@ -269,7 +270,7 @@ class _SignupbuttonState extends State<Signupbutton> {
 
               onPressed: 
               
-                (){
+                (){ 
                   Map data = {'name':fullname.text , 'nationalcode' :nationalcode.text ,'mobilenumber' :mobilenumber.text , 'gender' : gender };
              Future<http.Response> sendPersonDetail() async{
                var response = 
@@ -277,6 +278,10 @@ class _SignupbuttonState extends State<Signupbutton> {
                 body: json.encode(data) ,
                 headers: {"Accept": "application/json", "content-type": "application/json"} 
                 );
+
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String b = (json.decode(response.body[0]));
+                prefs.setString("token", b);
         
              }
              sendPersonDetail();

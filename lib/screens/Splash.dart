@@ -21,26 +21,34 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-  User user;
   bool has_token = false;
+  bool is_new = true;
+  String route;
 
+  void get() async{
+    
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (!prefs.containsKey("new")){
+        route = '/intro1';
+        is_new = false;
+        prefs.setBool("new", false);
+        Timer(Duration(seconds: 3), () {Navigator.pushNamed(context, route);});
+      }
+      if (!prefs.containsKey("token")){
+        route = '/signup';
+      } else {
+        route = '/home';
+      }
+    
+      Timer(Duration(seconds: 3), () => {Navigator.pushNamed(context, route)});
+      
+  }
 
   @override
-  void didChangeDependencies() {
-    if (user.has_token() == true){
-
-    }
-
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+      get();
   }
-  // void initState() {
-  //   super.initState();
-    
-  //     Timer(Duration(seconds: 5), () => {});
-  //     print("boz");
-  //     Navigator.pushNamed(context, '/login');
-    
-  // }
 
   @override
   Widget build(BuildContext context) {

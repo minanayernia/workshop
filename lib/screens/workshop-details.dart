@@ -6,6 +6,7 @@ import 'package:workshop/widgets/TA_ImageCard.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
 import 'package:workshop/widgets/PreCourseCard.dart';
+import 'package:workshop/models/workshop.dart';
 
 class Workshopdetails extends StatefulWidget {
   @override
@@ -52,6 +53,9 @@ class _PageState extends State<Page> {
 }
 
 class Workshopimage extends StatefulWidget {
+  Workshop workshop;
+   Workshopimage({@required this.workshop});
+
   @override
   _WorkshopimageState createState() => _WorkshopimageState();
 }
@@ -70,6 +74,7 @@ class _WorkshopimageState extends State<Workshopimage> {
               color: Colors.grey, borderRadius: BorderRadius.circular(10)),
           width: 100,
           height: 100,
+          child: Text(widget.workshop.picture),
         )
       ],
     );
@@ -77,6 +82,8 @@ class _WorkshopimageState extends State<Workshopimage> {
 }
 
 class Detailcard extends StatefulWidget {
+  Workshop workshop;
+   Detailcard({@required this.workshop});
   @override
   _DetailcardState createState() => _DetailcardState();
 }
@@ -99,7 +106,7 @@ class _DetailcardState extends State<Detailcard> {
               Row(
                 children: <Widget>[
                   Text(
-                    'Android',
+                    widget.workshop.name,
                     style: TextStyle(color: Colors.purple, fontSize: 30.0),
                   )
                 ],
@@ -107,7 +114,7 @@ class _DetailcardState extends State<Detailcard> {
               Row(
                 children: <Widget>[
                   Text(
-                    'Dr hamze',
+                     widget.workshop.supervisor,
                     style: TextStyle(color: Colors.purple[300], fontSize: 20.0),
                   )
                 ],
@@ -133,8 +140,8 @@ class _DetailcardState extends State<Detailcard> {
                     // ),
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, i)=> PreCorseCard(prec: prc[i]),
-                        itemCount: prc.length,
+                        itemBuilder: (_, i)=> PreCorseCard(workshop: widget.workshop.precourse[i]),
+                        itemCount: widget.workshop.precourse.length,
                       ),
                   ),
                 ],

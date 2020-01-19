@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -5,9 +7,11 @@ import 'dart:async';
 
 import 'package:workshop/screens/AddWorkshop.dart';
 
-String url = "192.168.43.59";
+String url = "192.168.43.59:8080";
 
 class Workshop with ChangeNotifier{
+  String about ;
+  List<Workshop> precourse ;
   String picture ;
   int id ;
   String name;
@@ -18,6 +22,7 @@ class Workshop with ChangeNotifier{
   String date ;
 
   Workshop({
+    @required this.precourse ,
     @required this.picture ,
     @required this.name,
     @required this.capacity ,
@@ -34,9 +39,11 @@ List<int> test = [1,2,3];
 List<Workshop> wsh =[];
 
 void getworkshops(){
+  print(11111111111111111);
   Future<http.Response> getworkshops() async{
-    var response = await http.get('http://'+url+'/api/v1/workshop/list',
+    var response = await http.post('http://192.168.43.59:8080/api/v1/workshop/list',
     headers: {"Accept": "application/json", "content-type": "application/json"});
+    print(1122222222);
     print(json.decode(response.body));
 
   for (int i = 0 ; i < json.decode(response.body).length ; i++ ){

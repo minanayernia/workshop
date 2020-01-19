@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:workshop/models/PreCourse.dart';
+import 'package:workshop/models/workshop.dart';
 
 
 final workshopName = TextEditingController();
@@ -167,6 +168,8 @@ Future getImage() async {
 }
 
 class WorkshopDtailCard extends StatefulWidget {
+   Workshop workshop;
+   WorkshopDtailCard({@required this.workshop});
   @override
   _WorkshopDtailCardState createState() => _WorkshopDtailCardState();
 }
@@ -217,8 +220,8 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                   // ),
                   child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => PreCorseCard(prec: prc[i]),
-                  itemCount: prc.length,
+                  itemBuilder: (_, i) => PreCorseCard(workshop: widget.workshop.precourse[i]),
+                  itemCount: widget.workshop.precourse.length,
                 ),
                 )
               ],

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/models/PreCourse.dart';
+import 'package:workshop/models/workshop.dart';
 
 class PreCorseCard extends StatefulWidget {
-  PreCourse prec ;
-  PreCorseCard({@required this.prec});
+   Workshop workshop;
+   PreCorseCard({@required this.workshop});
   
   @override
   _PreCorseCardState createState() => _PreCorseCardState();
@@ -20,7 +21,7 @@ class _PreCorseCardState extends State<PreCorseCard> {
           color: Colors.pinkAccent, borderRadius: BorderRadius.circular(10)),
       child: Center(
         child: Text(
-          'Python',
+          widget.workshop.name,
           style: TextStyle(color: Colors.white),
         ),
       ),

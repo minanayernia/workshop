@@ -9,7 +9,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-String url = "192.168.43.59";
+String url = "192.168.43.59:8080";
 
 final nationalCode = TextEditingController() ;
 
@@ -174,15 +174,17 @@ class _SubmitButtomState extends State<SubmitButtom> {
               onPressed: 
               
                 (){
+                  print(1111111111111111);
                   Map data ={'nationalCode' : nationalCode.text};
                   Future<http.Response> sendcode() async{
                     var response = 
-                    await http.post('http://192.168.43.139:8080/api/v1/login',
+                    await http.post('http://192.168.43.59:8080/api/v1/login',
                     body: json.encode(data),
                 headers: {"Accept": "application/json", "content-type": "application/json"}
                 );
+                print(2222222222222222);
                 SharedPreferences prefs = await SharedPreferences.getInstance();
-                String b = (json.decode(response.body[0]));
+                String b = (json.decode(response.body));
                 prefs.setString("token", b);
                   }
                   sendcode();

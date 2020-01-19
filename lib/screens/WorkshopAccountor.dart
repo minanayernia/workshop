@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/screens/addGroup.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
 import 'package:workshop/widgets/profileCard.dart';
+import 'package:workshop/models/Participant.dart';
 
 class WorkshopAccountor extends StatefulWidget {
   @override
@@ -90,15 +92,20 @@ class _ParticipantCardState extends State<ParticipantCard> {
             height: 80,
             width: MediaQuery.of(context).size.width * 0.85,
 
-            margin: EdgeInsets.only(left: 10, top: 5 , right: 10 , bottom: 10),
-            child: ListView(
+            margin: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 10),
+            // child: ListView(
+            //   scrollDirection: Axis.horizontal,
+            //   children: <Widget>[
+            //     EachParticipantCard(),
+            //     EachParticipantCard(),
+            //     EachParticipantCard(),
+            //     EachParticipantCard(),
+            //   ],
+            // ),
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                EachParticipantCard(),
-                EachParticipantCard(),
-                EachParticipantCard(),
-                EachParticipantCard(),
-              ],
+              itemBuilder: (_, i) => EachParticipantCard(eprt: p[i]),
+              itemCount: p.length,
             ),
             // child: EachParticipantCard(),
           ),
@@ -109,6 +116,8 @@ class _ParticipantCardState extends State<ParticipantCard> {
 }
 
 class EachParticipantCard extends StatefulWidget {
+  Participant eprt;
+  EachParticipantCard({@required this.eprt});
   @override
   _EachParticipantCardState createState() => _EachParticipantCardState();
 }
@@ -119,7 +128,7 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
     return Container(
       width: 140,
       height: 72,
-      margin: EdgeInsets.only(right:10),
+      margin: EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: new BorderRadius.circular(15),

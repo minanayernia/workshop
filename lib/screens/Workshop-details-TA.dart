@@ -17,11 +17,21 @@ class _WorkshopDetailsTAState extends State<WorkshopDetailsTA> {
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
-      child: Stack(
-        children: <Widget>[
-          Background(),
-          Page(),
-        ],
+      child: Scaffold(
+        //       child: Stack(
+        //   children: <Widget>[
+        //     Background(),
+        //     Page(),
+        //   ],
+        // ),
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/learnoo-pattern.png'),
+                  fit: BoxFit.cover)),
+          child: SingleChildScrollView(child: Center(child: Page())),
+        ),
       ),
     );
   }
@@ -263,10 +273,10 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                   //   ],
                   // ),
                   child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
-                  itemCount: p.length,
-                ),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                    itemCount: p.length,
+                  ),
                 ),
               ],
             ),
@@ -337,10 +347,10 @@ class _TADetailsState extends State<TADetails> {
                   // ),
 
                   child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => TAImageCard(ta: t[i]),
-                  itemCount: t.length,
-                ),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => TAImageCard(ta: t[i]),
+                    itemCount: t.length,
+                  ),
                 ),
               ],
             ),

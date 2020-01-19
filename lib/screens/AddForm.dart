@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/topbar.dart';
+import 'package:workshop/models/Questionmaker.dart';
 
 class AddForm extends StatefulWidget {
   @override
@@ -181,6 +182,8 @@ class _QuestionCardState extends State<QuestionCard> {
 }
 
 class QuestionContainer extends StatefulWidget {
+  MakeQuestionD q ;
+  QuestionContainer({@required this.q});
   @override
   _QuestionContainerState createState() => _QuestionContainerState();
 }
@@ -304,7 +307,16 @@ class _AddContainerState extends State<AddContainer> {
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(20.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                // child: ListView.builder(
+                //     scrollDirection: Axis.horizontal,
+                //     itemBuilder: (_, i) => QuestionContainer(q: ques[i]),
+                //     itemCount: ques.length,
+                //   ),
+
+
+
+              },
             ),
           ),
           Container(

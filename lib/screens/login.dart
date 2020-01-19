@@ -65,7 +65,9 @@ class _ForegrandState extends State<Foregrand> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Topimage(),
-        LoginCard()
+        
+        LoginCard(),
+        SignUpButton(),
         ],
       
     );
@@ -223,6 +225,40 @@ class _NationalcardState extends State<Nationalcard> {
       margin: EdgeInsets.only(top: 15),
       decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(15),color: Colors.white,),
 
+      
+    );
+  }
+}
+
+class SignUpButton extends StatefulWidget {
+  @override
+  _SignUpButtonState createState() => _SignUpButtonState();
+}
+
+class _SignUpButtonState extends State<SignUpButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomRight,
+      margin: EdgeInsets.only(top: 10),
+      height: 40,
+      width: MediaQuery.of(context).size.width*0.9,
+      child: RaisedButton(
+        child: Text(
+          'Sign Up',
+          style: TextStyle(color: Colors.white, fontSize: 17.0),
+        ),
+        color: Colors.deepPurple[600],
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(25.0),
+        ),
+        
+        onPressed: (){
+                            Navigator.pushNamed(context, '/signup');
+
+
+        },
+      ),
       
     );
   }

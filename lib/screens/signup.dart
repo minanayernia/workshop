@@ -9,8 +9,7 @@ import 'package:http/http.dart' as http;
 final fullname = TextEditingController();
 final nationalcode = TextEditingController();
 final mobilenumber = TextEditingController();
-int gender = 1 ;//0 => male    1 => female
-
+int gender = 1; //0 => male    1 => female
 
 bool pressAttention = false;
 
@@ -26,23 +25,25 @@ class _SignUpState extends State<SignUp> {
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: true,
       body: SingleChildScrollView(
-              child: new GestureDetector(
-                  onTap: (){
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                child: Container(
-                    height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
-          fit: BoxFit.cover)
+        child: new GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/learnoo-pattern.png'),
+                    fit: BoxFit.cover)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+              LoginButton(),
+              Center(child: SignupCard(),)
+            ],),
           ),
-                    child: Center(child:SignupCard()),
         ),
-                ),
       ),
-      
-            
-      
     );
   }
 }
@@ -55,32 +56,34 @@ class SignupCard extends StatefulWidget {
 class _SignupCardState extends State<SignupCard> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-    
-      children: <Widget>[
-        Column(
-       mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+      Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: 400,
-      margin: EdgeInsets.only(bottom: 60),
-      decoration: BoxDecoration(color: Colors.deepPurple[700].withOpacity(0.5) ,borderRadius: BorderRadius.circular(10)),
-      child: Column(children: <Widget>[
-        Padding(padding: EdgeInsets.only(top: 10 , left: 10),),
-        ProPic(),
-        FullName(),
-        Nationalcard(),
-        MobileNumber(),
-        Gender(),
-         Padding(padding: EdgeInsets.only(top: 15),),
-        Signupbutton(),
-        
-      ],
-      ),
-    )])]);
-
+          width: MediaQuery.of(context).size.width * 0.9,
+          height: 400,
+          margin: EdgeInsets.only(bottom: 60),
+          decoration: BoxDecoration(
+              color: Colors.deepPurple[700].withOpacity(0.5),
+              borderRadius: BorderRadius.circular(10)),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 10, left: 10),
+              ),
+              ProPic(),
+              FullName(),
+              Nationalcard(),
+              MobileNumber(),
+              Gender(),
+              Padding(
+                padding: EdgeInsets.only(top: 15),
+              ),
+              Signupbutton(),
+            ],
+          ),
+        )
+      ])
+    ]);
   }
 }
 
@@ -96,23 +99,28 @@ class _FullNameState extends State<FullName> {
       padding: EdgeInsets.only(left: 10),
       child: TextField(
         controller: fullname,
-        textInputAction: TextInputAction.go,        
-        decoration: InputDecoration(icon: Icon(Icons.person, color: Colors.black,),
-        border: InputBorder.none,
-        hintText: 'Full Name'
-        ),),
+        textInputAction: TextInputAction.go,
+        decoration: InputDecoration(
+            icon: Icon(
+              Icons.person,
+              color: Colors.black,
+            ),
+            border: InputBorder.none,
+            hintText: 'Full Name'),
+      ),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.85,
-      
+
       //width: 70,
       margin: EdgeInsets.only(top: 15),
-      decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(15),color: Colors.white,),
-
-      
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(15),
+        color: Colors.white,
+      ),
     );
   }
 }
-
 
 class MobileNumber extends StatefulWidget {
   @override
@@ -128,18 +136,24 @@ class _MobileNumberState extends State<MobileNumber> {
         keyboardType: TextInputType.phone,
         textInputAction: TextInputAction.next,
         controller: mobilenumber,
-        decoration: InputDecoration(icon: Icon(Icons.phone_iphone, color: Colors.black,),
-        border: InputBorder.none,
-        hintText: 'Mobile Number'
-        ),),
+        decoration: InputDecoration(
+            icon: Icon(
+              Icons.phone_iphone,
+              color: Colors.black,
+            ),
+            border: InputBorder.none,
+            hintText: 'Mobile Number'),
+      ),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.85,
-      
+
       //width: 70,
       margin: EdgeInsets.only(top: 15),
-      decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(15),color: Colors.white,),
-
-      
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(15),
+        color: Colors.white,
+      ),
     );
   }
 }
@@ -156,12 +170,14 @@ class _GenderState extends State<Gender> {
       child: GenderBox(),
       height: 40,
       width: MediaQuery.of(context).size.width * 0.85,
-      
+
       //width: 70,
       margin: EdgeInsets.only(top: 15),
-      decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(15),color: Colors.grey,),
-
-      
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(15),
+        color: Colors.grey,
+      ),
     );
   }
 }
@@ -175,23 +191,20 @@ class _MaleButtonState extends State<MaleButton> {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width * 0.425,
-      height: 45,
-      
-      child:RaisedButton(
-              child: Text('Male',
-              style: TextStyle(color: Colors.deepPurple[900] , fontSize: 15.0),
+        minWidth: MediaQuery.of(context).size.width * 0.425,
+        height: 45,
+        child: RaisedButton(
+            child: Text(
+              'Male',
+              style: TextStyle(color: Colors.deepPurple[900], fontSize: 15.0),
             ),
-              // color: Colors.grey,
-              
-              shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
-           ),
-          color: pressAttention ? Colors.grey : Colors.white,
-           onPressed: ()=> setState(() => pressAttention = !pressAttention)
-              
-      
-    )
-    );
+            // color: Colors.grey,
+
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(15.0),
+            ),
+            color: pressAttention ? Colors.grey : Colors.white,
+            onPressed: () => setState(() => pressAttention = !pressAttention)));
   }
 }
 
@@ -204,26 +217,22 @@ class _FemaleButtonState extends State<FemaleButton> {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width * 0.425,
-      height: 45,
-      
-      child:RaisedButton(
-              child: Text('Female',
-                          style: TextStyle(color: Colors.deepPurple[900] , fontSize: 15.0),
+        minWidth: MediaQuery.of(context).size.width * 0.425,
+        height: 45,
+        child: RaisedButton(
+            child: Text(
+              'Female',
+              style: TextStyle(color: Colors.deepPurple[900], fontSize: 15.0),
             ),
-              // color: Colors.grey,
-              
-              shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
-           ),
-           color: pressAttention ? Colors.grey : Colors.white,
-           onPressed: (){
-              setState(() => pressAttention = !pressAttention );
-            
-           } 
-              
-      
-    )
-    );
+            // color: Colors.grey,
+
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(15.0),
+            ),
+            color: pressAttention ? Colors.grey : Colors.white,
+            onPressed: () {
+              setState(() => pressAttention = !pressAttention);
+            }));
   }
 }
 
@@ -239,8 +248,11 @@ class _ProPicState extends State<ProPic> {
       width: 50,
       height: 70,
       child: Icon(Icons.person),
-      decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius:new BorderRadius.circular(10) ,  color: Colors.white, ), 
-      
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(10),
+        color: Colors.white,
+      ),
     );
   }
 }
@@ -254,12 +266,12 @@ class _SignupbuttonState extends State<Signupbutton> {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width * 0.85,
-      height: 45,
-      
-      child:RaisedButton(
-              child: Text('Sign Up',
-              style: TextStyle(color: Colors.deepPurple[900] , fontSize: 15.0),
+        minWidth: MediaQuery.of(context).size.width * 0.85,
+        height: 45,
+        child: RaisedButton(
+            child: Text(
+              'Sign Up',
+              style: TextStyle(color: Colors.deepPurple[900], fontSize: 15.0),
             ),
               color: Colors.greenAccent[400],
               
@@ -296,8 +308,6 @@ class _SignupbuttonState extends State<Signupbutton> {
   }
 }
 
-
-
 class GenderBox extends StatefulWidget {
   @override
   _GenderBoxState createState() => _GenderBoxState();
@@ -307,61 +317,83 @@ class _GenderBoxState extends State<GenderBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-            ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width * 0.425,
-      height: 45,
-      
-      child:RaisedButton(
-        elevation: 0,
-              child: Text('Male',
-                          style: TextStyle(color: Colors.deepPurple[900] , fontSize: 15.0),
-            ),
-              // color: Colors.grey,
-              
-              shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
-           ),
-           color: !pressAttention ? Colors.grey : Colors.white,
-           onPressed: (){
-              setState(() => pressAttention = !pressAttention);
-              gender = 0 ;
-              print(gender);
-              
-           } 
-              
-      
-    )
-    ),
+          ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width * 0.425,
+              height: 45,
+              child: RaisedButton(
+                  elevation: 0,
+                  child: Text(
+                    'Male',
+                    style: TextStyle(
+                        color: Colors.deepPurple[900], fontSize: 15.0),
+                  ),
+                  // color: Colors.grey,
 
-    ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width * 0.425,
-      height: 45,
-      
-      child:RaisedButton(
-        elevation: 0,
-              child: Text('Female',
-                          style: TextStyle(color: Colors.deepPurple[900] , fontSize: 15.0),
-            ),
-              // color: Colors.grey,
-              
-              shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
-           ),
-           color: pressAttention ? Colors.grey : Colors.white,
-           onPressed: (){
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15.0),
+                  ),
+                  color: !pressAttention ? Colors.grey : Colors.white,
+                  onPressed: () {
+                    setState(() => pressAttention = !pressAttention);
+                    gender = 0;
+                    print(gender);
+                  })),
+          ButtonTheme(
+              minWidth: MediaQuery.of(context).size.width * 0.425,
+              height: 45,
+              child: RaisedButton(
+                  elevation: 0,
+                  child: Text(
+                    'Female',
+                    style: TextStyle(
+                        color: Colors.deepPurple[900], fontSize: 15.0),
+                  ),
+                  // color: Colors.grey,
 
-              setState(() => pressAttention = !pressAttention);
-              gender = 1 ;
-              print(gender);
-           }
-              
-      
-    )
-    )
-      ],),
-      
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15.0),
+                  ),
+                  color: pressAttention ? Colors.grey : Colors.white,
+                  onPressed: () {
+                    setState(() => pressAttention = !pressAttention);
+                    gender = 1;
+                    print(gender);
+                  }))
+        ],
+      ),
+    );
+  }
+}
+
+class LoginButton extends StatefulWidget {
+  @override
+  _LoginButtonState createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomRight,
+      margin: EdgeInsets.only(top: 10),
+      height: 40,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: RaisedButton(
+        child: Text(
+          'Log In',
+          style: TextStyle(color: Colors.deepPurple[600], fontSize: 17.0),
+        ),
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(25.0),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/login');
+        },
+      ),
     );
   }
 }

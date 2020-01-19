@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/mmd.dart';
+import 'package:workshop/widgets/topbar.dart';
 
 class Jobs extends StatefulWidget {
   @override
@@ -10,23 +11,30 @@ class _JobsState extends State<Jobs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('JOBS'),leading: Icon(Icons.ac_unit),actions: <Widget>[Icon(Icons.wb_sunny)],),
       backgroundColor: Theme.of(context).accentColor,
       body: SingleChildScrollView(
-              child: Column(children: <Widget>[
+        child: Column(children: <Widget>[
+          TopBar(
+            foo: "Home",
+          ),
           //  Padding(padding: EdgeInsets.only(top: 50),),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
-           MmdCard(),
+          Container(
+            height: MediaQuery.of(context).size.height*0.9,
+            width: MediaQuery.of(context).size.width*1.2,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: <Widget>[
+                MmdCard(),
+                MmdCard(),
+                MmdCard(),
+                MmdCard(),
+                MmdCard(),
+                MmdCard(),
+                MmdCard(),
+                MmdCard(),
+              ],
+            ),
+          )
         ]),
       ),
     );

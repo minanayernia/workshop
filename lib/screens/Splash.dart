@@ -17,8 +17,6 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-
-
 class _SplashScreenState extends State<SplashScreen> {
 
   bool has_token = false;
@@ -47,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-      get();
-  }
+      get();}
+
 
   @override
   Widget build(BuildContext context) {

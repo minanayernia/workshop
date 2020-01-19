@@ -62,7 +62,7 @@ class _ProfileState extends State<Profile> {
             // TopBar(foo: "Profile",),
             ProfileAppBar(),
             Container(
-              height:MediaQuery.of(context).size.height*0.8 ,
+              height:MediaQuery.of(context).size.height-140,
               width: MediaQuery.of(context).size.width*0.95,
               child: SingleChildScrollView(child: ProCard())),
           ],

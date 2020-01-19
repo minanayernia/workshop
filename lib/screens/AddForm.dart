@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/topbar.dart';
 
+
+List<String> Dq = [];
+List<String> Tq = [];
+List<String> TAns = [];
+
+
+
+
+
 class AddForm extends StatefulWidget {
   @override
   _AddFormState createState() => _AddFormState();

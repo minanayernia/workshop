@@ -7,16 +7,9 @@ import 'package:workshop/main.dart';
 import 'package:workshop/screens/intro1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
-// import 'package:connectivity/connectivity.dart';
+import 'package:workshop/models/user.dart';
 
-// SharedPreferences prefs;
-// make() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   final bool is_new = prefs.getBool('is_new');
-//   return is_new;
-// }
 
-// final bool is_new = make();
 
 
 class SplashScreen extends StatefulWidget {
@@ -24,38 +17,21 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
+
+
 class _SplashScreenState extends State<SplashScreen> {
+
+  User user;
+  bool has_token = false;
+
+
   @override
-  void initState() {
-    super.initState();
-    // SchedulerBinding.instance.addPostFrameCallback((_) {
+  void didChangeDependencies() {
+    if (user.has_token() == true){
 
-    // Timer(Duration(seconds: 2), () => {
-    //   prefs.getBool('is_new');
-    //   // SharedPreferences.getInstance()
-    //   Navigator.pushNamed(context, '/login')
-    // });
-    // print("boz");
-    // is_connected() async {
-    // try {
-    //   final result = await InternetAddress.lookup('google.com');
-    //   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-    //     print('connected');
-    //   }
-    // } on SocketException catch (_) {
-    //   print('not connected');
-    // }}
+    }
 
-  
-
-    // final bool is_new = prefs.getBool("is_new");
-    // if (is_new) {
-    //   // prefs.setBool('is_new', true);
-    //   Timer(Duration(seconds: 2), ()=>{Navigator.pushNamed(context, '/intro1')});
-    // } else {
-    //   // prefs.setBool('is_new', false);
-    //   Timer(Duration(seconds: 2), ()=>{Navigator.pushNamed(context, '/login')});
-    // }
+    super.didChangeDependencies();
   }
 
   @override
@@ -90,93 +66,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-// class CountDownTimer extends StatefulWidget {
-//   const CountDownTimer({
-//     Key key,
-//     int secondsRemaining,
-//     this.countDownTimerStyle,
-//     this.whenTimeExpires,
-//     this.countDownFormatter,
-//   })  : secondsRemaining = secondsRemaining,
-//         super(key: key);
-
-//   final int secondsRemaining;
-//   final Function whenTimeExpires;
-//   final Function countDownFormatter;
-//   final TextStyle countDownTimerStyle;
-
-//   State createState() => new _CountDownTimerState();
-// }
-
-// class _CountDownTimerState extends State<CountDownTimer>
-//     with TickerProviderStateMixin {
-//   AnimationController _controller;
-//   Duration duration;
-
-//   String get timerDisplayString {
-//     Duration duration = _controller.duration * _controller.value;
-//     return widget.countDownFormatter != null
-//         ? widget.countDownFormatter(duration.inSeconds),
-//         // : formatHHMMSS(duration.inSeconds);
-//       // In case user doesn't provide formatter use the default one
-//      // for that create a method which will be called formatHHMMSS or whatever you like
-//   }
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     duration = new Duration(seconds: widget.secondsRemaining);
-//     _controller = new AnimationController(
-//       vsync: this,
-//       duration: duration,
-//     );
-//     _controller.reverse(from: widget.secondsRemaining.toDouble());
-//     _controller.addStatusListener((status) {
-//       if (status == AnimationStatus.completed || status == AnimationStatus.dismissed) {
-//         widget.whenTimeExpires();
-//       }
-//     });
-//   }
-
-//   @override
-//   void didUpdateWidget(CountDownTimer oldWidget) {
-//     if (widget.secondsRemaining != oldWidget.secondsRemaining) {
-//       setState(() {
-//         duration = new Duration(seconds: widget.secondsRemaining);
-//         _controller.dispose();
-//         _controller = new AnimationController(
-//           vsync: this,
-//           duration: duration,
-//         );
-//         _controller.reverse(from: widget.secondsRemaining.toDouble());
-//         _controller.addStatusListener((status) {
-//           if (status == AnimationStatus.completed) {
-//             widget.whenTimeExpires();
-//           } else if (status == AnimationStatus.dismissed) {
-//             print("Animation Complete");
-//           }
-//         });
-//       });
-//     }
-//   }
-
-//   @override
-//   void dispose() {
-//     _controller.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Center(
-//         child: AnimatedBuilder(
-//             animation: _controller,
-//             builder: (_, Widget child) {
-//               return Text(
-//                 timerDisplayString,
-//                 style: widget.countDownTimerStyle,
-//               );
-//             }));
-//   }
-// }

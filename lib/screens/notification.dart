@@ -22,7 +22,7 @@ class _NotificationPageState extends State<NotificationPage> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width*0.9,
-                height: MediaQuery.of(context).size.height*0.8,
+                height: MediaQuery.of(context).size.height-140,
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   children: <Widget>[

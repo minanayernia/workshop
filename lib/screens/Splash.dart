@@ -27,9 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void didChangeDependencies() {
-    if (user.has_token() == true){
+    // if (user.has_token() == true){
 
-    }
+    // }
 
     super.didChangeDependencies();
   }

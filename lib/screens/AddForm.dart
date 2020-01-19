@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:workshop/widgets/topbar.dart';
 import 'package:workshop/models/Questionmaker.dart';
 
+// List<String> Dq = [];
+List<QuestionCard> q1 = [];
+List<QuestionContainer> q2 = [];
 
-List<String> Dq = [];
-List<String> Tq = [];
 List<String> TAns = [];
 
-
-
-
+TextEditingController quest = TextEditingController();
 
 class AddForm extends StatefulWidget {
   @override
@@ -46,8 +45,12 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         WhoAnswersCard(),
-        QuestionCard(),
-        QuestionContainer(),
+        ListView(
+          children: <Widget>[
+            QuestionCard(),
+            QuestionContainer(),
+          ],
+        ),
         AddContainer(),
         SubmitioButton(),
       ],
@@ -191,7 +194,7 @@ class _QuestionCardState extends State<QuestionCard> {
 }
 
 class QuestionContainer extends StatefulWidget {
-  MakeQuestionD q ;
+  MakeQuestionD q;
   QuestionContainer({@required this.q});
   @override
   _QuestionContainerState createState() => _QuestionContainerState();
@@ -211,6 +214,7 @@ class _QuestionContainerState extends State<QuestionContainer> {
           Container(
             padding: EdgeInsets.only(left: 10),
             child: TextField(
+              controller: quest,
               cursorColor: Colors.purple,
               textInputAction: TextInputAction.go,
               keyboardType: TextInputType.text,
@@ -317,13 +321,12 @@ class _AddContainerState extends State<AddContainer> {
                 borderRadius: new BorderRadius.circular(20.0),
               ),
               onPressed: () {
-                // child: ListView.builder(
-                //     scrollDirection: Axis.horizontal,
-                //     itemBuilder: (_, i) => QuestionContainer(q: ques[i]),
-                //     itemCount: ques.length,
-                //   ),
-
-
+                // ListView.builder(
+                //   scrollDirection: Axis.vertical,
+                //   itemBuilder: (_, i) => QuestionContainer(q: Dq[i]),
+                //   itemCount: Dq.length,
+                // );
+                
 
               },
             ),

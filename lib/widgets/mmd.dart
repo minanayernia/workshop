@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/workshop.dart';
 
 class MmdCard extends StatefulWidget {
+  Workshop mmdworkshop;
+  MmdCard({@required this.mmdworkshop});
+
   @override
   _MmdCardState createState() => _MmdCardState();
 }
 
 class _MmdCardState extends State<MmdCard> {
+
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,8 +23,8 @@ class _MmdCardState extends State<MmdCard> {
        height: 110,
       child: Stack(
         children: <Widget>[
-          CardThumb(),
-          CardPic(),
+          CardThumb(mmdworkshop: widget.mmdworkshop,),
+          CardPic(mmdworkshop: widget.mmdworkshop,),
         ],
       ),
     );
@@ -28,6 +34,9 @@ class _MmdCardState extends State<MmdCard> {
 
 
 class CardPic extends StatefulWidget {
+  Workshop mmdworkshop;
+  CardPic({@required this.mmdworkshop});
+
   @override
   _CardPicState createState() => _CardPicState();
 }
@@ -50,6 +59,9 @@ class _CardPicState extends State<CardPic> {
 
 
 class CardThumb extends StatefulWidget {
+  Workshop mmdworkshop;
+  CardThumb({@required this.mmdworkshop});
+
   @override
   _CardThumbState createState() => _CardThumbState();
 }
@@ -87,13 +99,13 @@ class _CardThumbState extends State<CardThumb> {
                 // color: Colors.red,
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(top: 20, left: 0),
-                child: Text('Python', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white))
+                child: Text(widget.mmdworkshop.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white))
               ),
               Container(
                 // color: Colors.green,
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(left: 0, top: 2),
-                child: Text('version 2.7', style: TextStyle(color: Colors.grey)),
+                child: Text(widget.mmdworkshop.supervisor, style: TextStyle(color: Colors.grey)),
               ),
               Container(
                 margin: EdgeInsets.only(top: 2),
@@ -108,11 +120,11 @@ class _CardThumbState extends State<CardThumb> {
                 child: Row(children: <Widget>[
                   Icon(Icons.people, size: 20,color: Colors.grey,),
                   Padding(padding: EdgeInsets.all(2),),
-                  Text('74', style: TextStyle(color: Colors.grey),),
+                  Text(widget.mmdworkshop.capacity.toString(), style: TextStyle(color: Colors.grey),),
                   Padding(padding: EdgeInsets.all(10),),
                   Icon(Icons.access_time, size: 20,color: Colors.grey,),
                   Padding(padding: EdgeInsets.all(2),),
-                  Text('22:00', style: TextStyle(color: Colors.grey),),
+                  Text(widget.mmdworkshop.time, style: TextStyle(color: Colors.grey),),
 
                 ],),
               )

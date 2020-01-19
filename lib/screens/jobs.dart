@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/mmd.dart';
 import 'package:workshop/widgets/topbar.dart';
+import 'dart:convert';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:workshop/models/workshop.dart';
+
+
+String url = "192.168.43.59";
 
 class Jobs extends StatefulWidget {
   @override
   _JobsState createState() => _JobsState();
 }
 
+
 class _JobsState extends State<Jobs> {
+  @override
+  void initState() {
+    super.initState();
+      getworkshops();
+      }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,24 +32,25 @@ class _JobsState extends State<Jobs> {
           TopBar(
             foo: "Home",
           ),
+          RaisedButton(
+            color: Colors.red,
+            child: Text("bbbbbbbbbbbbbbbbbbbooooooooooooooooooooooozzzzzzzzzzzzzzzzzzz"),
+            onPressed: (){
+              getworkshops();
+            },
+          ),
           //  Padding(padding: EdgeInsets.only(top: 50),),
           Container(
             height: MediaQuery.of(context).size.height*0.9,
             width: MediaQuery.of(context).size.width*1.2,
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.vertical,
-              children: <Widget>[
-                MmdCard(),
-                MmdCard(),
-                MmdCard(),
-                MmdCard(),
-                MmdCard(),
-                MmdCard(),
-                MmdCard(),
-                MmdCard(),
-              ],
+               itemBuilder: (_, i)=> MmdCard(mmdworkshop: wsh[i],),
+                itemCount: wsh.length,
+              
             ),
-          )
+          ),
+          
         ]),
       ),
     );

@@ -9,6 +9,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+String url = "192.168.43.59";
 
 final nationalCode = TextEditingController() ;
 
@@ -60,16 +61,17 @@ class Foregrand extends StatefulWidget {
 class _ForegrandState extends State<Foregrand> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Topimage(),
+    return SingleChildScrollView(
+          child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Topimage(),
+          LoginCard(),
+          SignUpButton(),
+          ],
         
-        LoginCard(),
-        SignUpButton(),
-        ],
-      
+      ),
     );
   }
 }

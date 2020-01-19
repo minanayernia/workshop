@@ -26,7 +26,7 @@ class SelectedOption extends StatelessWidget {
   CustomPopupMenu choice;
 
   SelectedOption({Key key, this.choice}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,6 +52,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    super.initState();
+     get_req() ;
+      }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

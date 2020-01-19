@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/screens/addGroup.dart';
+import 'package:workshop/models/Participant.dart';
 
 class ParticipantCard extends StatefulWidget {
+  Participant prt ;
+  ParticipantCard({@required this.prt});
   @override
   _ParticipantCardState createState() => _ParticipantCardState();
 }

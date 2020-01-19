@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/Instalment.dart';
 
 class InstalmentPage extends StatefulWidget {
   @override
@@ -73,6 +74,8 @@ class _InstalmentPageState extends State<InstalmentPage> {
 }
 
 class InstalmentCard extends StatefulWidget {
+  Instalment inst;
+  InstalmentCard({@required this.inst});
   @override
   _InstalmentCardState createState() => _InstalmentCardState();
 }
@@ -141,16 +144,21 @@ class _InstalmentListState extends State<InstalmentList> {
     return Container(
       margin: EdgeInsets.only(top: 8),
       height: MediaQuery.of(context).size.height*0.65,
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          InstalmentCard(),
-          InstalmentCard(),
-          InstalmentCard(),
-          InstalmentCard(),
-          InstalmentCard(),
-        ],
-      ),
+      // child: ListView(
+      //   scrollDirection: Axis.vertical,
+      //   children: <Widget>[
+      //     InstalmentCard(),
+      //     InstalmentCard(),
+      //     InstalmentCard(),
+      //     InstalmentCard(),
+      //     InstalmentCard(),
+      //   ],
+      // ),
+      child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemBuilder: (_, i) => InstalmentCard(inst: r[i]),
+              itemCount: r.length,
+            ),
       
     );
   }

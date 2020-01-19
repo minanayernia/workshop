@@ -8,6 +8,6 @@ class Group with ChangeNotifier {
   Group({@required this.name, @required this.participant, @required this.ta});
 }
 
-List<Group> prt = [
+List<Group> g = [
   Group(name: "mina", participant: 10, ta: 1),
 ];

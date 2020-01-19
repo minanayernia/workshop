@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/Request.dart';
 
 class TARequestCard extends StatefulWidget {
+  Request tar ;
+  TARequestCard({@required this.tar});
   @override
   _TARequestCardState createState() => _TARequestCardState();
 }

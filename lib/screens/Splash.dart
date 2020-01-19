@@ -33,6 +33,14 @@ class _SplashScreenState extends State<SplashScreen> {
 
     super.didChangeDependencies();
   }
+  // void initState() {
+  //   super.initState();
+    
+  //     Timer(Duration(seconds: 5), () => {});
+  //     print("boz");
+  //     Navigator.pushNamed(context, '/login');
+    
+  // }
 
   @override
   Widget build(BuildContext context) {

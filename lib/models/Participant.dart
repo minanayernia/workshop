@@ -12,4 +12,4 @@ class Participant with ChangeNotifier{
 
 }
 
-List<Participant> prt = [Participant(name: "mina") ,];
+List<Participant> p = [Participant(name: "mina") ,];

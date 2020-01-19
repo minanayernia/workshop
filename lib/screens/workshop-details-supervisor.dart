@@ -6,6 +6,10 @@ import 'package:workshop/widgets/TA_ImageCard.dart';
 import 'package:workshop/widgets/GroupCard.dart';
 import 'package:workshop/widgets/ParticipantCard.dart';
 import 'package:workshop/widgets/TARequestCard.dart';
+import 'package:workshop/models/Group.dart';
+import 'package:workshop/models/TA.dart';
+import 'package:workshop/models/Request.dart';
+import 'package:workshop/models/Participant.dart';
 
 class WorkshopdetailsSupervisor extends StatefulWidget {
   @override
@@ -251,21 +255,28 @@ class _MyGroupDetailState extends State<MyGroupDetail> {
                 ),
               ),
               Container(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurple[700].withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      GroupCard(),
-                      GroupCard(),
-                      GroupCard(),
-                      GroupCard(),
-                      GroupCard(),
-                    ],
-                  ))
+                height: 40,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                    color: Colors.deepPurple[700].withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(10)),
+                // child: ListView(
+                //   scrollDirection: Axis.horizontal,
+                //   children: <Widget>[
+                //     GroupCard(),
+                //     GroupCard(),
+                //     GroupCard(),
+                //     GroupCard(),
+                //     GroupCard(),
+                //   ],
+                // )
+
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, i) => GroupCard(grp: g[i]),
+                  itemCount: g.length,
+                ),
+              )
             ],
           ),
         )
@@ -302,17 +313,22 @@ class _TADetailState extends State<TADetail> {
                 height: 20,
               ),
               Container(
-                width: MediaQuery.of(context).size.width*0.9,
+                width: MediaQuery.of(context).size.width * 0.9,
                 margin: EdgeInsets.only(left: 10),
-                child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      TAImageCard() ,
-                      TAImageCard() ,
-                      TAImageCard() ,
-                      TAImageCard() ,
-                      TAImageCard() ,
-                    ],
+                // child: ListView(
+                //   scrollDirection: Axis.horizontal,
+                //   children: <Widget>[
+                //     TAImageCard(),
+                //     TAImageCard(),
+                //     TAImageCard(),
+                //     TAImageCard(),
+                //     TAImageCard(),
+                //   ],
+                // ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (_, i) => TAImageCard(ta: t[i]),
+                  itemCount: t.length,
                 ),
                 height: 50,
               ),
@@ -330,16 +346,20 @@ class _TADetailState extends State<TADetail> {
               Container(
                 margin: EdgeInsets.only(top: 5),
                 height: 70,
-                width: MediaQuery.of(context).size.width*0.9,
-                child: ListView(
+                width: MediaQuery.of(context).size.width * 0.9,
+                // child: ListView(
+                //   scrollDirection: Axis.horizontal,
+                //   children: <Widget>[
+                //     TARequestCard(),
+                //     TARequestCard(),
+                //     TARequestCard(),
+                //   ],
+                // )
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    TARequestCard(),
-                    TARequestCard(),
-                    TARequestCard(),
-
-                  ],
-                )
+                  itemBuilder: (_, i) => TARequestCard(tar: tr[i]),
+                  itemCount: tr.length,
+                ),
               ),
             ],
           ),
@@ -398,16 +418,22 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
               ),
               Container(
                 height: 100,
-                width: MediaQuery.of(context).size.width*0.9,
-                child: ListView(
+                width: MediaQuery.of(context).size.width * 0.9,
+                // child: ListView(
+                //   scrollDirection: Axis.horizontal,
+                //   children: <Widget>[
+                //     ParticipantCard(),
+                //     ParticipantCard(),
+                //     ParticipantCard(),
+                //     ParticipantCard(),
+                //   ],
+                // )
+
+                child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    ParticipantCard() ,
-                    ParticipantCard() ,
-                    ParticipantCard() ,
-                    ParticipantCard() ,
-                  ],
-                )
+                  itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                  itemCount: p.length,
+                ),
               ),
             ],
           ),

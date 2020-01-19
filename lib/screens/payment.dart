@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:workshop/screens/login.dart';
 import 'package:workshop/widgets/topbar.dart';
 
+
+int debt = 0 ;
+
 class PaymentPage extends StatefulWidget {
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -17,7 +20,7 @@ class _PaymentPageState extends State<PaymentPage> {
       body: Center(
               child: Column(
           children: <Widget>[
-            TopBar(foo: "adf",) ,
+            TopBar(foo: "Payment",) ,
             PaymentBox()
 
 
@@ -68,7 +71,13 @@ class _PaymentBoxState extends State<PaymentBox> {
                 child: RaisedButton(
                   color: Colors.pinkAccent,
                   child: Text("-" , style: TextStyle(fontSize: 30 , color: Colors.white),),
-                  onPressed: (){},
+                  onPressed: (){
+                   setState(() {
+                      if(debt != -1){
+                      debt-- ;
+                    }
+                   });
+                  },
                 ),
               ),
               Container(
@@ -76,7 +85,7 @@ class _PaymentBoxState extends State<PaymentBox> {
                 height:40 ,
                 width:MediaQuery.of(context).size.width*0.5 ,
                 decoration: BoxDecoration(color: Colors.deepPurple , borderRadius: BorderRadius.circular(15)),
-                child: Center(child: Text("2" , style: TextStyle(color: Colors.white , fontSize: 30),),),
+                child: Center(child: Text(debt.toString() , style: TextStyle(color: Colors.white , fontSize: 30),),),
               ),
               ButtonTheme(
                 
@@ -87,7 +96,12 @@ class _PaymentBoxState extends State<PaymentBox> {
                   color: Colors.pinkAccent,
                   
                   child: Text("+" , style: TextStyle(fontSize: 30 , color: Colors.white),),
-                  onPressed: (){},
+                  onPressed: (){
+                    
+                    setState(() {
+                      debt++ ;
+                    });
+                  },
                 ),
                 
               )

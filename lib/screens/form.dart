@@ -4,6 +4,11 @@ import 'package:workshop/widgets/topbar.dart';
 
 bool pressAttention = false ;
 
+List<String> DAns = [];
+List<String> TAns = [];
+
+final ans = TextEditingController();
+
 class FormPage extends StatefulWidget {
   @override
   _FormPageState createState() => _FormPageState();

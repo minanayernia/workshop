@@ -4,6 +4,14 @@ import 'package:workshop/widgets/topbar.dart';
 import 'package:workshop/models/Participant.dart';
 import 'package:workshop/models/TA.dart';
 
+
+int groupTAs ;
+int groupParticipants ;
+int selectedTAs = 0;
+int selectedParticipants = 0;
+
+
+
 class AddGroupPage extends StatefulWidget {
   @override
   _AddGroupPageState createState() => _AddGroupPageState();
@@ -74,21 +82,14 @@ class _AddGroupBoxState extends State<AddGroupBox> {
                   Container(
                     width: 50,
                     height: 20,
-                    child: Center(child: Text("4")),
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.circular(25)),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 4),
+                    child: Center(child: Text(groupTAs.toString())),
+                    decoration: BoxDecoration(color: Colors.deepPurple , borderRadius: BorderRadius.circular(25)),
                   ),
                   Container(
                     width: 50,
                     height: 20,
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Center(child: Text("1")),
+                    decoration: BoxDecoration(color: Colors.deepPurple , borderRadius: BorderRadius.circular(25)),
+                    child: Center(child: Text(selectedTAs.toString())),
                   )
                 ],
               ),
@@ -138,21 +139,14 @@ class _AddGroupBoxState extends State<AddGroupBox> {
                   Container(
                     width: 50,
                     height: 20,
-                    child: Center(child: Text("4")),
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.circular(25)),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 4),
+                    child: Center(child: Text(groupParticipants.toString())),
+                    decoration: BoxDecoration(color: Colors.deepPurple , borderRadius: BorderRadius.circular(25)),
                   ),
                   Container(
                     width: 50,
                     height: 20,
-                    decoration: BoxDecoration(
-                        color: Colors.deepPurple,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Center(child: Text("1")),
+                    decoration: BoxDecoration(color: Colors.deepPurple , borderRadius: BorderRadius.circular(25)),
+                    child: Center(child: Text(selectedParticipants.toString())),
                   )
                 ],
               ),
@@ -200,13 +194,21 @@ class _TACardState extends State<TACard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          selected = !selected;
-        });
-      },
-      child: Container(
-        height: 70,
+         onTap: () {
+            setState(() {
+              selected = !selected;
+              if (selected == true){
+                selectedTAs++ ;
+                print(selectedTAs);
+              }if (selected == false){
+                if(selectedTAs != -1){
+                  selectedTAs-- ;
+                }
+              }
+            });
+          },
+        child: Container(
+        height: 70 ,
         width: 150,
         decoration: BoxDecoration(
             color: selected == true

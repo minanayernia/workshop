@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:workshop/screens/AddForm.dart';
 import 'package:workshop/widgets/PreCourseCard.dart';
@@ -6,6 +8,17 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:workshop/models/PreCourse.dart';
+
+
+final workshopName = TextEditingController();
+final aboutWorkshop = TextEditingController();
+final location = TextEditingController();
+final capacity =  TextEditingController();
+final price =  TextEditingController();
+
+// List<S>
+
+
 
 
 class AddWorkshop extends StatefulWidget {
@@ -92,7 +105,7 @@ Future getImage() async {
               width: MediaQuery.of(context).size.width*0.18,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                  /////////////////////////
+                   
                   child: _image == null
             ? Icon(Icons.add_a_photo , color: Colors.deepPurple,)
             : Image.file(_image),
@@ -109,6 +122,7 @@ Future getImage() async {
                   child: Container(
                     margin: EdgeInsets.only(left: 10, top: 5),
                     child: TextField(
+                      controller: workshopName,
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -205,6 +219,7 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
             child: Container(
               margin: EdgeInsets.only(left: 10),
               child: TextField(
+                controller: aboutWorkshop,
                 textInputAction: TextInputAction.go,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
@@ -318,6 +333,7 @@ class _SchedualCardState extends State<SchedualCard> {
                   child: Container(
                     margin: EdgeInsets.only(left: 10),
                     child: TextField(
+                      controller: location,
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -348,6 +364,7 @@ class _SchedualCardState extends State<SchedualCard> {
                   height: 35,
                   margin: EdgeInsets.only(left: 10, top: 5),
                   child: TextField(
+                    controller: capacity,
                     textInputAction: TextInputAction.go,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -377,6 +394,7 @@ class _SchedualCardState extends State<SchedualCard> {
                   height: 35,
                   margin: EdgeInsets.only(left: 10, top: 5),
                   child: TextField(
+                    controller: price,
                     textInputAction: TextInputAction.go,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(

@@ -1,9 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/login.dart';
+import 'package:http/http.dart' as http;
+
+final fullname = TextEditingController();
+final nationalcode = TextEditingController();
+final mobilenumber = TextEditingController();
+int gender = 1 ;//0 => male    1 => female
 
 
-  bool pressAttention = false;
+bool pressAttention = false;
 
 class SignUp extends StatefulWidget {
   @override
@@ -31,6 +39,7 @@ class _SignUpState extends State<SignUp> {
         ),
                 ),
       ),
+      
             
       
     );
@@ -85,9 +94,8 @@ class _FullNameState extends State<FullName> {
     return Container(
       padding: EdgeInsets.only(left: 10),
       child: TextField(
-        textInputAction: TextInputAction.go,
-
-        
+        controller: fullname,
+        textInputAction: TextInputAction.go,        
         decoration: InputDecoration(icon: Icon(Icons.person, color: Colors.black,),
         border: InputBorder.none,
         hintText: 'Full Name'
@@ -118,7 +126,7 @@ class _MobileNumberState extends State<MobileNumber> {
       child: TextField(
         keyboardType: TextInputType.phone,
         textInputAction: TextInputAction.next,
-        
+        controller: mobilenumber,
         decoration: InputDecoration(icon: Icon(Icons.phone_iphone, color: Colors.black,),
         border: InputBorder.none,
         hintText: 'Mobile Number'
@@ -207,7 +215,10 @@ class _FemaleButtonState extends State<FemaleButton> {
               shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
            ),
            color: pressAttention ? Colors.grey : Colors.white,
-           onPressed: ()=> setState(() => pressAttention = !pressAttention)
+           onPressed: (){
+              setState(() => pressAttention = !pressAttention );
+            
+           } 
               
       
     )
@@ -259,6 +270,16 @@ class _SignupbuttonState extends State<Signupbutton> {
               onPressed: 
               
                 (){
+                  Map data = {'name':fullname.text , 'nationalcode' :nationalcode.text ,'mobilenumber' :mobilenumber.text , 'gender' : gender };
+             Future<http.Response> sendPersonDetail() async{
+               var response = 
+                await http.post('http://192.168.43.139:8080/api/v1/signup',
+                body: json.encode(data) ,
+                headers: {"Accept": "application/json", "content-type": "application/json"} 
+                );
+        
+             }
+             sendPersonDetail();
                   // Navigator.pop(context);
                   // Navigator.pushNamed(context, '/home');
                   Navigator.pushNamed(context, '/home');
@@ -299,7 +320,12 @@ class _GenderBoxState extends State<GenderBox> {
               shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
            ),
            color: !pressAttention ? Colors.grey : Colors.white,
-           onPressed: ()=> setState(() => pressAttention = !pressAttention)
+           onPressed: (){
+              setState(() => pressAttention = !pressAttention);
+              gender = 0 ;
+              print(gender);
+              
+           } 
               
       
     )
@@ -319,7 +345,12 @@ class _GenderBoxState extends State<GenderBox> {
               shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(15.0),
            ),
            color: pressAttention ? Colors.grey : Colors.white,
-           onPressed: ()=> setState(() => pressAttention = !pressAttention)
+           onPressed: (){
+
+              setState(() => pressAttention = !pressAttention);
+              gender = 1 ;
+              print(gender);
+           }
               
       
     )

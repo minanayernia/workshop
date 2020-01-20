@@ -45,13 +45,13 @@ List<Workshop> participantWorkshops = [];
 List<Workshop> supervisorWorkshops = [];
 List<Workshop> taWorkshops = [];
 
-void getworkshops() {
-  print(11111111111111111);
-
-  wsh.clear();
+// void getworkshops() {
+ 
 
   Future<http.Response> getedovomi() async {
+ print(11111111111111111);
 
+  wsh.clear();
     var response = await http.get('http://192.168.43.59:8080/api/v1/workshop/list', headers: {
       "Accept": "application/json",
       "content-type": "application/json"
@@ -86,12 +86,13 @@ void getworkshops() {
       wsh.add(workshop);
       print(workshop);
     }
+    return response;
   }
 
-  getedovomi();
+//   getedovomi();
 
-  ;
-}
+  
+// }
 
 void getParticipantWorkshops(){
   print(11111111111111111);

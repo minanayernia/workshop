@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/main.dart';
+import 'package:workshop/models/workshop.dart';
 import 'package:workshop/screens/workshop-details.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/widgets/TA_ImageCard.dart';
@@ -12,6 +13,8 @@ import 'package:workshop/models/Request.dart';
 import 'package:workshop/models/Participant.dart';
 
 class WorkshopdetailsSupervisor extends StatefulWidget {
+  Workshop workshop;
+  WorkshopdetailsSupervisor({@required this.workshop});
   @override
   _WorkshopdetailsSupervisorState createState() =>
       _WorkshopdetailsSupervisorState();
@@ -20,6 +23,8 @@ class WorkshopdetailsSupervisor extends StatefulWidget {
 class _WorkshopdetailsSupervisorState extends State<WorkshopdetailsSupervisor> {
   @override
   Widget build(BuildContext context) {
+    final Workshop args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       // resizeToAvoidBottomInset: true,
       // resizeToAvoidBottomPadding: true,
@@ -29,13 +34,19 @@ class _WorkshopdetailsSupervisorState extends State<WorkshopdetailsSupervisor> {
             image: DecorationImage(
                 image: AssetImage('assets/learnoo-pattern.png'),
                 fit: BoxFit.cover)),
-        child: SingleChildScrollView(child: Center(child: Page())),
+        child: SingleChildScrollView(
+            child: Center(
+                child: Page(
+          workshop: widget.workshop,
+        ))),
       ),
     );
   }
 }
 
 class Page extends StatefulWidget {
+  Workshop workshop;
+  Page({@required this.workshop});
   @override
   _PageState createState() => _PageState();
 }
@@ -46,7 +57,9 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         Workshopimage(),
-        Detailcard(),
+        Detailcard(
+          workshop: boz,
+        ),
         FormButton(),
         MyGroupDetail(),
         TADetail(),
@@ -80,6 +93,8 @@ class _WorkshopimageState extends State<Workshopimage> {
 }
 
 class Detailcard extends StatefulWidget {
+  Workshop workshop;
+  Detailcard({@required this.workshop});
   @override
   _DetailcardState createState() => _DetailcardState();
 }
@@ -111,7 +126,7 @@ class _DetailcardState extends State<Detailcard> {
                       color: Colors.white,
                     ),
                     Text(
-                      'Sat,05 Oct',
+                      widget.workshop.supervisor,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -123,7 +138,7 @@ class _DetailcardState extends State<Detailcard> {
                       color: Colors.white,
                     ),
                     Text(
-                      'bahar',
+                      widget.workshop.date,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -135,7 +150,7 @@ class _DetailcardState extends State<Detailcard> {
                       color: Colors.white,
                     ),
                     Text(
-                      'bahar',
+                      widget.workshop.time,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -147,7 +162,7 @@ class _DetailcardState extends State<Detailcard> {
                       color: Colors.white,
                     ),
                     Text(
-                      'bahar',
+                      widget.workshop.location,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
                     // Price(),

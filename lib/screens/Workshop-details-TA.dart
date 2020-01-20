@@ -6,8 +6,12 @@ import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details-supervisor.dart';
 import 'package:workshop/models/Participant.dart';
 import 'package:workshop/models/TA.dart';
-
+import 'package:workshop/models/workshop.dart';
 class WorkshopDetailsTA extends StatefulWidget {
+  Workshop workshop ;
+  WorkshopDetailsTA({@required this.workshop}) ;
+      
+
   @override
   _WorkshopDetailsTAState createState() => _WorkshopDetailsTAState();
 }
@@ -15,6 +19,7 @@ class WorkshopDetailsTA extends StatefulWidget {
 class _WorkshopDetailsTAState extends State<WorkshopDetailsTA> {
   @override
   Widget build(BuildContext context) {
+    final Workshop args = ModalRoute.of(context).settings.arguments;
     return Material(
       type: MaterialType.transparency,
       child: Scaffold(
@@ -30,7 +35,7 @@ class _WorkshopDetailsTAState extends State<WorkshopDetailsTA> {
               image: DecorationImage(
                   image: AssetImage('assets/learnoo-pattern.png'),
                   fit: BoxFit.cover)),
-          child: SingleChildScrollView(child: Center(child: Page())),
+          child: SingleChildScrollView(child: Center(child: Page(workshop: widget.workshop,))),
         ),
       ),
     );
@@ -38,17 +43,20 @@ class _WorkshopDetailsTAState extends State<WorkshopDetailsTA> {
 }
 
 class Page extends StatefulWidget {
+  Workshop workshop ;
+  Page({@required this.workshop}) ;
   @override
   _PageState createState() => _PageState();
 }
 
 class _PageState extends State<Page> {
+  
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         Workshopimage(),
-        CardDetail(),
+        CardDetail(workshop:boz),
         GroupDetails(),
         ParticipantDetails(),
         TADetails(),
@@ -58,6 +66,8 @@ class _PageState extends State<Page> {
 }
 
 class CardDetail extends StatefulWidget {
+  Workshop workshop ;
+  CardDetail({@required this.workshop}) ;
   @override
   _CardDetailState createState() => _CardDetailState();
 }
@@ -89,7 +99,7 @@ class _CardDetailState extends State<CardDetail> {
                       color: Colors.white,
                     ),
                     Text(
-                      'Sat,05 Oct',
+                      widget.workshop.supervisor,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -101,7 +111,7 @@ class _CardDetailState extends State<CardDetail> {
                       color: Colors.white,
                     ),
                     Text(
-                      'bahar',
+                      widget.workshop.date,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -109,11 +119,11 @@ class _CardDetailState extends State<CardDetail> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.time_to_leave,
+                      Icons.timelapse,
                       color: Colors.white,
                     ),
                     Text(
-                      'bahar',
+                      widget.workshop.time,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -125,7 +135,7 @@ class _CardDetailState extends State<CardDetail> {
                       color: Colors.white,
                     ),
                     Text(
-                      'bahar',
+                      widget.workshop.location,
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     ),
                     // Price(),

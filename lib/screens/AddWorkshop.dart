@@ -19,6 +19,9 @@ final price = TextEditingController();
 // List<S>
 
 class AddWorkshop extends StatefulWidget {
+
+   Workshop workshop ; 
+  AddWorkshop({@required this.workshop}) ;
   @override
   _AddWorkshopState createState() => _AddWorkshopState();
 }
@@ -39,7 +42,7 @@ class _AddWorkshopState extends State<AddWorkshop> {
                 onTap: () {
                   FocusScope.of(context).requestFocus(new FocusNode());
                 },
-                child: Page(),
+                child: Page(wokshop: widget.workshop),
               ),
             ),
           ],
@@ -50,6 +53,8 @@ class _AddWorkshopState extends State<AddWorkshop> {
 }
 
 class Page extends StatefulWidget {
+  Workshop wokshop ; 
+  Page({@required this.wokshop}) ;
   @override
   _PageState createState() => _PageState();
 }
@@ -60,7 +65,7 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         WorkshopInfo(),
-        WorkshopDtailCard(),
+        WorkshopDtailCard(workshop: widget.wokshop,),
         SchedualCard(),
         SubmitButton(),
       ],

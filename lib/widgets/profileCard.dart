@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:workshop/models/user.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:workshop/models/workshop.dart';
 
 class ProCard extends StatefulWidget {
   Workshop workshop ;
-  ProCard({@required this.workshop});
+  ProCard({@required this.workshop , this.user});
+   User user ; 
 
   @override
   _ProCardState createState() => _ProCardState();
 }
 
 class _ProCardState extends State<ProCard> {
+ 
+
   
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class _ProCardState extends State<ProCard> {
             children: <Widget>[
               BackCircle(),
               PersonPic(),
-              PersonCard(),
+              PersonCard(user: widget.user,),
               // BackInsideCircle(),
               // FrontInsideCircle(),
             ],
@@ -81,13 +85,18 @@ class _ProCardState extends State<ProCard> {
                 ),
                 Container(
                   height: 150,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      WorkCardDetail(workshop: widget.workshop,),
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     WorkCardDetail(workshop: widget.workshop,),
                       
-                    ],
-                  ),
+                  //   ],
+                  // ),
+                  child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, i) => WorkCardDetail(workshop : wsh[i]),
+                        itemCount: wsh.length,
+                      ),
                 ),
               ],
             ),
@@ -130,6 +139,8 @@ class _ProCardState extends State<ProCard> {
 }
 
 class PersonCard extends StatefulWidget {
+  User user ; 
+  PersonCard({@required this.user});
   @override
   _PersonCardState createState() => _PersonCardState();
 }
@@ -147,6 +158,7 @@ class _PersonCardState extends State<PersonCard> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Container(
         decoration: BoxDecoration(
@@ -159,7 +171,7 @@ class _PersonCardState extends State<PersonCard> {
         alignment: Alignment.center,
         child: Container(
           // color: Colors.yellow,
-          width: 260, height: 140,
+          width: MediaQuery.of(context).size.width*0.5, height: 140,
           // alignment: FractionalOffset.center,
           child: Row(
             children: <Widget>[
@@ -172,14 +184,14 @@ class _PersonCardState extends State<PersonCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      child: Text('Sina Saeedi'),
+                      child: Text(widget.user.name),
                     ),
                     Container(
-                      child: Text('1234567890'),
+                      child: Text(widget.user.ncode),
                       margin: EdgeInsets.only(top: 10),
                     ),
                     Container(
-                      child: Text('09171158076'),
+                      child: Text(widget.user.phone),
                       margin: EdgeInsets.only(top: 10),
                     )
                   ],
@@ -367,10 +379,10 @@ class _WorkCardDetailState extends State<WorkCardDetail> {
                   Padding(
                     padding: EdgeInsets.only(top: 15),
                   ),
-                  Text('python', style: TextStyle(color: Colors.white)),
-                  Text('sa, 05', style: TextStyle(color: Colors.white)),
-                  Text('15:00 - 17:00', style: TextStyle(color: Colors.white)),
-                  Text('Dr Hamze', style: TextStyle(color: Colors.white)),
+                  Text(widget.workshop.name, style: TextStyle(color: Colors.white)),
+                  Text(widget.workshop.date, style: TextStyle(color: Colors.white)),
+                  Text(widget.workshop.time, style: TextStyle(color: Colors.white)),
+                  Text(widget.workshop.supervisor, style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),

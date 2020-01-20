@@ -9,17 +9,13 @@ import 'dart:async';
 import 'dart:io';
 import 'package:workshop/models/PreCourse.dart';
 
-
 final workshopName = TextEditingController();
 final aboutWorkshop = TextEditingController();
 final location = TextEditingController();
-final capacity =  TextEditingController();
-final price =  TextEditingController();
+final capacity = TextEditingController();
+final price = TextEditingController();
 
 // List<S>
-
-
-
 
 class AddWorkshop extends StatefulWidget {
   @override
@@ -77,9 +73,8 @@ class WorkshopInfo extends StatefulWidget {
 }
 
 class _WorkshopInfoState extends State<WorkshopInfo> {
-
-File _image ;
-Future getImage() async {
+  File _image;
+  Future getImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
     // var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
@@ -97,18 +92,20 @@ Future getImage() async {
       child: Row(
         children: <Widget>[
           GestureDetector(
-            onTap: (){
+            onTap: () {
               getImage();
             },
-              child: Container(
-              height: MediaQuery.of(context).size.height* 0.1,
-              width: MediaQuery.of(context).size.width*0.18,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.18,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
-                   
-                  child: _image == null
-            ? Icon(Icons.add_a_photo , color: Colors.deepPurple,)
-            : Image.file(_image),
+              child: _image == null
+                  ? Icon(
+                      Icons.add_a_photo,
+                      color: Colors.deepPurple,
+                    )
+                  : Image.file(_image),
             ),
           ),
           Container(
@@ -126,7 +123,7 @@ Future getImage() async {
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Workshop Name'),
+                          border: InputBorder.none, hintText: 'Workshop Name' , hintStyle: TextStyle(color: Colors.deepPurple , fontSize: 15)),
                     ),
                   ),
                   width: MediaQuery.of(context).size.width * 0.65,
@@ -143,19 +140,28 @@ Future getImage() async {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)),
-
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween
-                        ,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(left: 10), 
-                            child: Text('Super Visor' , style: TextStyle(color: Colors.deepPurple),),) ,
-                          Container(
-                            height: 28,
-                            margin: EdgeInsets.only(right: 10 , top: 2.5), child: Text('...' , style: TextStyle(color:  Colors.deepPurple , fontSize: 15),),) , 
-                        ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Super Visor',
+                          style: TextStyle(color: Colors.deepPurple),
+                        ),
                       ),
+                      // Container(
+                      //   height: 28,
+                      //   margin: EdgeInsets.only(right: 10, top: 2.5),
+                      //   child: Text(
+                      //     '...',
+                      //     style:
+                      //         TextStyle(color: Colors.deepPurple, fontSize: 15),
+                      //   ),
+                      // ),
+                      PopupMenu(),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -202,7 +208,7 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                 ),
                 Container(
                   height: 20,
-                  width: MediaQuery.of(context).size.width*0.7,
+                  width: MediaQuery.of(context).size.width * 0.7,
                   // child: ListView(
                   //   scrollDirection: Axis.horizontal,
                   //   children: <Widget>[
@@ -216,10 +222,10 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                   //   ],
                   // ),
                   child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => PreCorseCard(prec: prc[i]),
-                  itemCount: prc.length,
-                ),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => PreCorseCard(prec: prc[i]),
+                    itemCount: prc.length,
+                  ),
                 )
               ],
             ),
@@ -430,6 +436,8 @@ class _SchedualCardState extends State<SchedualCard> {
   }
 }
 
+enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
+
 class SubmitButton extends StatefulWidget {
   @override
   _SubmitButtonState createState() => _SubmitButtonState();
@@ -451,6 +459,56 @@ class _SubmitButtonState extends State<SubmitButton> {
           borderRadius: new BorderRadius.circular(20.0),
         ),
         onPressed: () {},
+      ),
+    );
+  }
+}
+
+class PopupMenu extends StatefulWidget {
+  @override
+  _PopupMenuState createState() => _PopupMenuState();
+}
+
+class _PopupMenuState extends State<PopupMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: PopupMenuButton(
+        
+      
+        padding: EdgeInsets.only(bottom: 1),
+        icon: Icon(
+          Icons.more_horiz , size: 20 ,
+          color: Colors.deepPurple,
+        ),
+        color: Colors.white,
+        onSelected: (WhyFarther result) {
+          setState(() {});
+        },
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.harder,
+            child: Text(
+              'Dr Hamze',
+              style: TextStyle(color: Colors.deepPurple),
+            ),
+          ),
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.smarter,
+            child: Text('Dr Ghare',
+                style: TextStyle(color: Colors.deepPurple)),
+          ),
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.selfStarter,
+            child: Text('Dr sami',
+                style: TextStyle(color: Colors.deepPurple)),
+          ),
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.tradingCharter,
+            child: Text('Dr Keshti',
+                style: TextStyle(color: Colors.deepPurple)),
+          ),
+        ],
       ),
     );
   }

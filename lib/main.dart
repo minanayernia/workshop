@@ -89,9 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
     Mina(),
     Search(),
     //Jobs(),
-    NotificationPage(),
+    // NotificationPage(),
     Jobs(),
-    // Profile(),
+    Profile(),
   ];
 
   void _onItemTapped(int index) {

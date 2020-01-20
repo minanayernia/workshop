@@ -6,6 +6,8 @@ import 'dart:io';
 import 'package:workshop/models/workshop.dart';
 import 'package:workshop/widgets/WorkCardDetailTA.dart';
 import 'package:workshop/widgets/WorkCardDetailSup.dart';
+import 'package:workshop/widgets/topbar.dart';
+import 'package:workshop/widgets/background.dart';
 
 class ProCard extends StatefulWidget {
   Workshop workshop ;
@@ -57,12 +59,61 @@ class _ProCardState extends State<ProCard> {
                 ),
                 Container(
                   height: 149,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      WorkCardDetail(workshop: widget.workshop,),
-                    ],
-                  ),
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     WorkCardDetail(workshop: widget.workshop,),
+                  //   ],
+                  // ),
+                  child: FutureBuilder(
+        future: getParticipantList(),
+        builder: (context, snapshot){
+          switch (snapshot.connectionState){
+            case ConnectionState.waiting:
+              return AlertDialog(backgroundColor: Colors.transparent,content: Container(height: 100,width: 100, color: Colors.transparent,child: Center(child: CircularProgressIndicator(),),),);
+
+              case ConnectionState.active:
+              print("active");
+               return Stack(children: <Widget>[
+                Background(),
+                Center(child: Container(child: CircularProgressIndicator(),
+                height: 100,width: 100,),)
+              ],);
+
+              case ConnectionState.none:
+              print("none");
+               return Stack(children: <Widget>[
+                Background(),
+                Center(child: Container(child: CircularProgressIndicator(),
+                height: 100,width: 100,),)
+              ],);
+
+              case ConnectionState.done:
+              return SingleChildScrollView(
+          child: Stack(
+                      children: <Widget>[Background(),
+                        Column(children: <Widget>[
+              //  Padding(padding: EdgeInsets.only(top: 50),),
+              Container(
+                height: MediaQuery.of(context).size.height*0.9,
+                width: MediaQuery.of(context).size.width*1.2,
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                   itemBuilder: (_, i)=> WorkCardDetail(workshop: participantWorkshops[i],),
+                    itemCount:participantWorkshops.length,
+                    
+                  
+                ),
+              ),
+              
+            ])],
+          ),
+        );
+          }
+              
+      
+    
+        }),
                 ),
               ],
             ),
@@ -123,13 +174,62 @@ class _ProCardState extends State<ProCard> {
                 ),
                 Container(
                   height: 150,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      WorkshopDetailCardTA(workshop: boz,) ,
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: <Widget>[
+                  //     WorkshopDetailCardTA(workshop: boz,) ,
                       
-                    ],
-                  ),
+                  //   ],
+                  // ),
+                  child: FutureBuilder(
+        future: getParticipantList(),
+        builder: (context, snapshot){
+          switch (snapshot.connectionState){
+            case ConnectionState.waiting:
+              return AlertDialog(backgroundColor: Colors.transparent,content: Container(height: 100,width: 100, color: Colors.transparent,child: Center(child: CircularProgressIndicator(),),),);
+
+              case ConnectionState.active:
+              print("active");
+               return Stack(children: <Widget>[
+                Background(),
+                Center(child: Container(child: CircularProgressIndicator(),
+                height: 100,width: 100,),)
+              ],);
+
+              case ConnectionState.none:
+              print("none");
+               return Stack(children: <Widget>[
+                Background(),
+                Center(child: Container(child: CircularProgressIndicator(),
+                height: 100,width: 100,),)
+              ],);
+
+              case ConnectionState.done:
+              return SingleChildScrollView(
+          child: Stack(
+                      children: <Widget>[Background(),
+                        Column(children: <Widget>[
+              //  Padding(padding: EdgeInsets.only(top: 50),),
+              Container(
+                height: MediaQuery.of(context).size.height*0.9,
+                width: MediaQuery.of(context).size.width*1.2,
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                   itemBuilder: (_, i)=> WorkCardDetail(workshop: taWorkshops[i],),
+                    itemCount:participantWorkshops.length,
+                    
+                  
+                ),
+              ),
+              
+            ])],
+          ),
+        );
+          }
+              
+      
+    
+        }),
                 ),
               ],
             ),
@@ -173,7 +273,7 @@ class _PersonCardState extends State<PersonCard> {
         alignment: Alignment.center,
         child: Container(
           // color: Colors.yellow,
-          width: MediaQuery.of(context).size.width*0.5, height: 140,
+          width: MediaQuery.of(context).size.width*0.6, height: 140,
           // alignment: FractionalOffset.center,
           child: Row(
             children: <Widget>[

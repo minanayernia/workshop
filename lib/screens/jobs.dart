@@ -19,9 +19,25 @@ class Jobs extends StatefulWidget {
 
 class _JobsState extends State<Jobs> {
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    setState(() {
       getworkshops();
+    });
+    for(int i=0;i<1000;i++){
+      setState(() {
+        print(1);
+      });
+    }
+    super.didChangeDependencies();
+  }
+  @override
+  void initState() {
+    
+    setState(() {
+    getworkshops();
+    });
+    super.initState();
       }
   @override
   Widget build(BuildContext context) {
@@ -36,7 +52,22 @@ class _JobsState extends State<Jobs> {
             color: Colors.red,
             child: Text("bbbbbbbbbbbbbbbbbbbooooooooooooooooooooooozzzzzzzzzzzzzzzzzzz"),
             onPressed: (){
+              
               getworkshops();
+              
+              setState(() {
+                int a;
+              });
+            },
+            
+          ),
+          RaisedButton(
+            color: Colors.grey,
+            child: Text("bbbbbbbbbbbbbbbbbbbooooooooooooooooooooooozzzzzzzzzzzzzzzzzzz"),
+            onPressed: (){
+              setState(() {
+                int a;
+              });
             },
           ),
           //  Padding(padding: EdgeInsets.only(top: 50),),

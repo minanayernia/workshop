@@ -15,7 +15,7 @@ class Workshop with ChangeNotifier {
   List<Workshop> precourse;
   String picture;
   int id;
-  String price;
+  int price;
   String name;
   int capacity;
   String supervisor;
@@ -25,16 +25,16 @@ class Workshop with ChangeNotifier {
 
   Workshop({
     this.precourse,
-    @required this.picture,
-    @required this.name,
-    @required this.capacity,
-    @required this.supervisor,
-    @required this.location,
-    @required this.time,
-    @required this.date,
-    @required this.id,
-    @required this.about,
-    @required this.price,
+     this.picture,
+     this.name,
+     this.capacity,
+     this.supervisor,
+     this.location,
+     this.time,
+     this.date,
+     this.id,
+     this.about,
+     this.price,
   });
 }
 
@@ -48,6 +48,7 @@ List<Workshop> taWorkshops = [];
 void getworkshops() {
   print(11111111111111111);
 
+  wsh.clear();
 
   Future<http.Response> getedovomi() async {
 
@@ -60,18 +61,27 @@ void getworkshops() {
     print(json.decode(response.body));
 
     for (int i = 0; i < json.decode(response.body).length; i++) {
-      Workshop workshop;
+      Workshop workshop = Workshop();
 
-      workshop.name = json.decode(response.body)[i]["name"];
-      workshop.supervisor = json.decode(response.body)[i]["supervisor"];
+      print(3);
+      workshop.id = json.decode(response.body)[i]["offeredWorkshopId"];
+      print(4);
+      workshop.supervisor = json.decode(response.body)[i]["user"]["name"];
+      print(5);
       workshop.capacity = json.decode(response.body)[i]["capacity"];
+      print(6);
       workshop.location = json.decode(response.body)[i]["location"];
-      workshop.time = json.decode(response.body)[i]["time"];
-      workshop.id = json.decode(response.body)[i]["id"];
-      workshop.date = json.decode(response.body)[i]["date"];
-      workshop.precourse = json.decode(response.body)[i]["precourse"];
-      workshop.about = json.decode(response.body)[i]["about"];
+      print(7);
+      workshop.time = json.decode(response.body)[i]["startTime"];
+      print(8);
+      workshop.name = json.decode(response.body)[i]["workshop"]["workshopName"];
+      print(9);
+      workshop.date = json.decode(response.body)[i]["startDate"];
+      print(10);
+      // workshop.precourse = json.decode(response.body)[i]["precourse"];
+      // workshop.about = json.decode(response.body)[i]["about"];
       workshop.price = json.decode(response.body)[i]["price"];
+      print(11);
 
       wsh.add(workshop);
       print(workshop);
@@ -120,6 +130,7 @@ void getParticipantWorkshops(){
 
 void getSupervisorWorkshops(){
   print(11111111111111111);
+  wsh.clear();
   Future<http.Response> getworkshops() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String t = prefs.getString("token");
@@ -189,4 +200,4 @@ void getTAworkshops(){
 
 
 
-Workshop boz = Workshop(about: 'e',name: 'sf', time: 'aef', capacity: 2,supervisor:"boz" ,price:"11000" , picture:"er" ,location: "cal",id: 9  ,date:"40"  ,);
+Workshop boz = Workshop(about: 'e',name: 'sf', time: 'aef', capacity: 2,supervisor:"boz" ,price:11000 , picture:"er" ,location: "cal",id: 9  ,date:"40"  ,);

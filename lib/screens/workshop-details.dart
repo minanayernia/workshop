@@ -413,7 +413,7 @@ class _PriceState extends State<Price> {
       height: 30,
       child: Center(
         child: Text(
-          widget.workshop.price,
+          widget.workshop.price.toString(),
           style: TextStyle(color: Colors.deepPurple[900], fontSize: 30.0),
         ),
       ),

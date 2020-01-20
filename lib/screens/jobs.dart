@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:workshop/models/workshop.dart';
 
 
-String url = "192.168.43.59";
+String url = "192.168.43.59:8080";
 
 class Jobs extends StatefulWidget {
   @override

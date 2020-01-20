@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/workshop.dart';
 import 'package:workshop/screens/addGroup.dart';
 import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
@@ -6,11 +7,18 @@ import 'package:workshop/widgets/profileCard.dart';
 import 'package:workshop/models/Participant.dart';
 
 class WorkshopAccountor extends StatefulWidget {
+
+   Workshop workshop;
+   WorkshopAccountor({@required this.workshop});
+
+
   @override
   _WorkshopAccountorState createState() => _WorkshopAccountorState();
 }
 
 class _WorkshopAccountorState extends State<WorkshopAccountor> {
+ 
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -26,6 +34,9 @@ class _WorkshopAccountorState extends State<WorkshopAccountor> {
 }
 
 class Page extends StatefulWidget {
+  Workshop workshop;
+   Page({@required this.workshop});
+
   @override
   _PageState createState() => _PageState();
 }

@@ -4,6 +4,8 @@ import 'package:workshop/models/user.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:workshop/models/workshop.dart';
+import 'package:workshop/widgets/WorkCardDetailTA.dart';
+import 'package:workshop/widgets/WorkCardDetailSup.dart';
 
 class ProCard extends StatefulWidget {
   Workshop workshop ;
@@ -85,18 +87,18 @@ class _ProCardState extends State<ProCard> {
                 ),
                 Container(
                   height: 150,
-                  // child: ListView(
-                  //   scrollDirection: Axis.horizontal,
-                  //   children: <Widget>[
-                  //     WorkCardDetail(workshop: widget.workshop,),
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      WorkshopDetailCardSup(workshop: boz),
                       
-                  //   ],
-                  // ),
-                  child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, i) => WorkCardDetail(workshop : wsh[i]),
-                        itemCount: wsh.length,
-                      ),
+                    ],
+                  ),
+                  // child: ListView.builder(
+                  //       scrollDirection: Axis.horizontal,
+                  //       itemBuilder: (_, i) => WorkCardDetail(workshop : wsh[i]),
+                  //       itemCount: wsh.length,
+                  //     ),
                 ),
               ],
             ),
@@ -124,7 +126,7 @@ class _ProCardState extends State<ProCard> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      WorkCardDetail(workshop:boz),
+                      WorkshopDetailCardTA(workshop: boz,) ,
                       
                     ],
                   ),

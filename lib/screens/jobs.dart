@@ -76,7 +76,8 @@ class _JobsState extends State<Jobs> {
               
       
     
-        }));
+        })
+        );
         
         
         

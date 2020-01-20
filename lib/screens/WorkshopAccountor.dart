@@ -21,12 +21,14 @@ class _WorkshopAccountorState extends State<WorkshopAccountor> {
 
   @override
   Widget build(BuildContext context) {
+    final Workshop args = ModalRoute.of(context).settings.arguments;
+    print(args);
     return Material(
       type: MaterialType.transparency,
       child: Stack(
         children: <Widget>[
           Background(),
-          Page(),
+          Page(workshop: args,),
         ],
       ),
     );
@@ -44,11 +46,12 @@ class Page extends StatefulWidget {
 class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
+    
     return Column(
       children: <Widget>[
-        // Workshopimage(),
-        // Detailcard(),
-        // TimePlcecard(),
+        Workshopimage(workshop: widget.workshop,),
+        Detailcard(workshop: widget.workshop),
+        TimePlcecard(workshop: widget.workshop),
         ParticipantCard(),
       ],
     );

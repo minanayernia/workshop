@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:workshop/models/workshop.dart';
 import 'package:workshop/widgets/profileCard.dart';
 import 'package:workshop/widgets/topbar.dart';
 // import 'package:workshop/screens/splash.dart';
@@ -75,7 +76,7 @@ class _ProfileState extends State<Profile> {
               Container(
                   height: MediaQuery.of(context).size.height - 140,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  child: SingleChildScrollView(child: ProCard())),
+                  child: SingleChildScrollView(child: ProCard(workshop: boz,))),
             ],),
         )
       ),
@@ -184,19 +185,19 @@ class _PopupMenuState extends State<PopupMenu> {
         itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.harder,
-            child: Text('Working a lot harder' , style: TextStyle(color: Colors.white),),
+            child: Text('Forms compeleted for you' , style: TextStyle(color: Colors.white),),
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.smarter,
-            child: Text('Being a lot smarter' , style: TextStyle(color: Colors.white)),
+            child: Text('Forms compeleted by you' , style: TextStyle(color: Colors.white)),
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.selfStarter,
-            child: Text('Being a self-starter' , style: TextStyle(color: Colors.white)),
+            child: Text('Debts' , style: TextStyle(color: Colors.white)),
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.tradingCharter,
-            child: Text('Placed in charge of trading charter' , style: TextStyle(color: Colors.white)),
+            child: Text('Logout' , style: TextStyle(color: Colors.white)),
           ),
         ],
       ),

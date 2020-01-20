@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
+import 'package:workshop/models/workshop.dart';
 
 class ProCard extends StatefulWidget {
+  Workshop workshop ;
+  ProCard({@required this.workshop});
+
   @override
   _ProCardState createState() => _ProCardState();
 }
 
 class _ProCardState extends State<ProCard> {
+  
   @override
   Widget build(BuildContext context) {
+    print(widget.workshop);
     return Container(
       margin: EdgeInsets.only(top: 30),
       child: Column(
@@ -48,16 +54,7 @@ class _ProCardState extends State<ProCard> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
+                      WorkCardDetail(workshop: widget.workshop,),
                     ],
                   ),
                 ),
@@ -87,14 +84,8 @@ class _ProCardState extends State<ProCard> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
+                      WorkCardDetail(workshop: widget.workshop,),
+                      
                     ],
                   ),
                 ),
@@ -124,14 +115,8 @@ class _ProCardState extends State<ProCard> {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
-                      WorkCardDetail(),
+                      WorkCardDetail(workshop:boz),
+                      
                     ],
                   ),
                 ),
@@ -346,6 +331,8 @@ class _PersonPicState extends State<PersonPic> {
 }
 
 class WorkCardDetail extends StatefulWidget {
+  Workshop workshop;
+  WorkCardDetail({@required this.workshop});
   @override
   _WorkCardDetailState createState() => _WorkCardDetailState();
 }
@@ -355,7 +342,8 @@ class _WorkCardDetailState extends State<WorkCardDetail> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/workshop');
+
+        Navigator.pushNamed(context, '/workshopAccountor', arguments: widget.workshop);
       },
       child: Container(
         // color: Colors.purple,

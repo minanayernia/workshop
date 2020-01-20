@@ -74,7 +74,7 @@ class _WorkshopimageState extends State<Workshopimage> {
               color: Colors.grey, borderRadius: BorderRadius.circular(10)),
           width: 100,
           height: 100,
-          // child: Text(widget.workshop.picture),
+          child: Center(child: Text(widget.workshop.picture)),
         )
       ],
     );
@@ -138,12 +138,12 @@ class _DetailcardState extends State<Detailcard> {
                     //     PreCorseCard(),
                     //   ],
                     // ),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (_, i) =>
-                          PreCorseCard(workshop: widget.workshop.precourse[i]),
-                      itemCount: widget.workshop.precourse.length,
-                    ),
+                    // child: ListView.builder(
+                    //   scrollDirection: Axis.horizontal,
+                    //   itemBuilder: (_, i) =>
+                    //       PreCorseCard(workshop: widget.workshop.precourse[i]),
+                    //   itemCount: widget.workshop.precourse.length,
+                    // ),
                   ),
                 ],
               ),
@@ -261,7 +261,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                         )),
                     Container(
                         margin: EdgeInsets.only(right: 10),
-                        child: Container(height: 35, child: Price())),
+                        child: Container(height: 35, child: Price(workshop: widget.workshop))),
                   ],
                 )
               ],

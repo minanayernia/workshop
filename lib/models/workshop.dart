@@ -23,7 +23,7 @@ class Workshop with ChangeNotifier {
   String date;
 
   Workshop({
-    @required this.precourse,
+    this.precourse,
     @required this.picture,
     @required this.name,
     @required this.capacity,
@@ -72,3 +72,7 @@ void getworkshops() {
 
   ;
 }
+
+
+
+Workshop boz = Workshop(about: 'e',name: 'sf', time: 'aef', capacity: 2,supervisor:"boz" ,price:"11000" , picture:"er" ,location: "cal",id: 9  ,date:"40"  ,);

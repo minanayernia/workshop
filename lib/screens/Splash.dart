@@ -68,12 +68,12 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Container(
                 height: 50,
                 width: 50,
-                child: RaisedButton(
-                  child: Text("home"),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/intro1");
-                  },
-                ),
+                // child: RaisedButton(
+                //   child: Text("home"),
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, "/intro1");
+                //   },
+                // ),
               ),
             ),
           )),

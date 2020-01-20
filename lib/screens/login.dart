@@ -184,8 +184,16 @@ class _SubmitButtomState extends State<SubmitButtom> {
                 );
                 print(2222222222222222);
                 SharedPreferences prefs = await SharedPreferences.getInstance();
-                String b = (json.decode(response.body));
+                print(json.decode(response.body)["jwt"]);
+                if (json.decode(response.body)["jwt"] != ""){
+                  String b = json.decode(response.body)["jwt"];
                 prefs.setString("token", b);
+                Navigator.pushNamed(context, '/home');
+                } else{
+                  print("boz");
+                  Navigator.pushNamed(context, '/signup');
+                }
+                
                   }
                   sendcode();
                   // Navigator.pop(context);

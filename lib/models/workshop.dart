@@ -25,16 +25,16 @@ class Workshop with ChangeNotifier {
 
   Workshop({
     this.precourse,
-     this.picture,
-     this.name,
-     this.capacity,
-     this.supervisor,
-     this.location,
-     this.time,
-     this.date,
-     this.id,
-     this.about,
-     this.price,
+    this.picture,
+    this.name,
+    this.capacity,
+    this.supervisor,
+    this.location,
+    this.time,
+    this.date,
+    this.id,
+    this.about,
+    this.price,
   });
 }
 
@@ -46,60 +46,112 @@ List<Workshop> supervisorWorkshops = [];
 List<Workshop> taWorkshops = [];
 
 // void getworkshops() {
- 
 
-  Future<http.Response> getedovomi() async {
- print(11111111111111111);
+Future<http.Response> getedovomi() async {
+  print(11111111111111111);
 
   wsh.clear();
-    var response = await http.get('http://192.168.43.59:8080/api/v1/workshop/list', headers: {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    });
+  var response = await http
+      .get('http://192.168.43.59:8080/api/v1/workshop/list', headers: {
+    "Accept": "application/json",
+    "content-type": "application/json"
+  });
 
-    print(1122222222);
-    print(json.decode(response.body));
+  print(1122222222);
+  print(json.decode(response.body));
 
-    for (int i = 0; i < json.decode(response.body).length; i++) {
-      Workshop workshop = Workshop();
+  for (int i = 0; i < json.decode(response.body).length; i++) {
+    Workshop workshop = Workshop();
 
-      print(3);
-      workshop.id = json.decode(response.body)[i]["offeredWorkshopId"];
-      print(4);
-      workshop.supervisor = json.decode(response.body)[i]["user"]["name"];
-      print(5);
-      workshop.capacity = json.decode(response.body)[i]["capacity"];
-      print(6);
-      workshop.location = json.decode(response.body)[i]["location"];
-      print(7);
-      workshop.time = json.decode(response.body)[i]["startTime"];
-      print(8);
-      workshop.name = json.decode(response.body)[i]["workshop"]["workshopName"];
-      print(9);
-      workshop.date = json.decode(response.body)[i]["startDate"];
-      print(10);
-      // workshop.precourse = json.decode(response.body)[i]["precourse"];
-      // workshop.about = json.decode(response.body)[i]["about"];
-      workshop.price = json.decode(response.body)[i]["price"];
-      print(11);
+    print(3);
+    workshop.id = json.decode(response.body)[i]["offeredWorkshopId"];
+    print(4);
+    workshop.supervisor = json.decode(response.body)[i]["user"]["name"];
+    print(5);
+    workshop.capacity = json.decode(response.body)[i]["capacity"];
+    print(6);
+    workshop.location = json.decode(response.body)[i]["location"];
+    print(7);
+    workshop.time = json.decode(response.body)[i]["startTime"];
+    print(8);
+    workshop.name = json.decode(response.body)[i]["workshop"]["workshopName"];
+    print(9);
+    workshop.date = json.decode(response.body)[i]["startDate"];
+    print(10);
+    // workshop.precourse = json.decode(response.body)[i]["precourse"];
+    // workshop.about = json.decode(response.body)[i]["about"];
+    workshop.price = json.decode(response.body)[i]["price"];
+    print(11);
 
-      wsh.add(workshop);
-      print(workshop);
-    }
-    return response;
+    wsh.add(workshop);
+    print(workshop);
   }
+  return response;
+}
 
 //   getedovomi();
 
-  
 // }
-Future<http.Response> getParticipantList() async {
-   wsh.clear();
-    var response = await http.get('http://192.168.43.59:8080/api/v1/workshop/listAsParticipant', headers: {
-      "Accept": "application/json",
-      "content-type": "application/json"
-    });
+// Future<http.Response> getParticipantList() async {
+//    wsh.clear();
+//     var response = await http.get('http://192.168.43.59:8080/api/v1/workshop/listAsParticipant', headers: {
+//       "Accept": "application/json",
+//       "content-type": "application/json"
+//     });
 
+
+Future<http.Response> getsuplist() async {
+  print(11111111111111111);
+
+  wsh.clear();
+  var response = await http.get(
+      'http://192.168.43.59:8080/api/v1/workshop/listAsSupervisor',
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json"
+      });
+
+  print(1122222222);
+  print(json.decode(response.body));
+
+  for (int i = 0; i < json.decode(response.body).length; i++) {
+    Workshop workshop = Workshop();
+
+    print(3);
+    workshop.id = json.decode(response.body)[i]["offeredWorkshopId"];
+    print(4);
+    workshop.supervisor = json.decode(response.body)[i]["user"]["name"];
+    print(5);
+    workshop.capacity = json.decode(response.body)[i]["capacity"];
+    print(6);
+    workshop.location = json.decode(response.body)[i]["location"];
+    print(7);
+    workshop.time = json.decode(response.body)[i]["startTime"];
+    print(8);
+    workshop.name = json.decode(response.body)[i]["workshop"]["workshopName"];
+    print(9);
+    workshop.date = json.decode(response.body)[i]["startDate"];
+    print(10);
+    // workshop.precourse = json.decode(response.body)[i]["precourse"];
+    // workshop.about = json.decode(response.body)[i]["about"];
+    workshop.price = json.decode(response.body)[i]["price"];
+    print(11);
+
+    wsh.add(workshop);
+    print(workshop);
+  }
+  return response;
+}
+
+Future<http.Response> getParticipantWorkshops() {
+  print(11111111111111111);
+  Future<http.Response> getworkshops() async {
+    var response = await http.get(
+        'http://192.168.43.59:8080/api/v1/workshop/list/participant',
+        headers: {
+          "Accept": "application/json",
+          "content-type": "application/json"
+        });
     print(1122222222);
     print(json.decode(response.body));
 
@@ -131,19 +183,55 @@ Future<http.Response> getParticipantList() async {
     }
     return response;
 
+  }
+
+  ;
 }
 
-void getSupervisorWorkshops(){
+void getSupervisorWorkshops() {
   print(11111111111111111);
   wsh.clear();
   Future<http.Response> getworkshops() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String t = prefs.getString("token");
+    var response = await http.get(
+        'http://192.168.43.59:8080/api/v1/workshop/list/supervisor',
+        headers: {
+          "Accept": "application/json",
+          "content-type": "application/json",
+          "Authorization": "Bearer " + t,
+        });
+    print(1122222222);
+    print(json.decode(response.body));
+
+    for (int i = 0; i < json.decode(response.body).length; i++) {
+      Workshop workshop;
+
+      workshop.name = json.decode(response.body)[i]["name"];
+      workshop.supervisor = json.decode(response.body)[i]["supervisor"];
+      workshop.capacity = json.decode(response.body)[i]["capacity"];
+      workshop.location = json.decode(response.body)[i]["location"];
+      workshop.time = json.decode(response.body)[i]["time"];
+      workshop.id = json.decode(response.body)[i]["id"];
+      workshop.date = json.decode(response.body)[i]["date"];
+      workshop.precourse = json.decode(response.body)[i]["precourse"];
+      workshop.about = json.decode(response.body)[i]["about"];
+      workshop.price = json.decode(response.body)[i]["price"];
+
+      wsh.add(workshop);
+    }
+  }
+
+  ;
+}
+
+void getTAworkshops() {
+  print(11111111111111111);
+  Future<http.Response> getworkshops() async {
     var response = await http
-        .get('http://192.168.43.59:8080/api/v1/workshop/list/supervisor', headers: {
+        .get('http://192.168.43.59:8080/api/v1/workshop/list', headers: {
       "Accept": "application/json",
-      "content-type": "application/json",
-      "Authorization": "Bearer " + t,
+      "content-type": "application/json"
     });
     print(1122222222);
     print(json.decode(response.body));
@@ -167,11 +255,17 @@ void getSupervisorWorkshops(){
   }
 
   ;
-
-  
 }
 
-
-
-
-Workshop boz = Workshop(about: 'e',name: 'sf', time: 'aef', capacity: 2,supervisor:"boz" ,price:11000 , picture:"er" ,location: "cal",id: 9  ,date:"40"  ,);
+Workshop boz = Workshop(
+  about: 'e',
+  name: 'sf',
+  time: 'aef',
+  capacity: 2,
+  supervisor: "boz",
+  price: 11000,
+  picture: "er",
+  location: "cal",
+  id: 9,
+  date: "40",
+);

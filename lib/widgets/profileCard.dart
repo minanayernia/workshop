@@ -100,7 +100,44 @@ class _ProCardState extends State<ProCard> {
                 ),
               ],
             ),
-          )
+          ),
+          Container(
+            // color: Colors.red,
+            height: 173,
+            margin: EdgeInsets.only(top: 10),
+            width: MediaQuery.of(context).size.width * 1,
+            padding: EdgeInsets.only(left: 10),
+
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'TA',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5),
+                ),
+                Container(
+                  height: 150,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                      WorkCardDetail(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -344,8 +381,8 @@ class _WorkCardDetailState extends State<WorkCardDetail> {
                   ),
                   Text('python', style: TextStyle(color: Colors.white)),
                   Text('sa, 05', style: TextStyle(color: Colors.white)),
-                  Text('boz', style: TextStyle(color: Colors.white)),
-                  Text('gav', style: TextStyle(color: Colors.white)),
+                  Text('15:00 - 17:00', style: TextStyle(color: Colors.white)),
+                  Text('Dr Hamze', style: TextStyle(color: Colors.white)),
                 ],
               ),
             ),
@@ -364,5 +401,3 @@ class _WorkCardDetailState extends State<WorkCardDetail> {
     );
   }
 }
-
-

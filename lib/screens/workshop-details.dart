@@ -42,9 +42,9 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Workshopimage(),
-        Detailcard(),
-        TimePlcecard(),
+        // Workshopimage(),
+        // Detailcard(),
+        // TimePlcecard(),
         Enrollbutton(),
         TAcard(),
       ],
@@ -54,7 +54,7 @@ class _PageState extends State<Page> {
 
 class Workshopimage extends StatefulWidget {
   Workshop workshop;
-   Workshopimage({@required this.workshop});
+  Workshopimage({@required this.workshop});
 
   @override
   _WorkshopimageState createState() => _WorkshopimageState();
@@ -68,13 +68,13 @@ class _WorkshopimageState extends State<Workshopimage> {
       children: <Widget>[
         Container(
           //////////////////////////////////////////////////////////////////////////////////
-          
+
           margin: EdgeInsets.only(top: 20),
           decoration: BoxDecoration(
               color: Colors.grey, borderRadius: BorderRadius.circular(10)),
           width: 100,
           height: 100,
-          child: Text(widget.workshop.picture),
+          // child: Text(widget.workshop.picture),
         )
       ],
     );
@@ -83,7 +83,7 @@ class _WorkshopimageState extends State<Workshopimage> {
 
 class Detailcard extends StatefulWidget {
   Workshop workshop;
-   Detailcard({@required this.workshop});
+  Detailcard({@required this.workshop});
   @override
   _DetailcardState createState() => _DetailcardState();
 }
@@ -114,7 +114,7 @@ class _DetailcardState extends State<Detailcard> {
               Row(
                 children: <Widget>[
                   Text(
-                     widget.workshop.supervisor,
+                    widget.workshop.supervisor,
                     style: TextStyle(color: Colors.purple[300], fontSize: 20.0),
                   )
                 ],
@@ -139,10 +139,11 @@ class _DetailcardState extends State<Detailcard> {
                     //   ],
                     // ),
                     child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, i)=> PreCorseCard(workshop: widget.workshop.precourse[i]),
-                        itemCount: widget.workshop.precourse.length,
-                      ),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, i) =>
+                          PreCorseCard(workshop: widget.workshop.precourse[i]),
+                      itemCount: widget.workshop.precourse.length,
+                    ),
                   ),
                 ],
               ),
@@ -151,7 +152,7 @@ class _DetailcardState extends State<Detailcard> {
                   Container(
                     height: 100,
                     child: Text(
-                      'hihihihihih',
+                      widget.workshop.about,
                       style: TextStyle(color: Colors.black, fontSize: 20.0),
                     ),
                   )
@@ -166,6 +167,8 @@ class _DetailcardState extends State<Detailcard> {
 }
 
 class TimePlcecard extends StatefulWidget {
+  Workshop workshop;
+  TimePlcecard({@required this.workshop});
   @override
   _TimePlcecardState createState() => _TimePlcecardState();
 }
@@ -199,7 +202,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                     Container(
                       margin: EdgeInsets.only(left: 5),
                       child: Text(
-                        'Sat,05 Oct',
+                        widget.workshop.date,
                         style: TextStyle(color: Colors.white, fontSize: 20.0),
                       ),
                     )
@@ -214,7 +217,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                     Container(
                       margin: EdgeInsets.only(left: 5),
                       child: Text(
-                        'bahar',
+                        widget.workshop.time,
                         style: TextStyle(color: Colors.white, fontSize: 20.0),
                       ),
                     )
@@ -229,7 +232,7 @@ class _TimePlcecardState extends State<TimePlcecard> {
                     Container(
                       margin: EdgeInsets.only(left: 5),
                       child: Text(
-                        'bahar',
+                        widget.workshop.location,
                         style: TextStyle(color: Colors.white, fontSize: 20.0),
                       ),
                     )
@@ -239,24 +242,23 @@ class _TimePlcecardState extends State<TimePlcecard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      height: 35,
+                        height: 35,
                         child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.place,
-                          color: Colors.white,
-                        ),
-                        Container(
-                          
-                          margin: EdgeInsets.only(left: 5),
-                          child: Text(
-                            'bahar',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20.0),
-                          ),
-                        )
-                      ],
-                    )),
+                          children: <Widget>[
+                            Icon(
+                              Icons.people,
+                              color: Colors.white,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 5),
+                              child: Text(
+                                widget.workshop.capacity.toString(),
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20.0),
+                              ),
+                            )
+                          ],
+                        )),
                     Container(
                         margin: EdgeInsets.only(right: 10),
                         child: Container(height: 35, child: Price())),
@@ -346,7 +348,7 @@ class _TAcardState extends State<TAcard> {
                       // ),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (_, i)=> TAImageCard(ta: t[i]),
+                        itemBuilder: (_, i) => TAImageCard(ta: t[i]),
                         itemCount: prc.length,
                       ),
                     )
@@ -396,6 +398,9 @@ class _RequestbuttonState extends State<Requestbutton> {
 }
 
 class Price extends StatefulWidget {
+  Workshop workshop;
+  Price({@required this.workshop});
+
   @override
   _PriceState createState() => _PriceState();
 }
@@ -408,7 +413,7 @@ class _PriceState extends State<Price> {
       height: 30,
       child: Center(
         child: Text(
-          '150',
+          widget.workshop.price,
           style: TextStyle(color: Colors.deepPurple[900], fontSize: 30.0),
         ),
       ),

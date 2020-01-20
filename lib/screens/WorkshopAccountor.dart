@@ -46,9 +46,9 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Workshopimage(),
-        Detailcard(),
-        TimePlcecard(),
+        // Workshopimage(),
+        // Detailcard(),
+        // TimePlcecard(),
         ParticipantCard(),
       ],
     );

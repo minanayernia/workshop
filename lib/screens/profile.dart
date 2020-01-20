@@ -26,7 +26,7 @@ class SelectedOption extends StatelessWidget {
   CustomPopupMenu choice;
 
   SelectedOption({Key key, this.choice}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,23 +55,29 @@ class _ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
-     get_req() ;
-      }
+    get_req();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: Center(
-        child: Column(
-          children: <Widget>[
-            // TopBar(foo: "Profile",),
-            ProfileAppBar(),
-            Container(
-                height: MediaQuery.of(context).size.height - 140,
-                width: MediaQuery.of(context).size.width * 0.95,
-                child: SingleChildScrollView(child: ProCard())),
-          ],
-        ),
+        child: Container(
+          height: MediaQuery.of(context).size.height*0.9,
+          width: MediaQuery.of(context).size.width*0.9,
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+              // TopBar(foo: "Profile",),
+              ProfileAppBar(),
+              // PopupMenu(),
+              Container(
+                  height: MediaQuery.of(context).size.height - 140,
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  child: SingleChildScrollView(child: ProCard())),
+            ],),
+        )
       ),
     );
   }
@@ -138,16 +144,62 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
                 // )
               });
             },
-            child: Center(
-              child: Container(
-                height: 30,
-                width: 30,
-                child: Text(menu , style: TextStyle(fontSize: 20 , color: Colors.deepPurple),),
-              ),
-            ),
+            // child: Center(
+            //   child: Container(
+            //     height: 30,
+            //     width: 30,
+            //     child: Text(
+            //       menu,
+            //       style: TextStyle(fontSize: 20, color: Colors.deepPurple),
+            //     ),
+            //   ),
+            // ),
+            child: PopupMenu(),
           )
         ],
       )),
+    );
+  }
+}
+
+
+class PopupMenu extends StatefulWidget {
+  @override
+  _PopupMenuState createState() => _PopupMenuState();
+}
+
+
+class _PopupMenuState extends State<PopupMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+      child: PopupMenuButton(
+        icon: Icon(Icons.more_vert , color: Colors.deepPurple,),
+        color: Colors.deepPurple.withOpacity(0.9),
+        // shape: ShapeBorder.lerp(3, , 5),
+        onSelected: (WhyFarther result) {
+          setState(() {});
+        },
+        itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.harder,
+            child: Text('Working a lot harder' , style: TextStyle(color: Colors.white),),
+          ),
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.smarter,
+            child: Text('Being a lot smarter' , style: TextStyle(color: Colors.white)),
+          ),
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.selfStarter,
+            child: Text('Being a self-starter' , style: TextStyle(color: Colors.white)),
+          ),
+          const PopupMenuItem<WhyFarther>(
+            value: WhyFarther.tradingCharter,
+            child: Text('Placed in charge of trading charter' , style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -201,25 +253,15 @@ class MinaAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class PopupMenuButton extends StatefulWidget {
-  @override
-  _PopupMenuButtonState createState() => _PopupMenuButtonState();
-}
-
-class _PopupMenuButtonState extends State<PopupMenuButton> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
 void get_req() async {
   Future<http.Response> sendPersonDetail() async {
-    var response = await http.get('http://192.168.43.139:8080/api/v1/signup',
-        headers: {
-          "Authorization" : "Bearer " + "",
-          "Accept": "application/json",
-          "content-type": "application/json"
-        });
+    var response =
+        await http.get('http://192.168.43.139:8080/api/v1/signup', headers: {
+      "Authorization": "Bearer " + "",
+      "Accept": "application/json",
+      "content-type": "application/json"
+    });
   }
 }
+
+

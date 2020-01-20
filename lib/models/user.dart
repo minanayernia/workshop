@@ -11,9 +11,9 @@ class User with ChangeNotifier {
   String token;
 
   User({
-    @required this.name,
-    @required this.ncode,
-    @required this.phone,
+     this.name,
+     this.ncode,
+     this.phone,
     this.token,
   });
 
@@ -42,3 +42,4 @@ class User with ChangeNotifier {
 }
 
 User u = User(name: "sdgs", ncode: "sfgsf", phone: "dhfdg");
+User user = User() ;

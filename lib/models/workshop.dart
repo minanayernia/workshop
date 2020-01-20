@@ -51,6 +51,7 @@ Future<http.Response> getedovomi() async {
   print(11111111111111111);
 
   wsh.clear();
+  
   var response = await http
       .get('http://192.168.43.59:8080/api/v1/workshop/list', headers: {
     "Accept": "application/json",
@@ -102,13 +103,15 @@ Future<http.Response> getedovomi() async {
 
 Future<http.Response> getsuplist() async {
   print(11111111111111111);
-
-  wsh.clear();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+  supervisorWorkshops.clear();
   var response = await http.get(
       'http://192.168.43.59:8080/api/v1/workshop/listAsSupervisor',
       headers: {
         "Accept": "application/json",
-        "content-type": "application/json"
+        "content-type": "application/json",
+        "Authorization": "Bearer " + tk,
       });
 
   print(1122222222);
@@ -137,20 +140,23 @@ Future<http.Response> getsuplist() async {
     workshop.price = json.decode(response.body)[i]["price"];
     print(11);
 
-    wsh.add(workshop);
+    supervisorWorkshops.add(workshop);
     print(workshop);
   }
   return response;
 }
 
-Future<http.Response> getParticipantWorkshops() {
+Future<http.Response> getParticipantWorkshops() async{
   print(11111111111111111);
-  Future<http.Response> getworkshops() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+ participantWorkshops.clear();
     var response = await http.get(
-        'http://192.168.43.59:8080/api/v1/workshop/list/participant',
+        'http://192.168.43.59:8080/api/v1/workshop/listAsParticipant',
         headers: {
           "Accept": "application/json",
-          "content-type": "application/json"
+          "content-type": "application/json",
+          "Authorization": "Bearer " + tk,
         });
     print(1122222222);
     print(json.decode(response.body));
@@ -178,60 +184,61 @@ Future<http.Response> getParticipantWorkshops() {
       workshop.price = json.decode(response.body)[i]["price"];
       print(11);
 
-      wsh.add(workshop);
+      participantWorkshops.add(workshop);
       print(workshop);
     }
     return response;
 
   }
 
-  ;
-}
 
-void getSupervisorWorkshops() {
+// void getSupervisorWorkshops() {
+//   print(11111111111111111);
+//   wsh.clear();
+//   Future<http.Response> getworkshops() async {
+//     SharedPreferences prefs = await SharedPreferences.getInstance();
+//     String t = prefs.getString("token");
+//     var response = await http.get(
+//         'http://192.168.43.59:8080/api/v1/workshop/list/supervisor',
+//         headers: {
+//           "Accept": "application/json",
+//           "content-type": "application/json",
+//           "Authorization": "Bearer " + t,
+//         });
+//     print(1122222222);
+//     print(json.decode(response.body));
+
+//     for (int i = 0; i < json.decode(response.body).length; i++) {
+//       Workshop workshop;
+
+//       workshop.name = json.decode(response.body)[i]["name"];
+//       workshop.supervisor = json.decode(response.body)[i]["supervisor"];
+//       workshop.capacity = json.decode(response.body)[i]["capacity"];
+//       workshop.location = json.decode(response.body)[i]["location"];
+//       workshop.time = json.decode(response.body)[i]["time"];
+//       workshop.id = json.decode(response.body)[i]["id"];
+//       workshop.date = json.decode(response.body)[i]["date"];
+//       workshop.precourse = json.decode(response.body)[i]["precourse"];
+//       workshop.about = json.decode(response.body)[i]["about"];
+//       workshop.price = json.decode(response.body)[i]["price"];
+
+//       wsh.add(workshop);
+//     }
+//   }
+
+//   ;
+// }
+
+Future<http.Response> getTAworkshops() async{
   print(11111111111111111);
-  wsh.clear();
-  Future<http.Response> getworkshops() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String t = prefs.getString("token");
-    var response = await http.get(
-        'http://192.168.43.59:8080/api/v1/workshop/list/supervisor',
-        headers: {
-          "Accept": "application/json",
-          "content-type": "application/json",
-          "Authorization": "Bearer " + t,
-        });
-    print(1122222222);
-    print(json.decode(response.body));
-
-    for (int i = 0; i < json.decode(response.body).length; i++) {
-      Workshop workshop;
-
-      workshop.name = json.decode(response.body)[i]["name"];
-      workshop.supervisor = json.decode(response.body)[i]["supervisor"];
-      workshop.capacity = json.decode(response.body)[i]["capacity"];
-      workshop.location = json.decode(response.body)[i]["location"];
-      workshop.time = json.decode(response.body)[i]["time"];
-      workshop.id = json.decode(response.body)[i]["id"];
-      workshop.date = json.decode(response.body)[i]["date"];
-      workshop.precourse = json.decode(response.body)[i]["precourse"];
-      workshop.about = json.decode(response.body)[i]["about"];
-      workshop.price = json.decode(response.body)[i]["price"];
-
-      wsh.add(workshop);
-    }
-  }
-
-  ;
-}
-
-void getTAworkshops() {
-  print(11111111111111111);
-  Future<http.Response> getworkshops() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+  taWorkshops.clear();
     var response = await http
-        .get('http://192.168.43.59:8080/api/v1/workshop/list', headers: {
+        .get('http://192.168.43.59:8080/api/v1/workshop/listAsTa', headers: {
       "Accept": "application/json",
-      "content-type": "application/json"
+      "content-type": "application/json",
+      "Authorization": "Bearer " + tk,
     });
     print(1122222222);
     print(json.decode(response.body));
@@ -250,12 +257,9 @@ void getTAworkshops() {
       workshop.about = json.decode(response.body)[i]["about"];
       workshop.price = json.decode(response.body)[i]["price"];
 
-      wsh.add(workshop);
+      taWorkshops.add(workshop);
     }
   }
-
-  ;
-}
 
 Workshop boz = Workshop(
   about: 'e',

@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:workshop/models/user.dart';
 import 'package:workshop/models/workshop.dart';
 import 'package:workshop/widgets/profileCard.dart';
 import 'package:workshop/widgets/topbar.dart';
@@ -76,7 +77,7 @@ class _ProfileState extends State<Profile> {
               Container(
                   height: MediaQuery.of(context).size.height - 140,
                   width: MediaQuery.of(context).size.width * 0.95,
-                  child: SingleChildScrollView(child: ProCard(workshop: boz,))),
+                  child: SingleChildScrollView(child: ProCard(workshop: boz,user: u,))),
             ],),
         )
       ),

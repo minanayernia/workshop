@@ -108,7 +108,7 @@ class _ProCardState extends State<ProCard> {
         builder: (context, snapshot){
           switch (snapshot.connectionState){
             case ConnectionState.waiting:
-              return AlertDialog(backgroundColor: Colors.transparent,content: Container(height: 100,width: 100, color: Colors.transparent,child: Center(child: CircularProgressIndicator(),),),);
+              return AlertDialog(backgroundColor: Colors.deepPurple,content: Container(height: 100,width: 100, color: Colors.deepPurple,child: Center(child: CircularProgressIndicator(),),),);
 
               case ConnectionState.active:
               print("active");

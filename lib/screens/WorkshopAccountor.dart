@@ -23,12 +23,13 @@ class _WorkshopAccountorState extends State<WorkshopAccountor> {
   Widget build(BuildContext context) {
     final Workshop args = ModalRoute.of(context).settings.arguments;
     print(args);
+    print("*******************************************");
     return Material(
       type: MaterialType.transparency,
       child: Stack(
         children: <Widget>[
           Background(),
-          Page(workshop: args,),
+          Page(workshop: args),
         ],
       ),
     );

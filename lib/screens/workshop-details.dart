@@ -18,7 +18,12 @@ class Workshopdetails extends StatefulWidget {
 class _WorkshopdetailsState extends State<Workshopdetails> {
   @override
   Widget build(BuildContext context) {
+
+        // print(widget.currentWorkshop);
+
     final Workshop args = ModalRoute.of(context).settings.arguments;
+    print(args);
+    print("###################################################");
 
     return Scaffold(
       body: Stack(
@@ -27,7 +32,7 @@ class _WorkshopdetailsState extends State<Workshopdetails> {
           ListView(
             scrollDirection: Axis.vertical,
             children: <Widget>[
-              Page(currentWorkshop: widget.currentWorkshop,),
+              Page(currentWorkshop: args),
             ],
           )
         ],
@@ -77,10 +82,10 @@ class _WorkshopimageState extends State<Workshopimage> {
 
           margin: EdgeInsets.only(top: 20),
           decoration: BoxDecoration(
-              color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+              color: Colors.grey[200], borderRadius: BorderRadius.circular(10)),
           width: 100,
           height: 100,
-          child: Center(child: Text(widget.workshop.picture)),
+          child: Center(child: Text(widget.workshop.picture != null ? widget.workshop.picture: "+")),
         )
       ],
     );
@@ -112,7 +117,7 @@ class _DetailcardState extends State<Detailcard> {
               Row(
                 children: <Widget>[
                   Text(
-                    widget.workshop.name,
+                    widget.workshop.name!=null ? widget.workshop.name : " no name ",
                     style: TextStyle(color: Colors.purple, fontSize: 30.0),
                   )
                 ],
@@ -120,7 +125,7 @@ class _DetailcardState extends State<Detailcard> {
               Row(
                 children: <Widget>[
                   Text(
-                    widget.workshop.supervisor,
+                    widget.workshop.supervisor!=null ? widget.workshop.supervisor : " no name ",
                     style: TextStyle(color: Colors.purple[300], fontSize: 20.0),
                   )
                 ],
@@ -158,7 +163,7 @@ class _DetailcardState extends State<Detailcard> {
                   Container(
                     height: 100,
                     child: Text(
-                      widget.workshop.about,
+                      widget.workshop.about!=null ? widget.workshop.about : " no name ",
                       style: TextStyle(color: Colors.black, fontSize: 20.0),
                     ),
                   )

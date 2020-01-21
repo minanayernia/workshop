@@ -20,14 +20,21 @@ class _AddFormState extends State<AddForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            TopBar(
-              foo: "Add form",
+      body: SingleChildScrollView(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                TopBar(
+                  foo: "Add form",
+                ),
+                Page(),
+              ],
             ),
-            Page(),
-          ],
+          ),
         ),
       ),
     );
@@ -47,7 +54,7 @@ class _PageState extends State<Page> {
         WhoAnswersCard(),
         Container(
           height: 300,
-          width: MediaQuery.of(context).size.width*0.9,
+          width: MediaQuery.of(context).size.width * 0.9,
           child: ListView(
             children: <Widget>[
               QuestionCard(),
@@ -330,8 +337,6 @@ class _AddContainerState extends State<AddContainer> {
                 //   itemBuilder: (_, i) => QuestionContainer(q: Dq[i]),
                 //   itemCount: Dq.length,
                 // );
-                
-
               },
             ),
           ),

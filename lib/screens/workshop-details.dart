@@ -16,6 +16,8 @@ class Workshopdetails extends StatefulWidget {
 class _WorkshopdetailsState extends State<Workshopdetails> {
   @override
   Widget build(BuildContext context) {
+    final Workshop args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -261,7 +263,9 @@ class _TimePlcecardState extends State<TimePlcecard> {
                         )),
                     Container(
                         margin: EdgeInsets.only(right: 10),
-                        child: Container(height: 35, child: Price(workshop: widget.workshop))),
+                        child: Container(
+                            height: 35,
+                            child: Price(workshop: widget.workshop))),
                   ],
                 )
               ],

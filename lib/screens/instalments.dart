@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/models/Instalment.dart';
 
+int debt = 0 ;
 class InstalmentPage extends StatefulWidget {
   @override
   _InstalmentPageState createState() => _InstalmentPageState();

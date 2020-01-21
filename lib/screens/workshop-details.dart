@@ -9,6 +9,8 @@ import 'package:workshop/widgets/PreCourseCard.dart';
 import 'package:workshop/models/workshop.dart';
 
 class Workshopdetails extends StatefulWidget {
+  Workshop currentWorkshop ;
+  Workshopdetails({@required this.currentWorkshop});
   @override
   _WorkshopdetailsState createState() => _WorkshopdetailsState();
 }
@@ -16,6 +18,7 @@ class Workshopdetails extends StatefulWidget {
 class _WorkshopdetailsState extends State<Workshopdetails> {
   @override
   Widget build(BuildContext context) {
+    final Workshop args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -23,7 +26,7 @@ class _WorkshopdetailsState extends State<Workshopdetails> {
           ListView(
             scrollDirection: Axis.vertical,
             children: <Widget>[
-              Page(),
+              Page(currentWorkshop: widget.currentWorkshop,),
             ],
           )
         ],
@@ -33,6 +36,8 @@ class _WorkshopdetailsState extends State<Workshopdetails> {
 }
 
 class Page extends StatefulWidget {
+  Workshop currentWorkshop ;
+  Page({@required this.currentWorkshop});
   @override
   _PageState createState() => _PageState();
 }
@@ -42,9 +47,9 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // Workshopimage(),
-        // Detailcard(),
-        // TimePlcecard(),
+        Workshopimage(workshop: widget.currentWorkshop,),
+        Detailcard(workshop: boz,),
+        TimePlcecard(workshop: widget.currentWorkshop,),
         Enrollbutton(),
         TAcard(),
       ],

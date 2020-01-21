@@ -14,18 +14,23 @@ class _MmdCardState extends State<MmdCard> {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.red,
-      margin: const EdgeInsets.symmetric(
-         vertical: 10.0,
-         horizontal: 14.0,
-       ),
-       height: 110,
-      child: Stack(
-        children: <Widget>[
-          CardThumb(mmdworkshop: widget.mmdworkshop,),
-          CardPic(mmdworkshop: widget.mmdworkshop,),
-        ],
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, '/workshop', arguments: widget.mmdworkshop); //go to workshop details
+      },
+          child: Container(
+        // color: Colors.red,
+        margin: const EdgeInsets.symmetric(
+           vertical: 10.0,
+           horizontal: 14.0,
+         ),
+         height: 110,
+        child: Stack(
+          children: <Widget>[
+            CardThumb(mmdworkshop: widget.mmdworkshop,),
+            CardPic(mmdworkshop: widget.mmdworkshop,),
+          ],
+        ),
       ),
     );
   }

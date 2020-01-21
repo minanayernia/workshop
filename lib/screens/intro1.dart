@@ -89,10 +89,10 @@ class _IntroTextBoxState extends State<IntroTextBox> {
       child: Column(
         children: <Widget>[
           Container(
-            child: Text('Lorem', style: TextStyle(fontSize: 50 , color: Colors.greenAccent[400])),
+            child: Text('LEARNOO', style: TextStyle(fontSize: 30 , color: Colors.greenAccent[400] , fontStyle: FontStyle.italic )),
           ),
           Container(
-            child: Text('hi bla bla bla bla bla bla bla' , style: TextStyle(fontSize: 20 , color: Colors.white),),
+            child: Text('Start learning easily with LEARNOO ' , style: TextStyle(fontSize: 18 , color: Colors.white),),
           ),
         ],
       ),

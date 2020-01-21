@@ -263,7 +263,7 @@ class _ProCardState extends State<ProCard> {
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
                    itemBuilder: (_, i)=> WorkCardDetail(workshop: taWorkshops[i],),
-                    itemCount:participantWorkshops.length,
+                    itemCount: taWorkshops.length,
                     
                   
                 ),
@@ -333,14 +333,14 @@ class _PersonCardState extends State<PersonCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      child: Text(widget.user.name),
+                      child: Text(widget.user.name),///////////////name
                     ),
                     Container(
-                      child: Text(widget.user.ncode),
+                      child: Text(widget.user.ncode),//////////////nationalcode
                       margin: EdgeInsets.only(top: 10),
                     ),
                     Container(
-                      child: Text(widget.user.phone),
+                      child: Text(widget.user.phone),/////////////////phonenumber
                       margin: EdgeInsets.only(top: 10),
                     )
                   ],
@@ -353,7 +353,7 @@ class _PersonCardState extends State<PersonCard> {
                 child: Container(
                   width: 50,
                   height: 80,
-                  margin: EdgeInsets.only(left: 20),
+                  margin: EdgeInsets.only(left: 15),
                   decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(10)),

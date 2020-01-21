@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
         '/intro2': (context) => SecondIntroPage(),
         '/add form': (context) => AddForm(),
         '/add workshop': (context) => AddWorkshop(),
-        '/workshopAccountor': (context) => WorkshopAccountor(workshop: boz,),
+        '/workshopAccountor': (context) => WorkshopAccountor(),
         '/course': (context) => Course(),
         '/form': (context) => FormPage(),
         '/payment': (context) => PaymentPage(),

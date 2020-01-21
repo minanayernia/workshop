@@ -9,9 +9,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
 String url = "192.168.43.59:8080";
 
-final nationalCode = TextEditingController() ;
+final nationalCode = TextEditingController();
 
 class Login extends StatefulWidget {
   @override
@@ -25,33 +26,28 @@ class _LoginState extends State<Login> {
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: true,
       body: SingleChildScrollView(
-        //       child: Stack(children: <Widget>[
-        //   Background(),
-        //   Foregrand()
-          
-        // ],),
+          //       child: Stack(children: <Widget>[
+          //   Background(),
+          //   Foregrand()
 
-        child: new GestureDetector(
-                  onTap: (){
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                child: Container(
-                    height: MediaQuery.of(context).size.height,
+          // ],),
+
+          child: new GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
-          fit: BoxFit.cover
-          )
-          ),
-                    child: Center(child:Foregrand()),
+              image: DecorationImage(
+                  image: AssetImage('assets/learnoo-pattern.png'),
+                  fit: BoxFit.cover)),
+          child: Center(child: Foregrand()),
         ),
-                )
-
-      ),
-      
+      )),
     );
   }
 }
-
 
 class Foregrand extends StatefulWidget {
   @override
@@ -62,15 +58,14 @@ class _ForegrandState extends State<Foregrand> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-          child: Column(
+      child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Topimage(),
           LoginCard(),
           SignUpButton(),
-          ],
-        
+        ],
       ),
     );
   }
@@ -85,33 +80,39 @@ class _LoginCardState extends State<LoginCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 100),
-        // color: Colors.green,
-          child: Column(
+      margin: EdgeInsets.only(top: 100),
+      // color: Colors.green,
+      child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.end,
-         mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-      Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        height: 140,
-        // color: Colors.yellow,
-        // alignment: Alignment.center,
-        margin: EdgeInsets.only(
-      top: 60
-        ),
-        decoration: BoxDecoration(color: Colors.deepPurple[700].withOpacity(0.5) ,borderRadius: BorderRadius.circular(10)),
-        child: Column(children: <Widget>[
-      Row(mainAxisAlignment: MainAxisAlignment.center,),
-      Nationalcard(),
-      Padding(padding: EdgeInsets.only(top: 15),),
-      SubmitButtom()
-        ],),
-      ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 140,
+            // color: Colors.yellow,
+            // alignment: Alignment.center,
+            margin: EdgeInsets.only(top: 60),
+            decoration: BoxDecoration(
+                color: Colors.deepPurple[700].withOpacity(0.5),
+                borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                Nationalcard(),
+                Padding(
+                  padding: EdgeInsets.only(top: 15),
+                ),
+                SubmitButtom()
+              ],
+            ),
+          ),
+          
         ],
       ),
     );
-
   }
 }
 
@@ -125,12 +126,9 @@ class _LoginImageState extends State<LoginImage> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/learnoo-pattern.png'),
-        fit: BoxFit.cover)
-      ),
-      
-      
-      
+          image: DecorationImage(
+              image: AssetImage('assets/learnoo-pattern.png'),
+              fit: BoxFit.cover)),
     );
   }
 }
@@ -143,13 +141,12 @@ class Topimage extends StatefulWidget {
 class _TopimageState extends State<Topimage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Image.asset('assets/login-img.png'),
-    // color: Colors.red,
+    return Container(
+      child: Image.asset('assets/login-img.png'),
+      // color: Colors.red,
     );
   }
 }
-
-
 
 class SubmitButtom extends StatefulWidget {
   @override
@@ -160,52 +157,47 @@ class _SubmitButtomState extends State<SubmitButtom> {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      minWidth: MediaQuery.of(context).size.width * 0.85,
-      height: 45,
-      
-      child:RaisedButton(
-              child: Text('Submit',
-              style: TextStyle(color: Colors.deepPurple[900] , fontSize: 15.0),
+        minWidth: MediaQuery.of(context).size.width * 0.85,
+        height: 45,
+        child: RaisedButton(
+            child: Text(
+              'Submit',
+              style: TextStyle(color: Colors.deepPurple[900], fontSize: 15.0),
             ),
-              color: Colors.greenAccent[400],
-              
-              shape: RoundedRectangleBorder( borderRadius: new BorderRadius.circular(25.0),
-           ),
-              onPressed: 
-              
-                (){
-                  print(1111111111111111);
-                  Map data ={'nationalCode' : nationalCode.text};
-                  Future<http.Response> sendcode() async{
-                    var response = 
-                    await http.post('http://192.168.43.59:8080/api/v1/login',
+            color: Colors.greenAccent[400],
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(25.0),
+            ),
+            onPressed: () {
+              print(1111111111111111);
+              Map data = {'nationalCode': nationalCode.text};
+              Future<http.Response> sendcode() async {
+                var response = await http.post(
+                    'http://192.168.43.59:8080/api/v1/login',
                     body: json.encode(data),
-                headers: {"Accept": "application/json", "content-type": "application/json"}
-                );
+                    headers: {
+                      "Accept": "application/json",
+                      "content-type": "application/json"
+                    });
                 print(2222222222222222);
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 print(json.decode(response.body)["jwt"]);
-                if (json.decode(response.body)["jwt"] != ""){
+                if (json.decode(response.body)["jwt"] != "") {
                   String b = json.decode(response.body)["jwt"];
-                prefs.setString("token", b);
-                Navigator.pushNamed(context, '/home');
-                } else{
+                  prefs.setString("token", b);
+                  Navigator.pushNamed(context, '/home');
+                } else {
                   print("boz");
                   Navigator.pushNamed(context, '/signup');
                 }
-                
-                  }
-                  sendcode();
-                  // Navigator.pop(context);
-                  // Navigator.pushNamed(context, '/home');
-                  print(nationalCode.text);
-                  // Navigator.popAndPushNamed(context, '/home');
-                }
-              
-      
-    )
-    );
-    
+              }
+
+              sendcode();
+              // Navigator.pop(context);
+              // Navigator.pushNamed(context, '/home');
+              print(nationalCode.text);
+              // Navigator.popAndPushNamed(context, '/home');
+            }));
   }
 }
 
@@ -215,7 +207,6 @@ class Nationalcard extends StatefulWidget {
 }
 
 class _NationalcardState extends State<Nationalcard> {
-   
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -224,20 +215,26 @@ class _NationalcardState extends State<Nationalcard> {
         controller: nationalCode,
         textInputAction: TextInputAction.go,
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(icon: Icon(Icons.person_pin, color: Colors.black,),
-        border: InputBorder.none,
-        hintText: 'National Code' ,
+        decoration: InputDecoration(
+          icon: Icon(
+            Icons.person_pin,
+            color: Colors.black,
+          ),
+          border: InputBorder.none,
+          hintText: 'National Code',
         ),
         // onSubmitted: ,
-        ),
+      ),
       height: 45,
       width: MediaQuery.of(context).size.width * 0.85,
-      
+
       //width: 70,
       margin: EdgeInsets.only(top: 15),
-      decoration: BoxDecoration(shape: BoxShape.rectangle, borderRadius: new BorderRadius.circular(15),color: Colors.white,),
-
-      
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: new BorderRadius.circular(15),
+        color: Colors.white,
+      ),
     );
   }
 }
@@ -254,7 +251,7 @@ class _SignUpButtonState extends State<SignUpButton> {
       alignment: Alignment.bottomRight,
       margin: EdgeInsets.only(top: 10),
       height: 40,
-      width: MediaQuery.of(context).size.width*0.9,
+      width: MediaQuery.of(context).size.width * 0.9,
       child: RaisedButton(
         child: Text(
           'Sign Up',
@@ -264,14 +261,10 @@ class _SignUpButtonState extends State<SignUpButton> {
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(25.0),
         ),
-        
-        onPressed: (){
-                            Navigator.pushNamed(context, '/signup');
-
-
+        onPressed: () {
+          Navigator.pushNamed(context, '/signup');
         },
       ),
-      
     );
   }
 }

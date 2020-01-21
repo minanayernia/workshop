@@ -92,21 +92,21 @@ class _HomeBodyState extends State<HomeBody> {
                 Navigator.pushNamed(context, '/ta');
               }),
 
-               RaisedButton(
-              child: Text('intro1'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/intro1');
-              }),
+              //  RaisedButton(
+              // child: Text('intro1'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/intro1');
+              // }),
 
-              RaisedButton(
-              child: Text('intro2'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/intro2');
-              }),
+              // RaisedButton(
+              // child: Text('intro2'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/intro2');
+              // }),
 
               RaisedButton(
               child: Text('add form'),
@@ -137,13 +137,13 @@ class _HomeBodyState extends State<HomeBody> {
 
 
 
-              RaisedButton(
-              child: Text('course'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/course');
-              }),
+              // RaisedButton(
+              // child: Text('course'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/course');
+              // }),
               RaisedButton(
                 child: Text('form'),
               onPressed: () {

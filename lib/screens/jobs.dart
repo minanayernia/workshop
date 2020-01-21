@@ -20,68 +20,86 @@ class Jobs extends StatefulWidget {
 }
 
 class _JobsState extends State<Jobs> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
-      body: FutureBuilder(
-        future: getedovomi(),
-        builder: (context, snapshot){
-          switch (snapshot.connectionState){
-            case ConnectionState.waiting:
-              return AlertDialog(backgroundColor: Colors.transparent,content: Container(height: 100,width: 100, color: Colors.transparent,child: Center(child: CircularProgressIndicator(),),),);
+        backgroundColor: Theme.of(context).accentColor,
+        body: FutureBuilder(
+            future: getedovomi(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return AlertDialog(
+                    backgroundColor: Colors.transparent,
+                    content: Container(
+                      height: 100,
+                      width: 100,
+                      color: Colors.transparent,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  );
 
-              case ConnectionState.active:
-              print("active");
-               return Stack(children: <Widget>[
-                Background(),
-                Center(child: Container(child: CircularProgressIndicator(),
-                height: 100,width: 100,),)
-              ],);
+                case ConnectionState.active:
+                  print("active");
+                  return Stack(
+                    children: <Widget>[
+                      Background(),
+                      Center(
+                        child: Container(
+                          child: CircularProgressIndicator(),
+                          height: 100,
+                          width: 100,
+                        ),
+                      )
+                    ],
+                  );
 
-              case ConnectionState.none:
-              print("none");
-               return Stack(children: <Widget>[
-                Background(),
-                Center(child: Container(child: CircularProgressIndicator(),
-                height: 100,width: 100,),)
-              ],);
+                case ConnectionState.none:
+                  print("none");
+                  return Stack(
+                    children: <Widget>[
+                      Background(),
+                      Center(
+                        child: Container(
+                          child: CircularProgressIndicator(),
+                          height: 100,
+                          width: 100,
+                        ),
+                      )
+                    ],
+                  );
 
-              case ConnectionState.done:
-              return SingleChildScrollView(
-          child: Stack(
-                      children: <Widget>[Background(),
+                case ConnectionState.done:
+                  return SingleChildScrollView(
+                    child: Stack(
+                      children: <Widget>[
+                        Background(),
                         Column(children: <Widget>[
-              TopBar(
-                foo: "Home",
-              ),
-              //  Padding(padding: EdgeInsets.only(top: 50),),
-              Container(
-                height: MediaQuery.of(context).size.height*0.9,
-                width: MediaQuery.of(context).size.width*1.2,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                   itemBuilder: (_, i)=> MmdCard(mmdworkshop: wsh[i],),
-                    itemCount: wsh.length,
-                    
-                  
-                ),
-              ),
-              
-            ])],
-          ),
-        );
-          }
-              
-      
-    
-        })
-        );
-        
-        
-        
-        }
+                          TopBar(
+                            foo: "Home",
+                          ),
+                          WorkshopCard(),
+                          //  Padding(padding: EdgeInsets.only(top: 50),),
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.9,
+                            width: MediaQuery.of(context).size.width * 1.2,
+                            child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (_, i) => MmdCard(
+                                mmdworkshop: wsh[i],
+                              ),
+                              itemCount: wsh.length,
+                            ),
+                          ),
+                        ])
+                      ],
+                    ),
+                  );
+              }
+            }));
+  }
 }
 
 class AddWorkshopButton extends StatefulWidget {
@@ -118,7 +136,7 @@ class _AddButtonState extends State<AddButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 70),
+      margin: EdgeInsets.only(top: 70 ,left: 5),
       width: 60,
       height: 60,
       decoration: BoxDecoration(
@@ -143,12 +161,17 @@ class _WorkshopCardState extends State<WorkshopCard> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        child: Stack(
-          children: <Widget>[
-            Container(
-                alignment: Alignment.topCenter, child: AddWorkshopButton()),
-            Container(alignment: Alignment.topLeft, child: AddButton()),
-          ],
+        child: Visibility(
+          maintainAnimation: true,
+          maintainState: true,
+          visible: true,
+          child: Stack(
+            children: <Widget>[
+              Container(
+                  alignment: Alignment.topCenter, child: AddWorkshopButton()),
+              Container(alignment: Alignment.topLeft, child: AddButton()),
+            ],
+          ),
         ),
       ),
     );

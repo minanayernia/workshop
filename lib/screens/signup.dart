@@ -283,17 +283,27 @@ class _SignupbuttonState extends State<Signupbutton> {
               onPressed: 
               
                 (){ 
-                  Map data = {'name':fullname.text , 'nationalcode' :nationalcode.text ,'mobilenumber' :mobilenumber.text , 'gender' : gender };
+                  Map data = {'name':fullname.text , 'nationalCode' :nationalcode.text ,'phoneNumber' :mobilenumber.text , 'gender' : gender };
              Future<http.Response> sendPersonDetail() async{
                var response = 
-                await http.post('http://192.168.43.139:8080/api/v1/signup',
+                await http.post('http://192.168.43.59:8080/api/v1/signup',
                 body: json.encode(data) ,
                 headers: {"Accept": "application/json", "content-type": "application/json"} 
                 );
 
                 SharedPreferences prefs = await SharedPreferences.getInstance();
-                String b = (json.decode(response.body[0]));
+                print(response.body);
+                if (json.decode(response.body)["jwt"] != ""){
+                  String b = json.decode(response.body)["jwt"];
                 prefs.setString("token", b);
+                Navigator.pushNamed(context, '/home');
+                } else{
+                  print("boz");
+                  Navigator.pushNamed(context, '/login');
+                }
+                
+                // String b = (json.decode(response.body[0]));
+                // prefs.setString("token", b);
         
              }
              sendPersonDetail();

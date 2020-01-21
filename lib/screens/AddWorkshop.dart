@@ -19,9 +19,8 @@ final price = TextEditingController();
 // List<S>
 
 class AddWorkshop extends StatefulWidget {
-
-   Workshop workshop ; 
-  AddWorkshop({@required this.workshop}) ;
+  Workshop workshop;
+  AddWorkshop({@required this.workshop});
   @override
   _AddWorkshopState createState() => _AddWorkshopState();
 }
@@ -31,21 +30,28 @@ class _AddWorkshopState extends State<AddWorkshop> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            TopBar(
-              foo: "Add workshop",
+      body: SingleChildScrollView(
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                TopBar(
+                  foo: "Add workshop",
+                ),
+                SingleChildScrollView(
+                  child: GestureDetector(
+                    onTap: () {
+                      FocusScope.of(context).requestFocus(new FocusNode());
+                    },
+                    child: Page(wokshop: widget.workshop),
+                  ),
+                ),
+              ],
             ),
-            SingleChildScrollView(
-              child: GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).requestFocus(new FocusNode());
-                },
-                child: Page(wokshop: widget.workshop),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -53,8 +59,8 @@ class _AddWorkshopState extends State<AddWorkshop> {
 }
 
 class Page extends StatefulWidget {
-  Workshop wokshop ; 
-  Page({@required this.wokshop}) ;
+  Workshop wokshop;
+  Page({@required this.wokshop});
   @override
   _PageState createState() => _PageState();
 }
@@ -65,7 +71,7 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         WorkshopInfo(),
-        WorkshopDtailCard(workshop: widget.wokshop,),
+        WorkshopDtailCard(workshop: boz),
         SchedualCard(),
         SubmitButton(),
       ],
@@ -129,7 +135,10 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Workshop Name' , hintStyle: TextStyle(color: Colors.deepPurple , fontSize: 15)),
+                          border: InputBorder.none,
+                          hintText: 'Workshop Name',
+                          hintStyle: TextStyle(
+                              color: Colors.deepPurple, fontSize: 15)),
                     ),
                   ),
                   width: MediaQuery.of(context).size.width * 0.65,
@@ -179,8 +188,8 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
 }
 
 class WorkshopDtailCard extends StatefulWidget {
-   Workshop workshop;
-   WorkshopDtailCard({@required this.workshop});
+  Workshop workshop;
+  WorkshopDtailCard({@required this.workshop});
   @override
   _WorkshopDtailCardState createState() => _WorkshopDtailCardState();
 }
@@ -206,6 +215,7 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
           ),
           Container(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.only(left: 10),
@@ -216,7 +226,7 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                 ),
                 Container(
                   height: 20,
-                  width: MediaQuery.of(context).size.width * 0.7,
+                  width: MediaQuery.of(context).size.width * 0.55,
                   // child: ListView(
                   //   scrollDirection: Axis.horizontal,
                   //   children: <Widget>[
@@ -229,11 +239,27 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                   //     PreCorseCard(),
                   //   ],
                   // ),
-                  child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => PreCorseCard(workshop: widget.workshop.precourse[i]),
-                  itemCount: widget.workshop.precourse.length,
+                  //   child: ListView.builder(
+                  //   scrollDirection: Axis.horizontal,
+                  //   itemBuilder: (_, i) => PreCorseCard(workshop: widget.workshop.precourse[i]),
+                  //   itemCount: widget.workshop.precourse.length,
+                  // ),
                 ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    width: 55,
+                    height: 22,
+                    decoration: BoxDecoration(
+                        color: Colors.pinkAccent,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Text(
+                        '+',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
@@ -251,7 +277,10 @@ class _WorkshopDtailCardState extends State<WorkshopDtailCard> {
                 textInputAction: TextInputAction.go,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                    border: InputBorder.none, hintText: 'About Workshop ...'),
+                    border: InputBorder.none,
+                    hintText: 'About Workshop ...',
+                    hintStyle:
+                        TextStyle(color: Colors.purple.withOpacity(0.5))),
               ),
             ),
           ),
@@ -289,29 +318,62 @@ class _SchedualCardState extends State<SchedualCard> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 10),
-                    width: 60,
+                    width: 80,
                     height: 35,
                     decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(20)),
-                    child: Center(
-                      child: Text('25/01'),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: TextField(
+                        controller: workshopName,
+                        textInputAction: TextInputAction.go,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Start Date',
+                            hintStyle: TextStyle(
+                                color: Colors.purple.withOpacity(0.5), fontSize: 15)),
+                      ),
                     ),
                   ),
+                 // Container(
+                    // margin: EdgeInsets.only(left: 10),
+                    // width: 60,
+                    // height: 35,
+                    // child: RaisedButton(
+                    //   child: Text(
+                    //     '+',
+                    //     style: TextStyle(color: Colors.white, fontSize: 30.0),
+                    //   ),
+                    //   color: Colors.pinkAccent,
+                    //   shape: RoundedRectangleBorder(
+                    //     borderRadius: new BorderRadius.circular(20.0),
+                    //   ),
+                    //   onPressed: () {},
+                    // ),
+                    
+                  //),
+
                   Container(
                     margin: EdgeInsets.only(left: 10),
-                    width: 60,
+                    width: 80,
                     height: 35,
-                    child: RaisedButton(
-                      child: Text(
-                        '+',
-                        style: TextStyle(color: Colors.white, fontSize: 30.0),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: TextField(
+                        controller: workshopName,
+                        textInputAction: TextInputAction.go,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'End Date',
+                            hintStyle: TextStyle(
+                                color: Colors.purple.withOpacity(0.5), fontSize: 15)),
                       ),
-                      color: Colors.pinkAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0),
-                      ),
-                      onPressed: () {},
                     ),
                   ),
                 ],
@@ -326,22 +388,43 @@ class _SchedualCardState extends State<SchedualCard> {
                     color: Colors.purple,
                   ),
                 ),
+                // Container(
+                //   margin: EdgeInsets.only(left: 10, top: 5),
+                //   width: 60,
+                //   height: 35,
+                //   child: RaisedButton(
+                //     child: Text(
+                //       '+',
+                //       style: TextStyle(color: Colors.white, fontSize: 30.0),
+                //     ),
+                //     color: Colors.pinkAccent,
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: new BorderRadius.circular(20.0),
+                //     ),
+                //     onPressed: () {},
+                //   ),
+                // ),
                 Container(
-                  margin: EdgeInsets.only(left: 10, top: 5),
-                  width: 60,
-                  height: 35,
-                  child: RaisedButton(
-                    child: Text(
-                      '+',
-                      style: TextStyle(color: Colors.white, fontSize: 30.0),
+                    margin: EdgeInsets.only(left: 10),
+                    width: 80,
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        controller: workshopName,
+                        textInputAction: TextInputAction.go,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Time',
+                            hintStyle: TextStyle(
+                                color: Colors.purple.withOpacity(0.5), fontSize: 15)),
+                      ),
                     ),
-                    color: Colors.pinkAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0),
-                    ),
-                    onPressed: () {},
                   ),
-                ),
               ],
             ),
           ),
@@ -365,7 +448,7 @@ class _SchedualCardState extends State<SchedualCard> {
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: 'Location'),
+                          border: InputBorder.none, hintText: 'Location' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
                     ),
                   ),
                   width: MediaQuery.of(context).size.width * 0.75,
@@ -391,14 +474,17 @@ class _SchedualCardState extends State<SchedualCard> {
                 Container(
                   height: 35,
                   margin: EdgeInsets.only(left: 10, top: 5),
-                  child: TextField(
-                    controller: capacity,
-                    textInputAction: TextInputAction.go,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'Capacity'),
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: TextField(
+                      controller: capacity,
+                      textInputAction: TextInputAction.go,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'Capacity' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
+                    ),
                   ),
-                  width: 100,
+                  width: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.circular(15),
@@ -421,14 +507,17 @@ class _SchedualCardState extends State<SchedualCard> {
                 Container(
                   height: 35,
                   margin: EdgeInsets.only(left: 10, top: 5),
-                  child: TextField(
-                    controller: price,
-                    textInputAction: TextInputAction.go,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        border: InputBorder.none, hintText: 'price'),
+                  child: Container(
+                    margin: EdgeInsets.only(left: 20),
+                    child: TextField(
+                      controller: price,
+                      textInputAction: TextInputAction.go,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: InputBorder.none, hintText: 'price' , hintStyle: TextStyle(color: Colors.purple.withOpacity(0.5))),
+                    ),
                   ),
-                  width: 100,
+                  width: 80,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     borderRadius: new BorderRadius.circular(15),
@@ -482,11 +571,10 @@ class _PopupMenuState extends State<PopupMenu> {
   Widget build(BuildContext context) {
     return Container(
       child: PopupMenuButton(
-        
-      
         padding: EdgeInsets.only(bottom: 1),
         icon: Icon(
-          Icons.more_horiz , size: 20 ,
+          Icons.more_horiz,
+          size: 20,
           color: Colors.deepPurple,
         ),
         color: Colors.white,
@@ -503,18 +591,16 @@ class _PopupMenuState extends State<PopupMenu> {
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.smarter,
-            child: Text('Dr Ghare',
-                style: TextStyle(color: Colors.deepPurple)),
+            child: Text('Dr Ghare', style: TextStyle(color: Colors.deepPurple)),
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.selfStarter,
-            child: Text('Dr sami',
-                style: TextStyle(color: Colors.deepPurple)),
+            child: Text('Dr sami', style: TextStyle(color: Colors.deepPurple)),
           ),
           const PopupMenuItem<WhyFarther>(
             value: WhyFarther.tradingCharter,
-            child: Text('Dr Keshti',
-                style: TextStyle(color: Colors.deepPurple)),
+            child:
+                Text('Dr Keshti', style: TextStyle(color: Colors.deepPurple)),
           ),
         ],
       ),

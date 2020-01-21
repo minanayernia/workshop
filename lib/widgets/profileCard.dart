@@ -396,20 +396,21 @@ class _PersonCardState extends State<PersonCard> {
           borderRadius: BorderRadius.circular(10),
         ),
         height: 200,
-        width: MediaQuery.of(context).size.width * 0.85,
+        width: MediaQuery.of(context).size.width * 0.75,
         // margin: EdgeInsets.only(top:30 ),
         // color: Colors.blue,
         alignment: Alignment.center,
         child: Container(
           // color: Colors.yellow,
-          width: MediaQuery.of(context).size.width * 0.6, height: 140,
+          width: MediaQuery.of(context).size.width * 0.5, height: 150,
           // alignment: FractionalOffset.center,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
                 // color: Colors.green,
                 height: 80,
-                margin: EdgeInsets.only(left: 59),
+                margin: EdgeInsets.only(left: 50),
 
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

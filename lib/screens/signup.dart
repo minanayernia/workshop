@@ -7,7 +7,7 @@ import 'package:workshop/screens/login.dart';
 import 'package:http/http.dart' as http;
 
 final fullname = TextEditingController();
-final nationalcode = TextEditingController();
+// final nationalcode = TextEditingController();
 final mobilenumber = TextEditingController();
 int gender = 1; //0 => male    1 => female
 
@@ -72,7 +72,7 @@ class _SignupCardState extends State<SignupCard> {
               ),
               ProPic(),
               FullName(),
-              Nationalcard(),
+              Nationalcard(bozak: nationalCodesgn),
               MobileNumber(),
               Gender(),
               Padding(
@@ -283,7 +283,7 @@ class _SignupbuttonState extends State<Signupbutton> {
               onPressed: 
               
                 (){ 
-                  Map data = {'name':fullname.text , 'nationalCode' :nationalcode.text ,'phoneNumber' :mobilenumber.text , 'gender' : gender };
+                  Map data = {'name':fullname.text , 'nationalCode' :nationalCodesgn.text ,'phoneNumber' :mobilenumber.text , 'gender' : gender };
              Future<http.Response> sendPersonDetail() async{
                var response = 
                 await http.post('http://192.168.43.59:8080/api/v1/signup',

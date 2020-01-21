@@ -24,81 +24,133 @@ class _JobsState extends State<Jobs> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).accentColor,
-        body: FutureBuilder(
-            future: getedovomi(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  return AlertDialog(
-                    backgroundColor: Colors.transparent,
-                    content: Container(
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Center(child: TopBar(foo: "Home",)),
+              Container(
+                height: MediaQuery.of(context).size.height*0.8,
+                width: MediaQuery.of(context).size.width*0.9,
+                child: Column(
+                  children: <Widget>[
+                    WorkshopCard(),
+              SingleChildScrollView(
+                              child: Container(
+                                height: MediaQuery.of(context).size.height*0.6,
+                                width: MediaQuery.of(context).size.width*0.9,
+                                child: FutureBuilder(
+                  future: getedovomi(),
+                  builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return AlertDialog(
+                backgroundColor: Colors.transparent,
+                content: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+            );
+
+          case ConnectionState.active:
+            print("active");
+            return Stack(
+                children: <Widget>[
+                  Background(),
+                  Center(
+                    child: Container(
+                      child: CircularProgressIndicator(),
                       height: 100,
                       width: 100,
-                      color: Colors.transparent,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
                     ),
-                  );
+                  )
+                ],
+            );
 
-                case ConnectionState.active:
-                  print("active");
-                  return Stack(
-                    children: <Widget>[
-                      Background(),
-                      Center(
-                        child: Container(
-                          child: CircularProgressIndicator(),
-                          height: 100,
-                          width: 100,
-                        ),
-                      )
-                    ],
-                  );
+          case ConnectionState.none:
+            print("none");
+            return Stack(
+                children: <Widget>[
+                  Background(),
+                  Center(
+                    child: Container(
+                      child: CircularProgressIndicator(),
+                      height: 100,
+                      width: 100,
+                    ),
+                  )
+                ],
+            );
 
-                case ConnectionState.none:
-                  print("none");
-                  return Stack(
-                    children: <Widget>[
-                      Background(),
-                      Center(
-                        child: Container(
-                          child: CircularProgressIndicator(),
-                          height: 100,
-                          width: 100,
-                        ),
-                      )
-                    ],
-                  );
-
-                case ConnectionState.done:
-                  return SingleChildScrollView(
-                    child: Stack(
-                      children: <Widget>[
-                        Background(),
-                        Column(children: <Widget>[
-                          TopBar(
-                            foo: "Home",
-                          ),
-                          WorkshopCard(),
-                          //  Padding(padding: EdgeInsets.only(top: 50),),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.9,
-                            width: MediaQuery.of(context).size.width * 1.2,
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (_, i) => MmdCard(
+          case ConnectionState.done:
+            return Container(
+                height: MediaQuery.of(context).size.height*0.8,
+                width: MediaQuery.of(context).size.width*0.9,
+                  child: Container(
+                          height: MediaQuery.of(context).size.height * 0.9,
+                          width: MediaQuery.of(context).size.width * 1.2,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (_, i) => MmdCard(
                                 mmdworkshop: wsh[i],
-                              ),
-                              itemCount: wsh.length,
                             ),
+                            itemCount: wsh.length,
                           ),
-                        ])
-                      ],
-                    ),
-                  );
-              }
-            }));
+                        )
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                //   ListView(
+                //   scrollDirection: Axis.vertical,
+                //                     children: <Widget>[
+                //                        Stack(
+                //     children: <Widget>[
+                //       // Background(),
+                //       Column(children: <Widget>[
+                        
+                //         // WorkshopCard(),
+                //         //  Padding(padding: EdgeInsets.only(top: 50),),
+                //         Container(
+                //           height: MediaQuery.of(context).size.height * 0.9,
+                //           width: MediaQuery.of(context).size.width * 1.2,
+                //           child: ListView.builder(
+                //             scrollDirection: Axis.vertical,
+                //             itemBuilder: (_, i) => MmdCard(
+                //               mmdworkshop: wsh[i],
+                //             ),
+                //             itemCount: wsh.length,
+                //           ),
+                //         ),
+                //       ])
+                //     ],
+                //   ),
+                //                     ],
+                // ),
+            );
+        }
+                  }),
+                              ),
+              ),
+                  ],
+                ),
+              )
+              
+
+            ],
+          
+          ));
   }
 }
 
@@ -159,18 +211,26 @@ class _WorkshopCardState extends State<WorkshopCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        // Navigator.pushNamed(context, '/add workshop');
+      },
       child: Container(
         child: Visibility(
           maintainAnimation: true,
           maintainState: true,
           visible: true,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                  alignment: Alignment.topCenter, child: AddWorkshopButton()),
-              Container(alignment: Alignment.topLeft, child: AddButton()),
-            ],
+          child: Container(
+            // color: Colors.red,
+            height: 100,
+            child: Stack(
+              
+                children: <Widget>[
+                  Container(
+                    // height: 100,
+                      alignment: Alignment.topCenter, child: AddWorkshopButton()),
+                  // Container(alignment: Alignment.topLeft, child: AddButton()),
+                ],
+              ),
           ),
         ),
       ),

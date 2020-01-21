@@ -12,7 +12,9 @@ import 'package:http/http.dart' as http;
 
 String url = "192.168.43.59:8080";
 
-final nationalCode = TextEditingController();
+final nationalCodesgn = TextEditingController();
+final nationalCodelgn = TextEditingController();
+
 
 class Login extends StatefulWidget {
   @override
@@ -101,7 +103,7 @@ class _LoginCardState extends State<LoginCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
-                Nationalcard(),
+                Nationalcard(bozak: nationalCodelgn),
                 Padding(
                   padding: EdgeInsets.only(top: 15),
                 ),
@@ -170,7 +172,7 @@ class _SubmitButtomState extends State<SubmitButtom> {
             ),
             onPressed: () {
               print(1111111111111111);
-              Map data = {'nationalCode': nationalCode.text};
+              Map data = {'nationalCode': nationalCodelgn.text};
               Future<http.Response> sendcode() async {
                 var response = await http.post(
                     'http://192.168.43.59:8080/api/v1/login',
@@ -195,13 +197,17 @@ class _SubmitButtomState extends State<SubmitButtom> {
               sendcode();
               // Navigator.pop(context);
               // Navigator.pushNamed(context, '/home');
-              print(nationalCode.text);
+              // print(nationalCode.text);
               // Navigator.popAndPushNamed(context, '/home');
             }));
   }
 }
 
 class Nationalcard extends StatefulWidget {
+
+  TextEditingController bozak;
+  Nationalcard({@required this.bozak});
+
   @override
   _NationalcardState createState() => _NationalcardState();
 }
@@ -212,7 +218,7 @@ class _NationalcardState extends State<Nationalcard> {
     return Container(
       padding: EdgeInsets.only(left: 10),
       child: TextField(
-        controller: nationalCode,
+        controller: widget.bozak,
         textInputAction: TextInputAction.go,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(

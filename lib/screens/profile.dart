@@ -161,7 +161,8 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
             },
             child: Container(
               height: 24,
-              margin: EdgeInsets.only(left: 220),
+              width: 10,
+              margin: EdgeInsets.only(left: 185),
               child: Visibility(
                 child: Icon(Icons.assignment , color: Colors.deepPurple, size: 20,),
                 maintainSize: true,

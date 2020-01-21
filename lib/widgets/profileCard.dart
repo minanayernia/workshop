@@ -287,7 +287,7 @@ class _ProCardState extends State<ProCard> {
                   //   ],
                   // ),
                   child: FutureBuilder(
-                      future: getParticipantWorkshops(),
+                      future: getTAworkshops(),
                       builder: (context, snapshot) {
                         switch (snapshot.connectionState) {
                           case ConnectionState.waiting:

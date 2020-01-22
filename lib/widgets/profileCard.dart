@@ -349,9 +349,9 @@ class _ProCardState extends State<ProCard> {
                                       child: ListView.builder(
                                         scrollDirection: Axis.vertical,
                                         itemBuilder: (_, i) => WorkCardDetail(
-                                          workshop: participantWorkshops[i],
+                                          workshop: taWorkshops[i],
                                         ),
-                                        itemCount: participantWorkshops.length,
+                                        itemCount: taWorkshops.length,
                                       ),
                                     ),
                                   ])

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/main.dart';
 import 'package:workshop/models/PreCourse.dart';
+import 'package:workshop/models/Request.dart';
 import 'package:workshop/models/TA.dart';
 import 'package:workshop/models/user.dart';
 import 'package:workshop/widgets/TA_ImageCard.dart';
@@ -70,7 +71,7 @@ class _PageState extends State<Page> {
           workshop: widget.currentWorkshop,
         ),
         Enrollbutton(workshop : widget.currentWorkshop),
-        TAcard(),
+        TAcard(workshop : widget.currentWorkshop),
       ],
     );
   }
@@ -418,6 +419,8 @@ class _EnrollbuttonState extends State<Enrollbutton> {
 }
 
 class TAcard extends StatefulWidget {
+  Workshop workshop ;
+  TAcard({this.workshop});
   @override
   _TAcardState createState() => _TAcardState();
 }
@@ -547,7 +550,7 @@ class _TAcardState extends State<TAcard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Requestbutton(),
+                  Requestbutton(workshop:widget.workshop),
                 ],
               ),
             ],
@@ -559,11 +562,14 @@ class _TAcardState extends State<TAcard> {
 }
 
 class Requestbutton extends StatefulWidget {
+  Workshop workshop ;
+  Requestbutton({this.workshop});
   @override
   _RequestbuttonState createState() => _RequestbuttonState();
 }
 
 class _RequestbuttonState extends State<Requestbutton> {
+  bool selected = false ;
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
@@ -574,14 +580,25 @@ class _RequestbuttonState extends State<Requestbutton> {
               'Request',
               style: TextStyle(color: Colors.deepPurple[900], fontSize: 15.0),
             ),
-            color: Colors.white,
+            color: !selected ?Colors.greenAccent[400] : Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(35.0),
             ),
             onPressed: () {
+              setState(() {
+                selected = !selected ;
+                if(selected == true){
+                  sendRequest(widget.workshop);
+
+              }else{
+                 deleteRequest(widget.workshop);
+              }
+              });
+              
+              
               // Navigator.pop(context);
               // Navigator.pushNamed(context, '/home');
-              Navigator.popAndPushNamed(context, '/login');
+              // Navigator.popAndPushNamed(context, '/login');
             }));
   }
 }
@@ -676,6 +693,48 @@ Future<http.Response> getpartcipantlist() async {
 
 
 ////////////////////////////////////////////////////////////////////////
-///send user and workshop to make participant
+///send user TA request
 ///
+Future<http.Response> sendRequest(Workshop workshop) async {
+  print("insend");
+  print(workshop);
+  Map data = {'id': workshop.id};
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+
+  var response = await http.post(
+      'http://192.168.43.59:8080/api/v1/workshop/TaRequest',
+      body: json.encode(data),
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "Bearer " + tk,
+      });
+  print("minakhare");
+  print(json.decode(response.body));
+  return response;
+}
+///////////////////////////////////////////////////////////////////////////////////
+///delete request
+///
+///
+Future<http.Response> deleteRequest(Workshop workshop) async {
+  print("insend");
+  print(workshop);
+  Map data = {'id': workshop.id};
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+
+  var response = await http.post(
+      'http://192.168.43.59:8080/api/v1/workshop/removeTaRequest',
+      body: json.encode(data),
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "Bearer " + tk,
+      });
+  print("minakhare");
+  print(json.decode(response.body));
+  return response;
+}
 

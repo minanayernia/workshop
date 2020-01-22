@@ -24,14 +24,14 @@ class _WorkshopAccountorState extends State<WorkshopAccountor> {
   @override
   void initState() {
     // TODO: implement initState
-    sendworkshopid(widget.workshop);
+    // sendworkshopid(widget.workshop);
   }
   @override
 
   Widget build(BuildContext context) {
     final Workshop args = ModalRoute.of(context).settings.arguments;
-    print(args);
-    print("*******************************************");
+    // print(args);
+    // print("*******************************************");
     return Material(
       type: MaterialType.transparency,
       child: Stack(
@@ -62,13 +62,15 @@ class _PageState extends State<Page> {
         ),
         Detailcard(workshop: widget.workshop),
         TimePlcecard(workshop: widget.workshop),
-        ParticipantCard(),
+        ParticipantCard(workshop: widget.workshop,),
       ],
     );
   }
 }
 
 class ParticipantCard extends StatefulWidget {
+  Workshop workshop;
+  ParticipantCard({this.workshop});
   @override
   _ParticipantCardState createState() => _ParticipantCardState();
 }
@@ -106,7 +108,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
                         color: Colors.deepPurple[300],
                         borderRadius: BorderRadius.circular(15)),
                     child: Text(
-                      '53',
+                      participantlist.length.toString(),
                       style: TextStyle(color: Colors.white, fontSize: 10.0),
                     )),
               ],
@@ -132,7 +134,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
             //   itemCount: p.length,
             // ),
             child: FutureBuilder(
-                      future: getpartcipantlist(),
+                      future: getpartcipantlist(widget.workshop.id),
                       builder: (context, snapshot) {
                         switch (snapshot.connectionState) {
                           case ConnectionState.waiting:
@@ -149,7 +151,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
                             );
 
                           case ConnectionState.active:
-                            print("active");
+                            // print("active");
                             return Stack(
                               children: <Widget>[
                                 // Background(),
@@ -164,7 +166,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
                             );
 
                           case ConnectionState.none:
-                            print("none");
+                            // print("none");
                             return Stack(
                               children: <Widget>[
                                 // Background(),
@@ -186,9 +188,10 @@ class _ParticipantCardState extends State<ParticipantCard> {
                                   Column(children: <Widget>[
                                     //  Padding(padding: EdgeInsets.only(top: 50),),
                                     Container(
+                                      // color: Colors.red,
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.9,
+                                              0.11,
                                       width: MediaQuery.of(context).size.width *
                                           1.2,
                                       child: ListView.builder(
@@ -214,7 +217,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
 }
 
 class EachParticipantCard extends StatefulWidget {
-  User user ; 
+  User user ;
   EachParticipantCard({@required this.user}) ;
   @override
   _EachParticipantCardState createState() => _EachParticipantCardState();
@@ -224,6 +227,7 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
   
   @override
   Widget build(BuildContext context) {
+  
     return Container(
       width: 140,
       height: 72,
@@ -248,7 +252,7 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text(
-              'bahar',
+              widget.user.name,
               style: TextStyle(fontSize: 12.0, color: Colors.purple[600]),
             ),
           ),
@@ -258,49 +262,56 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
   }
 }
 
-void sendworkshopid(Workshop workshop) {
-  Map data = {'offeredWorkshopId': workshop.id};
-  Future<http.Response> sendId() async {
-    var response = await http.post('http://192.168.43.59:8080/api/v1/signup',
-        body: json.encode(data),
-        headers: {
-          "Accept": "application/json",
-          "content-type": "application/json"
-        });
+// void sendworkshopid(Workshop workshop) {
+//   Map data = {'offeredWorkshopId': workshop.id};
+//   Future<http.Response> sendId() async {
+//     var response = await http.post('http://192.168.43.59:8080/api/v1/signup',
+//         body: json.encode(data),
+//         headers: {
+//           "Accept": "application/json",
+//           "content-type": "application/json"
+//         });
 
-    // String b = (json.decode(response.body[0]));
-    // prefs.setString("token", b);
-  }
+//     // String b = (json.decode(response.body[0]));
+//     // prefs.setString("token", b);
+//   }
 
-  sendId();
-}
+//   sendId();
+// }
 // Navigator.pop(context);
 // Navigator.pushNamed(context, '/home');
 
 List<User> participantlist = [];
 
-Future<http.Response> getpartcipantlist() async {
-  print(11111111111111111);
+Future<http.Response> getpartcipantlist(int id) async {
+  // print(11111111111111111);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String tk = prefs.getString('token');
   participantlist.clear();
-  var response = await http
-      .get('http://192.168.43.59:8080/api/v1/detailForParticipant', headers: {
+  print("fml fml fml fml");
+  Map data = {"id": id};
+  var response = await http.post('http://192.168.43.59:8080/api/v1/workshop/detailForParticipant',
+  headers: {
     "Accept": "application/json",
     "content-type": "application/json",
     "Authorization": "Bearer " + tk,
-  });
+  }, 
+  body: json.encode(data)
+  );
 
-  print(22222222);
-  // print(777777777777777777);
+  // print(22222222);
+  // // print(777777777777777777);
+  print("fml");
+  print(id);
   print(json.decode(response.body));
 
   for (int i = 0; i < json.decode(response.body)["participants"].length; i++) {
     User user = User();
-    print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
 
     // print(json.decode(response.body)["list"][i]["offeredWorkshop"]);/////////////////////
     user.name = json.decode(response.body)["participants"][i]["name"];
+    print("myyyaaaay");
+    print(user.name);
 
     participantlist.add(user);
   }

@@ -645,7 +645,7 @@ class _PriceState extends State<Price> {
 List<User> participantlist = [];
 
 Future<http.Response> getpartcipantlist() async {
-  print(11111111111111111);
+  // print(11111111111111111);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String tk = prefs.getString('token');
   participantlist.clear();
@@ -657,13 +657,13 @@ Future<http.Response> getpartcipantlist() async {
         "Authorization": "Bearer " + tk,
       });
 
-  print(22222222);
+  // print(22222222);
   // print(777777777777777777);
   print(json.decode(response.body));
 
   for (int i = 0; i < json.decode(response.body)["participants"].length; i++) {
     User user = User();
-    print("aidaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    // print("aidaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
     // print(json.decode(response.body)["list"][i]["offeredWorkshop"]);/////////////////////
     user.name = json.decode(response.body)["participants"][i]["name"] ;

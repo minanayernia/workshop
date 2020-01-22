@@ -3,7 +3,7 @@ import 'package:workshop/models/PreCourse.dart';
 import 'package:workshop/models/workshop.dart';
 
 class PreCorseCard extends StatefulWidget {
-   Workshop workshop;
+   String workshop;
    PreCorseCard({@required this.workshop});
   
   @override
@@ -21,7 +21,7 @@ class _PreCorseCardState extends State<PreCorseCard> {
           color: Colors.pinkAccent, borderRadius: BorderRadius.circular(10)),
       child: Center(
         child: Text(
-          widget.workshop.name,
+          widget.workshop,
           style: TextStyle(color: Colors.white),
         ),
       ),

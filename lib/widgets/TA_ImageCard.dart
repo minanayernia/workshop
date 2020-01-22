@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/models/TA.dart';
+import 'package:workshop/models/user.dart';
 
 class TAImageCard extends StatefulWidget {
-  TA ta ;
-  TAImageCard({@required this.ta});
+  User user ;
+  TAImageCard({@required this.user});
   @override
   _TAImageCardState createState() => _TAImageCardState();
 }
@@ -23,7 +24,7 @@ class _TAImageCardState extends State<TAImageCard> {
                     ProfileImage(),
                     Container(
                       margin: EdgeInsets.only(left: 10),
-                      child: Text('Bahar',
+                      child: Text(widget.user.name,
                       style: TextStyle(color: Colors.white, fontSize: 15.0) 
                       ) ,
                     )

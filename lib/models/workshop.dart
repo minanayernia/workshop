@@ -3,6 +3,7 @@
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workshop/models/PreCourse.dart';
 import 'dart:convert';
 import 'dart:async';
 
@@ -12,7 +13,7 @@ String url = "192.168.43.59:8080";
 
 class Workshop with ChangeNotifier {
   String about;
-  List<Workshop> precourse;
+  List<String> precourse = [];
   String picture;
   int id;
   int price;
@@ -44,6 +45,7 @@ List<Workshop> wsh = [];
 List<Workshop> participantWorkshops = [];
 List<Workshop> supervisorWorkshops = [];
 List<Workshop> taWorkshops = [];
+List<Workshop> prelist = [] ;
 
 // void getworkshops() {
 
@@ -66,6 +68,13 @@ Future<http.Response> getedovomi() async {
     workshop.time = json.decode(response.body)[i]["offeredWorkshop"]["startTime"];
     workshop.name = json.decode(response.body)[i]["offeredWorkshop"]["workshop"]["workshopName"];
     workshop.date = json.decode(response.body)[i]["offeredWorkshop"]["startDate"];
+    print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa') ;
+    if (json.decode(response.body)[i]["preRequisite"] != []){
+      print(json.decode(response.body)[i]["preRequisite"]);
+    for(int j = 0 ; j < json.decode(response.body)[i]["preRequisite"].length ; j++){
+      // print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa') ;
+      workshop.precourse.add(json.decode(response.body)[i]["preRequisite"][j]["workshopName"]);
+    }}
     // workshop.precourse = json.decode(response.body)[i]["precourse"];
     // workshop.about = json.decode(response.body)[i]["about"];
     workshop.price = json.decode(response.body)[i]["offeredWorkshop"]["price"];
@@ -249,6 +258,10 @@ Future<http.Response> getTAworkshops() async{
       taWorkshops.add(workshop);
     }
   }
+
+
+
+
 
 Workshop boz = Workshop(
   about: 'e',

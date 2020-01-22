@@ -340,11 +340,11 @@ class _TADetailState extends State<TADetail> {
                 //     TAImageCard(),
                 //   ],
                 // ),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => TAImageCard(ta: t[i]),
-                  itemCount: t.length,
-                ),
+                // child: ListView.builder(
+                //   scrollDirection: Axis.horizontal,
+                //   itemBuilder: (_, i) => TAImageCard(ta: t[i]),
+                //   itemCount: t.length,
+                // ),
                 height: 50,
               ),
               Container(

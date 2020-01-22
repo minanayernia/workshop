@@ -5,21 +5,29 @@ import 'package:workshop/widgets/background.dart';
 import 'package:workshop/screens/workshop-details.dart';
 import 'package:workshop/widgets/profileCard.dart';
 import 'package:workshop/models/Participant.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workshop/models/PreCourse.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:workshop/models/user.dart';
 
 class WorkshopAccountor extends StatefulWidget {
-
-   Workshop workshop;
-   WorkshopAccountor({@required this.workshop});
-
+  Workshop workshop;
+  WorkshopAccountor({@required this.workshop});
 
   @override
   _WorkshopAccountorState createState() => _WorkshopAccountorState();
 }
-
 class _WorkshopAccountorState extends State<WorkshopAccountor> {
- 
-
   @override
+  void initState() {
+    // TODO: implement initState
+    sendworkshopid(widget.workshop);
+  }
+  @override
+
   Widget build(BuildContext context) {
     final Workshop args = ModalRoute.of(context).settings.arguments;
     print(args);
@@ -38,7 +46,7 @@ class _WorkshopAccountorState extends State<WorkshopAccountor> {
 
 class Page extends StatefulWidget {
   Workshop workshop;
-   Page({@required this.workshop});
+  Page({@required this.workshop});
 
   @override
   _PageState createState() => _PageState();
@@ -47,10 +55,11 @@ class Page extends StatefulWidget {
 class _PageState extends State<Page> {
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       children: <Widget>[
-        Workshopimage(workshop: widget.workshop,),
+        Workshopimage(
+          workshop: widget.workshop,
+        ),
         Detailcard(workshop: widget.workshop),
         TimePlcecard(workshop: widget.workshop),
         ParticipantCard(),
@@ -117,11 +126,85 @@ class _ParticipantCardState extends State<ParticipantCard> {
             //     EachParticipantCard(),
             //   ],
             // ),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (_, i) => EachParticipantCard(eprt: p[i]),
-              itemCount: p.length,
-            ),
+            // child: ListView.builder(
+            //   scrollDirection: Axis.horizontal,
+            //   itemBuilder: (_, i) => EachParticipantCard(eprt: p[i]),
+            //   itemCount: p.length,
+            // ),
+            child: FutureBuilder(
+                      future: getpartcipantlist(),
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return AlertDialog(
+                              backgroundColor: Colors.transparent,
+                              content: Container(
+                                height: 100,
+                                width: 100,
+                                color: Colors.transparent,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                            );
+
+                          case ConnectionState.active:
+                            print("active");
+                            return Stack(
+                              children: <Widget>[
+                                // Background(),
+                                Center(
+                                  child: Container(
+                                    child: CircularProgressIndicator(),
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                )
+                              ],
+                            );
+
+                          case ConnectionState.none:
+                            print("none");
+                            return Stack(
+                              children: <Widget>[
+                                // Background(),
+                                Center(
+                                  child: Container(
+                                    child: CircularProgressIndicator(),
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                )
+                              ],
+                            );
+
+                          case ConnectionState.done:
+                            return SingleChildScrollView(
+                              child: Stack(
+                                children: <Widget>[
+                                  Background(),
+                                  Column(children: <Widget>[
+                                    //  Padding(padding: EdgeInsets.only(top: 50),),
+                                    Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.9,
+                                      width: MediaQuery.of(context).size.width *
+                                          1.2,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (_, i) => EachParticipantCard(
+                                          user: participantlist[i],
+                                        ),
+                                        itemCount: participantlist.length,
+                                      ),
+                                    ),
+                                  ])
+                                ],
+                              ),
+                            );
+                        }
+                      }),
             // child: EachParticipantCard(),
           ),
         ],
@@ -131,13 +214,14 @@ class _ParticipantCardState extends State<ParticipantCard> {
 }
 
 class EachParticipantCard extends StatefulWidget {
-  Participant eprt;
-  EachParticipantCard({@required this.eprt});
+  User user ; 
+  EachParticipantCard({@required this.user}) ;
   @override
   _EachParticipantCardState createState() => _EachParticipantCardState();
 }
 
 class _EachParticipantCardState extends State<EachParticipantCard> {
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -172,4 +256,53 @@ class _EachParticipantCardState extends State<EachParticipantCard> {
       ),
     );
   }
+}
+
+void sendworkshopid(Workshop workshop) {
+  Map data = {'offeredWorkshopId': workshop.id};
+  Future<http.Response> sendId() async {
+    var response = await http.post('http://192.168.43.59:8080/api/v1/signup',
+        body: json.encode(data),
+        headers: {
+          "Accept": "application/json",
+          "content-type": "application/json"
+        });
+
+    // String b = (json.decode(response.body[0]));
+    // prefs.setString("token", b);
+  }
+
+  sendId();
+}
+// Navigator.pop(context);
+// Navigator.pushNamed(context, '/home');
+
+List<User> participantlist = [];
+
+Future<http.Response> getpartcipantlist() async {
+  print(11111111111111111);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+  participantlist.clear();
+  var response = await http
+      .get('http://192.168.43.59:8080/api/v1/detailForParticipant', headers: {
+    "Accept": "application/json",
+    "content-type": "application/json",
+    "Authorization": "Bearer " + tk,
+  });
+
+  print(22222222);
+  // print(777777777777777777);
+  print(json.decode(response.body));
+
+  for (int i = 0; i < json.decode(response.body)["participants"].length; i++) {
+    User user = User();
+    print("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+
+    // print(json.decode(response.body)["list"][i]["offeredWorkshop"]);/////////////////////
+    user.name = json.decode(response.body)["participants"][i]["name"];
+
+    participantlist.add(user);
+  }
+  return response;
 }

@@ -69,7 +69,7 @@ class _PageState extends State<Page> {
         TimePlcecard(
           workshop: widget.currentWorkshop,
         ),
-        Enrollbutton(),
+        Enrollbutton(workshop : widget.currentWorkshop),
         TAcard(),
       ],
     );
@@ -386,6 +386,8 @@ class _TimePlcecardState extends State<TimePlcecard> {
 }
 
 class Enrollbutton extends StatefulWidget {
+  Workshop workshop ;
+  Enrollbutton({@required this.workshop}) ;
   @override
   _EnrollbuttonState createState() => _EnrollbuttonState();
 }
@@ -406,7 +408,8 @@ class _EnrollbuttonState extends State<Enrollbutton> {
         ),
         onPressed: () {
           // Navigator.pop(context);
-          Navigator.pushNamed(context, '/peyment');
+          Navigator.pushNamed(context, '/payment', arguments: widget.workshop);
+          // arguments: widget.workshop ;
           // Navigator.popAndPushNamed(context, '/login');
         },
       ),
@@ -670,3 +673,9 @@ Future<http.Response> getpartcipantlist() async {
   }
   return response;
 }
+
+
+////////////////////////////////////////////////////////////////////////
+///send user and workshop to make participant
+///
+

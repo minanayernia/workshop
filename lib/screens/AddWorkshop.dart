@@ -19,11 +19,14 @@ TextEditingController workshopName = TextEditingController();
 TextEditingController aboutWorkshop = TextEditingController();
 TextEditingController location = TextEditingController();
 TextEditingController capacity = TextEditingController();
-TextEditingController price = TextEditingController();
+TextEditingController workshopPrice = TextEditingController();
 TextEditingController startDate = TextEditingController();
 TextEditingController endDate =TextEditingController();
-TextEditingController time = TextEditingController();
+TextEditingController startTime = TextEditingController();
+TextEditingController endTime = TextEditingController();
 User supervisor = User() ;
+List<Workshop> preWorkshops = [] ;
+User sup = User(name:"mina nayernia" ,ncode:"2282895304" ,phone:"09334262617" );
 
 // List<S>
 
@@ -423,12 +426,33 @@ class _SchedualCardState extends State<SchedualCard> {
                     child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: TextField(
-                        controller: time,
+                        controller: startTime,
                         textInputAction: TextInputAction.go,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Time',
+                            hintText: 'startTime',
+                            hintStyle: TextStyle(
+                                color: Colors.purple.withOpacity(0.5), fontSize: 15)),
+                      ),
+                    ),
+                  ),
+                Container(
+                    margin: EdgeInsets.only(left: 10),
+                    width: 80,
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: TextField(
+                        controller: endTime,
+                        textInputAction: TextInputAction.go,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'endTime',
                             hintStyle: TextStyle(
                                 color: Colors.purple.withOpacity(0.5), fontSize: 15)),
                       ),
@@ -519,7 +543,7 @@ class _SchedualCardState extends State<SchedualCard> {
                   child: Container(
                     margin: EdgeInsets.only(left: 20),
                     child: TextField(
-                      controller: price,
+                      controller: workshopPrice,
                       textInputAction: TextInputAction.go,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
@@ -592,7 +616,7 @@ class _PopupMenuState extends State<PopupMenu> {
         color: Colors.white,
         onSelected: (WhyFarther result) {
           setState(() {
-            getAllUsers();
+            // getAllUsers();
           });
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
@@ -647,17 +671,24 @@ Future<http.Response> getAllUsers() async{
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 //for sending workshop
- Map data = {'workshopName' : workshopName , 'capacity' : capacity , 'aboutWorkshop' : aboutWorkshop ,
-            'price' : Price , 'location' : location , 'time' :time , 'startDate' : startDate ,
-            'endDate' : endDate , 'supervisor' : user
- };
+
+
 
 Future<http.Response> addWorkshop() async{
-  var response = await http.post('http://192.168.43.59:8080/api/v1/addWorkshop',
+  
+ Map data = {'workshopName' : workshopName.text , 'capacity' : int.parse(capacity.text), 'about' : aboutWorkshop.text ,
+            'price' : int.parse(workshopPrice.text), 'location' : location.text , 'startTime' :startTime.text ,'endTime': endTime.text, 'startDate' : startDate.text ,
+            'endDate' : endDate.text , 'supervisor' : {"name": sup.name, "userId":1, "nationalCode": sup.ncode} , 'preWorkshops' : []};
+
+  var response = await http.post('http://192.168.43.59:8080/api/v1/workshop/add',
             body: json.encode(data) ,
             headers: {
                           "Accept": "application/json",
-                          "content-type": "application/json",}
+                          "content-type": "application/json",
+                      }
                   )  ;
+                  print("mina");
+                  print(response.body);
+                  print("mmd");
 
   }

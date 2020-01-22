@@ -307,7 +307,7 @@ class _EnrollbuttonState extends State<Enrollbutton> {
         ),
         onPressed: () {
           // Navigator.pop(context);
-          // Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/peyment');
           // Navigator.popAndPushNamed(context, '/login');
         },
       ),

@@ -1,7 +1,11 @@
 // import 'dart:html';
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:workshop/models/user.dart';
 import 'package:workshop/screens/AddForm.dart';
+import 'package:workshop/screens/workshop-details.dart';
 import 'package:workshop/widgets/PreCourseCard.dart';
 import 'package:workshop/widgets/topbar.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,18 +13,23 @@ import 'dart:async';
 import 'dart:io';
 import 'package:workshop/models/PreCourse.dart';
 import 'package:workshop/models/workshop.dart';
+import 'package:http/http.dart' as http;
 
-final workshopName = TextEditingController();
-final aboutWorkshop = TextEditingController();
-final location = TextEditingController();
-final capacity = TextEditingController();
-final price = TextEditingController();
+TextEditingController workshopName = TextEditingController();
+TextEditingController aboutWorkshop = TextEditingController();
+TextEditingController location = TextEditingController();
+TextEditingController capacity = TextEditingController();
+TextEditingController price = TextEditingController();
+TextEditingController startDate = TextEditingController();
+TextEditingController endDate =TextEditingController();
+TextEditingController time = TextEditingController();
+User supervisor = User() ;
 
 // List<S>
 
 class AddWorkshop extends StatefulWidget {
-  Workshop workshop;
-  AddWorkshop({@required this.workshop});
+  // Workshop workshop;
+  // AddWorkshop({@required this.workshop});
   @override
   _AddWorkshopState createState() => _AddWorkshopState();
 }
@@ -46,7 +55,7 @@ class _AddWorkshopState extends State<AddWorkshop> {
                     onTap: () {
                       FocusScope.of(context).requestFocus(new FocusNode());
                     },
-                    child: Page(wokshop: widget.workshop),
+                    child: Page(),
                   ),
                 ),
               ],
@@ -59,8 +68,8 @@ class _AddWorkshopState extends State<AddWorkshop> {
 }
 
 class Page extends StatefulWidget {
-  Workshop wokshop;
-  Page({@required this.wokshop});
+  // Workshop wokshop;
+  // Page({@required this.wokshop});
   @override
   _PageState createState() => _PageState();
 }
@@ -71,7 +80,7 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         WorkshopInfo(),
-        WorkshopDtailCard(workshop: boz),
+        WorkshopDtailCard(),
         SchedualCard(),
         SubmitButton(),
       ],
@@ -188,8 +197,8 @@ class _WorkshopInfoState extends State<WorkshopInfo> {
 }
 
 class WorkshopDtailCard extends StatefulWidget {
-  Workshop workshop;
-  WorkshopDtailCard({@required this.workshop});
+  // Workshop workshop;
+  // WorkshopDtailCard({@required this.workshop});
   @override
   _WorkshopDtailCardState createState() => _WorkshopDtailCardState();
 }
@@ -326,7 +335,7 @@ class _SchedualCardState extends State<SchedualCard> {
                     child: Container(
                       margin: EdgeInsets.only(left: 5),
                       child: TextField(
-                        controller: workshopName,
+                        controller: startDate,
                         textInputAction: TextInputAction.go,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -365,7 +374,7 @@ class _SchedualCardState extends State<SchedualCard> {
                     child: Container(
                       margin: EdgeInsets.only(left: 10),
                       child: TextField(
-                        controller: workshopName,
+                        controller: endDate,
                         textInputAction: TextInputAction.go,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -414,7 +423,7 @@ class _SchedualCardState extends State<SchedualCard> {
                     child: Container(
                       margin: EdgeInsets.only(left: 20),
                       child: TextField(
-                        controller: workshopName,
+                        controller: time,
                         textInputAction: TextInputAction.go,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -555,7 +564,10 @@ class _SubmitButtonState extends State<SubmitButton> {
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(20.0),
         ),
-        onPressed: () {},
+        onPressed: () {
+          addWorkshop();
+          Navigator.pushNamed(context, '/home');
+        },
       ),
     );
   }
@@ -579,7 +591,9 @@ class _PopupMenuState extends State<PopupMenu> {
         ),
         color: Colors.white,
         onSelected: (WhyFarther result) {
-          setState(() {});
+          setState(() {
+            getAllUsers();
+          });
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
           const PopupMenuItem<WhyFarther>(
@@ -607,3 +621,43 @@ class _PopupMenuState extends State<PopupMenu> {
     );
   }
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//for getting all the users
+
+List<User> allUsers = [] ;
+
+Future<http.Response> getAllUsers() async{
+
+  var response = await http.get(
+        'http://192.168.43.59:8080/api/v1/allUsers',
+        headers: {
+          "Accept": "application/json",
+          "content-type": "application/json",
+        });
+      print(json.decode(response.body));
+      for (int i = 0 ; i < json.decode(response.body).length ; i++ ){
+        User user = User() ;
+
+        user.name = json.decode(response.body)[i]["name"] ;
+        allUsers.add(user);
+      }
+      return response ;
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+//for sending workshop
+ Map data = {'workshopName' : workshopName , 'capacity' : capacity , 'aboutWorkshop' : aboutWorkshop ,
+            'price' : Price , 'location' : location , 'time' :time , 'startDate' : startDate ,
+            'endDate' : endDate , 'supervisor' : user
+ };
+
+Future<http.Response> addWorkshop() async{
+  var response = await http.post('http://192.168.43.59:8080/api/v1/addWorkshop',
+            body: json.encode(data) ,
+            headers: {
+                          "Accept": "application/json",
+                          "content-type": "application/json",}
+                  )  ;
+
+  }

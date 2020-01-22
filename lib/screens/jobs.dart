@@ -212,7 +212,7 @@ class _WorkshopCardState extends State<WorkshopCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.pushNamed(context, '/add workshop');
+        Navigator.pushNamed(context, '/add workshop');
       },
       child: Container(
         child: Visibility(

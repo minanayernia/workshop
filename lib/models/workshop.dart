@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workshop/models/PreCourse.dart';
 import 'dart:convert';
 import 'dart:async';
-
 import 'package:workshop/screens/AddWorkshop.dart';
 
 String url = "192.168.43.59:8080";

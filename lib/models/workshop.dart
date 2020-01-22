@@ -62,6 +62,7 @@ Future<http.Response> getedovomi() async {
 
 
   for (int i = 0; i < json.decode(response.body).length; i++) {
+    print(i);
     Workshop workshop = Workshop();
     workshop.id = json.decode(response.body)[i]["offeredWorkshop"]["offeredWorkshopId"];
     workshop.supervisor = json.decode(response.body)[i]["supervisor"]["name"];
@@ -71,12 +72,13 @@ Future<http.Response> getedovomi() async {
     workshop.name = json.decode(response.body)[i]["offeredWorkshop"]["workshop"]["workshopName"];
     workshop.date = json.decode(response.body)[i]["offeredWorkshop"]["startDate"];
     // print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa') ;
-    if (json.decode(response.body)[i]["preRequisite"] != []){
-      print(json.decode(response.body)[i]["preRequisite"]);
-    for(int j = 0 ; j < json.decode(response.body)[i]["preRequisite"].length ; j++){
-      // print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa') ;
-      workshop.precourse.add(json.decode(response.body)[i]["preRequisite"][j]["workshopName"]);
-    }}
+    // if (json.decode(response.body)[i]["preRequisite"] != []){
+    //   print(json.decode(response.body)[i]["preRequisite"]);
+    // for(int j = 0 ; j < json.decode(response.body)[i]["preRequisite"].length ; j++){
+    //   // print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa') ;
+    //   workshop.precourse.add(json.decode(response.body)[i]["preRequisite"][j]["workshopName"]);
+    // }}
+    workshop.precourse = [];
     workshop.price = json.decode(response.body)[i]["offeredWorkshop"]["price"];
 
     wsh.add(workshop);

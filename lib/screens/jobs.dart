@@ -91,7 +91,7 @@ class _JobsState extends State<Jobs> {
                 height: MediaQuery.of(context).size.height*0.8,
                 width: MediaQuery.of(context).size.width*0.9,
                   child: Container(
-                          height: MediaQuery.of(context).size.height * 0.9,
+                          height: MediaQuery.of(context).size.height * 0.95,
                           width: MediaQuery.of(context).size.width * 1.2,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,

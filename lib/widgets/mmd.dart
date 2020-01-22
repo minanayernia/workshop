@@ -85,13 +85,13 @@ class _CardThumbState extends State<CardThumb> {
         // color: colors[random.nextInt(3)][random.nextInt(2)],
          shape: BoxShape.rectangle,
          borderRadius: new BorderRadius.circular(8.0),
-         boxShadow: <BoxShadow>[
-           new BoxShadow(  
-            color: Colors.black12,
-            blurRadius: 100.0,
-            offset: new Offset(0.0, 50.0),
-          ),
-        ],
+        //  boxShadow: <BoxShadow>[
+        //    new BoxShadow(  
+        //     color: Colors.black12,
+        //     blurRadius: 100.0,
+        //     offset: new Offset(0.0, 50.0),
+        //   ),
+        // ],
       ),
       child: Container(
         margin: EdgeInsets.only(left: 70),

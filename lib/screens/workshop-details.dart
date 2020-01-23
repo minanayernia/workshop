@@ -30,8 +30,6 @@ class _WorkshopdetailsState extends State<Workshopdetails> {
     // print(widget.currentWorkshop);
 
     final Workshop args = ModalRoute.of(context).settings.arguments;
-    print(args);
-    print("###################################################");
 
     return Scaffold(
       body: Stack(
@@ -70,8 +68,8 @@ class _PageState extends State<Page> {
         TimePlcecard(
           workshop: widget.currentWorkshop,
         ),
-        Enrollbutton(workshop : widget.currentWorkshop),
-        TAcard(workshop : widget.currentWorkshop),
+        Enrollbutton(workshop: widget.currentWorkshop),
+        TAcard(workshop: widget.currentWorkshop),
       ],
     );
   }
@@ -388,8 +386,8 @@ class _TimePlcecardState extends State<TimePlcecard> {
 }
 
 class Enrollbutton extends StatefulWidget {
-  Workshop workshop ;
-  Enrollbutton({@required this.workshop}) ;
+  Workshop workshop;
+  Enrollbutton({@required this.workshop});
   @override
   _EnrollbuttonState createState() => _EnrollbuttonState();
 }
@@ -420,7 +418,7 @@ class _EnrollbuttonState extends State<Enrollbutton> {
 }
 
 class TAcard extends StatefulWidget {
-  Workshop workshop ;
+  Workshop workshop;
   TAcard({this.workshop});
   @override
   _TAcardState createState() => _TAcardState();
@@ -471,79 +469,82 @@ class _TAcardState extends State<TAcard> {
                       //   itemCount: t.length,
                       // ),
                       child: FutureBuilder(
-                      future: getpartcipantlist(),
-                      builder: (context, snapshot) {
-                        switch (snapshot.connectionState) {
-                          case ConnectionState.waiting:
-                            return AlertDialog(
-                              backgroundColor: Colors.transparent,
-                              content: Container(
-                                height: 100,
-                                width: 100,
-                                color: Colors.transparent,
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              ),
-                            );
-
-                          case ConnectionState.active:
-                            print("active");
-                            return Stack(
-                              children: <Widget>[
-                                // Background(),
-                                Center(
-                                  child: Container(
-                                    child: CircularProgressIndicator(),
+                          future: getTAlist(widget.workshop.id),
+                          builder: (context, snapshot) {
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return AlertDialog(
+                                  backgroundColor: Colors.transparent,
+                                  content: Container(
                                     height: 100,
                                     width: 100,
-                                  ),
-                                )
-                              ],
-                            );
-
-                          case ConnectionState.none:
-                            print("none");
-                            return Stack(
-                              children: <Widget>[
-                                // Background(),
-                                Center(
-                                  child: Container(
-                                    child: CircularProgressIndicator(),
-                                    height: 100,
-                                    width: 100,
-                                  ),
-                                )
-                              ],
-                            );
-
-                          case ConnectionState.done:
-                            return SingleChildScrollView(
-                              child: Stack(
-                                children: <Widget>[
-                                  Background(),
-                                  Column(children: <Widget>[
-                                    //  Padding(padding: EdgeInsets.only(top: 50),),
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.9,
-                                      width: MediaQuery.of(context).size.width *
-                                          1.2,
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        itemBuilder: (_, i) => TAImageCard(
-                                          user: participantlist[i],
-                                        ),
-                                        itemCount: participantlist.length,
-                                      ),
+                                    color: Colors.transparent,
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
                                     ),
-                                  ])
-                                ],
-                              ),
-                            );
-                        }
-                      }),
+                                  ),
+                                );
+
+                              case ConnectionState.active:
+                                print("active");
+                                return Stack(
+                                  children: <Widget>[
+                                    // Background(),
+                                    Center(
+                                      child: Container(
+                                        child: CircularProgressIndicator(),
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                    )
+                                  ],
+                                );
+
+                              case ConnectionState.none:
+                                print("none");
+                                return Stack(
+                                  children: <Widget>[
+                                    // Background(),
+                                    Center(
+                                      child: Container(
+                                        child: CircularProgressIndicator(),
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                    )
+                                  ],
+                                );
+
+                              case ConnectionState.done:
+                                return SingleChildScrollView(
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Background(),
+                                      Column(children: <Widget>[
+                                        //  Padding(padding: EdgeInsets.only(top: 50),),
+                                        Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              1.2,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (_, i) => TAImageCard(
+                                              user: TAlist[i],
+                                            ),
+                                            itemCount: TAlist.length,
+                                          ),
+                                        ),
+                                      ])
+                                    ],
+                                  ),
+                                );
+                            }
+                          }),
                     )
                   ],
                 ),
@@ -551,7 +552,7 @@ class _TAcardState extends State<TAcard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Requestbutton(workshop:widget.workshop),
+                  Requestbutton(workshop: widget.workshop),
                 ],
               ),
             ],
@@ -563,14 +564,14 @@ class _TAcardState extends State<TAcard> {
 }
 
 class Requestbutton extends StatefulWidget {
-  Workshop workshop ;
+  Workshop workshop;
   Requestbutton({this.workshop});
   @override
   _RequestbuttonState createState() => _RequestbuttonState();
 }
 
 class _RequestbuttonState extends State<Requestbutton> {
-  bool selected = false ;
+  bool selected = false;
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
@@ -581,22 +582,20 @@ class _RequestbuttonState extends State<Requestbutton> {
               'Request',
               style: TextStyle(color: Colors.deepPurple[900], fontSize: 15.0),
             ),
-            color: !selected ?Colors.greenAccent[400] : Colors.white,
+            color: !selected ? Colors.greenAccent[400] : Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(35.0),
             ),
             onPressed: () {
               setState(() {
-                selected = !selected ;
-                if(selected == true){
+                selected = !selected;
+                if (selected == true) {
                   sendRequest(widget.workshop);
-
-              }else{
-                 deleteRequest(widget.workshop);
-              }
+                } else {
+                  deleteRequest(widget.workshop);
+                }
               });
-              
-              
+
               // Navigator.pop(context);
               // Navigator.pushNamed(context, '/home');
               // Navigator.popAndPushNamed(context, '/login');
@@ -633,61 +632,42 @@ class _PriceState extends State<Price> {
   }
 }
 
+// Navigator.pop(context);
+// Navigator.pushNamed(context, '/home');
 
- 
-            
-            void sendworkshopid(Workshop workshop){
-              Map data = {'workshopId': workshop.id };
-             Future<http.Response> sendId() async{
-               var response = 
-                await http.post('http://192.168.43.59:8080/api/v1/signup',
-                body: json.encode(data) ,
-                headers: {"Accept": "application/json", "content-type": "application/json"} 
-                );
+List<User> TAlist = [];
 
-                
-                
-                // String b = (json.decode(response.body[0]));
-                // prefs.setString("token", b);
-        
-             }
-             sendId();
-            }
-                  // Navigator.pop(context);
-                  // Navigator.pushNamed(context, '/home');
-                  
-                
-
-
-
-List<User> participantlist = [];
-
-Future<http.Response> getpartcipantlist() async {
+Future<http.Response> getTAlist(int id) async {
   // print(11111111111111111);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String tk = prefs.getString('token');
-  participantlist.clear();
-  var response = await http.get(
-      'http://192.168.43.59:8080/api/v1/detailForParticipant',
+  TAlist.clear();
+  print("helloooo");
+  Map data = {"id": id};
+  var response = await http.post(
+      'http://192.168.43.59:8080/api/v1/workshop/getTAsOfWorkshop',
       headers: {
         "Accept": "application/json",
         "content-type": "application/json",
         "Authorization": "Bearer " + tk,
-      });
+      },
+      body: json.encode(data));
 
   // print(22222222);
-  // print(777777777777777777);
+  // // print(777777777777777777);
+  print("fml");
+  print(id);
   print(json.decode(response.body));
 
-  for (int i = 0; i < json.decode(response.body)["participants"].length; i++) {
+  for (int i = 0; i < json.decode(response.body).length; i++) {
     User user = User();
-    // print("aidaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
     // print(json.decode(response.body)["list"][i]["offeredWorkshop"]);/////////////////////
-    user.name = json.decode(response.body)["participants"][i]["name"] ;
-    
+    user.name = json.decode(response.body)[i]["name"];
+    print("myyyaaaay");
+    print(user.name);
 
-    participantlist.add(user);
+    TAlist.add(user);
   }
   return response;
 }
@@ -734,6 +714,7 @@ Future<http.Response> sendRequest(Workshop workshop) async {
   print(json.decode(response.body));
   return response;
 }
+
 ///////////////////////////////////////////////////////////////////////////////////
 ///delete request
 ///
@@ -757,4 +738,3 @@ Future<http.Response> deleteRequest(Workshop workshop) async {
   print(json.decode(response.body));
   return response;
 }
-

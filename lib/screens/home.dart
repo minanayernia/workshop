@@ -35,6 +35,7 @@ class _SignupCardState extends State<SignupCard> {
   }
 }
 class HomeBody extends StatefulWidget {
+  
   @override
   _HomeBodyState createState() => _HomeBodyState();
 }

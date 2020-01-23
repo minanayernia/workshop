@@ -10,7 +10,14 @@ import 'package:workshop/widgets/TARequestCard.dart';
 import 'package:workshop/models/Group.dart';
 import 'package:workshop/models/TA.dart';
 import 'package:workshop/models/Request.dart';
+import 'package:workshop/models/user.dart';
 import 'package:workshop/models/Participant.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workshop/models/PreCourse.dart';
+import 'dart:convert';
+import 'dart:async';
 
 class WorkshopdetailsSupervisor extends StatefulWidget {
   Workshop workshop;
@@ -58,12 +65,12 @@ class _PageState extends State<Page> {
       children: <Widget>[
         Workshopimage(),
         Detailcard(
-          workshop: boz,
+          workshop: widget.workshop,
         ),
         FormButton(),
         MyGroupDetail(),
         TADetail(),
-        ParticipantDetails(),
+        ParticipantDetails(workshop: widget.workshop,),
       ],
     );
   }
@@ -126,7 +133,9 @@ class _DetailcardState extends State<Detailcard> {
                       color: Colors.white,
                     ),
                     Text(
-                      widget.workshop.supervisor,
+                      widget.workshop.supervisor != null
+                          ? widget.workshop.supervisor
+                          : " no name ",
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -385,6 +394,8 @@ class _TADetailState extends State<TADetail> {
 }
 
 class ParticipantDetails extends StatefulWidget {
+  Workshop workshop ; 
+  ParticipantDetails({@required this.workshop}) ;
   @override
   _ParticipantDetailsState createState() => _ParticipantDetailsState();
 }
@@ -444,11 +455,91 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                 //   ],
                 // )
 
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
-                  itemCount: p.length,
-                ),
+                // child: ListView.builder(
+                //   scrollDirection: Axis.horizontal,
+                //   itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                //   itemCount: p.length,
+                // ),
+
+                child: FutureBuilder(
+                          future: getworkshopsup(widget.workshop.id),
+                          builder: (context, snapshot) {
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return AlertDialog(
+                                  backgroundColor: Colors.transparent,
+                                  content: Container(
+                                    height: 100,
+                                    width: 100,
+                                    color: Colors.transparent,
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                );
+
+                              case ConnectionState.active:
+                                print("active");
+                                return Stack(
+                                  children: <Widget>[
+                                    // Background(),
+                                    Center(
+                                      child: Container(
+                                        child: CircularProgressIndicator(),
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                    )
+                                  ],
+                                );
+
+                              case ConnectionState.none:
+                                print("none");
+                                return Stack(
+                                  children: <Widget>[
+                                    // Background(),
+                                    Center(
+                                      child: Container(
+                                        child: CircularProgressIndicator(),
+                                        height: 100,
+                                        width: 100,
+                                      ),
+                                    )
+                                  ],
+                                );
+
+                              case ConnectionState.done:
+                                return SingleChildScrollView(
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Background(),
+                                      Column(children: <Widget>[
+                                        //  Padding(padding: EdgeInsets.only(top: 50),),
+                                        Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              1.2,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (_, i) => TAImageCard(
+                                              user: TAlist[i],
+                                            ),
+                                            itemCount: TAlist.length,
+                                          ),
+                                        ),
+                                      ])
+                                    ],
+                                  ),
+                                );
+                            }
+                          }),
+
+
               ),
             ],
           ),
@@ -456,4 +547,43 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
       ],
     );
   }
+}
+
+
+
+
+
+List<User> participantlistsup = [];
+List<User> talistsup = [] ;
+List<User> grouplistsup = [] ;
+List<User> requestlistsup = [] ;
+
+Future<http.Response> getworkshopsup(int id) async {
+  print(1122334455);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+  print(tk) ;
+  participantlistsup.clear();
+  Map data = {"id": id};
+  var response = await http.post(
+      'http://192.168.43.59:8080/api/v1/workshop/detailForSupervisor',
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "Bearer " + tk,
+      },
+      
+      body: json.encode(data));
+
+  // print(22222222);
+  // // print(777777777777777777);
+  print("fml");
+  print(id);
+  print(json.decode(response.body));
+
+  for (int i = 0; i < json.decode(response.body).length; i++) {
+    
+
+  }
+  return response;
 }

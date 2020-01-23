@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workshop/widgets/topbar.dart';
 import 'package:workshop/widgets/workshop_card.dart';
 import 'package:workshop/widgets/mmd.dart';
+import 'package:workshop/models/workshop.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -56,12 +57,18 @@ class _SearchAppBarState extends State<SearchAppBar> {
   }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+///Search algoritm
+List<Workshop> allWorkshops = [] ;
+List<Workshop> result = [] ;
 
 
 void searchWorkshop(String name){
   int i = 0 ;
-  
-
-
-
+  for (i = 0 ; i < allWorkshops.length ; i++){
+    String workshopName = allWorkshops[i].name ;
+    if (workshopName.contains(name)){
+      result.add(allWorkshops[i]);
+    }
+  }
 }

@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workshop/models/PreCourse.dart';
 import 'dart:convert';
 import 'dart:async';
-
 import 'package:workshop/screens/AddWorkshop.dart';
 
 String url = "192.168.43.59:8080";
@@ -240,7 +239,8 @@ Future<http.Response> getTAworkshops() async{
       "content-type": "application/json",
       "Authorization": "Bearer " + tk,
     });
-    // print(1122222222);
+    print("shay");
+    print(tk);
     print(json.decode(response.body));
 
     for (int i = 0; i < json.decode(response.body).length; i++) {
@@ -259,6 +259,7 @@ Future<http.Response> getTAworkshops() async{
 
       taWorkshops.add(workshop);
     }
+    return response;
   }
 
 

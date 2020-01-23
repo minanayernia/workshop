@@ -175,7 +175,8 @@ class _DetailcardState extends State<Detailcard> {
                     //   itemCount: widget.workshop.precourse.length,
                     // ),
                     child: FutureBuilder(
-                        future: getedovomi(),
+                 
+                        future: getwrkbyid(widget.workshop, widget.workshop.id),
                         builder: (context, snapshot) {
                           switch (snapshot.connectionState) {
                             case ConnectionState.waiting:
@@ -670,7 +671,27 @@ Future<http.Response> getTAlist(int id) async {
   }
   return response;
 }
+Future<http.Response> getwrkbyid(Workshop wk,int id) async {
+  // print(11111111111111111);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+  // participantlist.clear();
+  Map data = {"id": id};
+  var response = await http.post(
+      'http://192.168.43.59:8080/api/v1/workshop/getPreById',
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "Bearer " + tk,
+      }, body: json.encode(data));
 
+
+print("baharbahar");
+  print(json.decode(response.body));
+
+        wk.precourse = [];
+        // f
+}
 ////////////////////////////////////////////////////////////////////////
 ///send user TA request
 ///
@@ -686,7 +707,7 @@ Future<http.Response> sendRequest(Workshop workshop) async {
       body: json.encode(data),
       headers: {
         "Accept": "application/json",
-        "content-type": "application/json",
+        "content-type": "application/json;charset=UTF-8",
         "Authorization": "Bearer " + tk,
       });
   print("minakhare");

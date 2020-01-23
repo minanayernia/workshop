@@ -58,82 +58,78 @@ class _ProCardState extends State<ProCard> {
                 ),
                 Container(
                   height: 149,
-                  child: SingleChildScrollView(
-                    child: FutureBuilder(
-                        future: getParticipantWorkshops(),
-                        builder: (context, snapshot) {
-                          switch (snapshot.connectionState) {
-                            case ConnectionState.waiting:
-                              return AlertDialog(
-                                backgroundColor: Colors.deepPurple,
-                                content: Container(
-                                  height: 100,
-                                  width: 100,
-                                  color: Colors.transparent,
-                                  child: Center(
+                  child: FutureBuilder(
+                      future: getParticipantWorkshops(), 
+                      builder: (context, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return AlertDialog(
+                              backgroundColor: Colors.deepPurple,
+                              content: Container(
+                                height: 100,
+                                width: 100,
+                                color: Colors.transparent,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              ),
+                            );
+
+                          case ConnectionState.active:
+                            print("active");
+                            return Stack(
+                              children: <Widget>[
+                                // Background(),
+                                Center(
+                                  child: Container(
                                     child: CircularProgressIndicator(),
+                                    height: 100,
+                                    width: 100,
                                   ),
-                                ),
-                              );
+                                )
+                              ],
+                            );
 
-                            case ConnectionState.active:
-                              print("active");
-                              return Stack(
-                                children: <Widget>[
-                                  // Background(),
-                                  Center(
-                                    child: Container(
-                                      child: CircularProgressIndicator(),
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                  )
-                                ],
-                              );
+                          case ConnectionState.none:
+                            print("none");
+                            return Stack(
+                              children: <Widget>[
+                                // Background(),
+                                Center(
+                                  child: Container(
+                                    child: CircularProgressIndicator(),
+                                    height: 100,
+                                    width: 100,
+                                  ),
+                                )
+                              ],
+                            );
 
-                            case ConnectionState.none:
-                              print("none");
-                              return Stack(
-                                children: <Widget>[
-                                  // Background(),
-                                  Center(
-                                    child: Container(
-                                      child: CircularProgressIndicator(),
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                  )
-                                ],
-                              );
-
-                            case ConnectionState.done:
-                              return SingleChildScrollView(
-                                child: Stack(
-                                  children: <Widget>[
-                                    Column(children: <Widget>[
-                                      Container(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.9,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                1.2,
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (_, i) => WorkCardDetail(
-                                            workshop: participantWorkshops[i],
-                                          ),
-                                          itemCount:
-                                              participantWorkshops.length,
-                                        ),
+                          case ConnectionState.done:
+                            return Stack(
+                              children: <Widget>[
+                                Column(children: <Widget>[
+                                  Container(
+                                    height: 149,
+                                    //     MediaQuery.of(context).size.height *
+                                    //         0.9,
+                                    width:
+                                        MediaQuery.of(context).size.width *
+                                            1.2,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (_, i) => WorkCardDetail(
+                                        workshop: participantWorkshops[i],
                                       ),
-                                    ])
-                                  ],
-                                ),
-                              );
-                          }
-                        }),
-                  ),
+                                      itemCount:
+                                          participantWorkshops.length,
+                                    ),
+                                  ),
+                                ])
+                              ],
+                            );
+                        }
+                      }),
                 ),
               ],
             ),
@@ -156,106 +152,83 @@ class _ProCardState extends State<ProCard> {
                 Padding(
                   padding: EdgeInsets.only(top: 5),
                 ),
-                Visibility(
-                  maintainAnimation: true,
-                  maintainState: true,
-                  visible: false,
-                  child: Container(
-                        // height: 150,
-                        // child: ListView(
-                        //   scrollDirection: Axis.horizontal,
-                        //   children: <Widget>[
-                        //     WorkshopDetailCardSup(workshop: boz),
+                Container(
 
-                        //   ],
-                        // ),
-                        // child: ListView.builder(
-                        //       scrollDirection: Axis.horizontal,
-                        //       itemBuilder: (_, i) => WorkCardDetail(workshop : wsh[i]),
-                        //       itemCount: wsh.length,
-                        //     ),
-
-                        child: FutureBuilder(
-                            future: getsuplist(),
-                            builder: (context, snapshot) {
-                              switch (snapshot.connectionState) {
-                                case ConnectionState.waiting:
-                                  return AlertDialog(
-                                    backgroundColor: Colors.deepPurple,
-                                    content: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.deepPurple,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                                    ),
-                                  );
-
-                                case ConnectionState.active:
-                                  print("active");
-                                  return Stack(
-                                    children: <Widget>[
-                  // Background(),
-                  Center(
-                    child: Container(
-                      child: CircularProgressIndicator(),
-                      height: 100,
-                      width: 100,
-                    ),
-                  )
-                                    ],
-                                  );
-
-                                case ConnectionState.none:
-                                  print("none");
-                                  return Stack(
-                                    children: <Widget>[
-                  // Background(),
-                  Center(
-                    child: Container(
-                      child: CircularProgressIndicator(),
-                      height: 100,
-                      width: 100,
-                    ),
-                  )
-                                    ],
-                                  );
-
-                                case ConnectionState.done:
-                                  return SingleChildScrollView(
-                                    child: Stack(
-                  children: <Widget>[
-                    Background(),
-                    Column(children: <Widget>[
-                      //  Padding(padding: EdgeInsets.only(top: 50),),
-                      Container(
-                        height: MediaQuery.of(context)
-                                .size
-                                .height *
-                            0.9,
-                        width: MediaQuery.of(context)
-                                .size
-                                .width *
-                            1.2,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (_, i) =>
-                              WorkshopDetailCardSup(
-                            workshop: supervisorWorkshops[i],
-                          ),
-                          itemCount:
-                              supervisorWorkshops.length,
-                        ),
-                      ),
-                    ])
-                  ],
-                                    ),
-                                  );
-                              }
-                            })
-                            ),
+                      child: FutureBuilder(
+                          future: getsuplist(),
+                          builder: (context, snapshot) {
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return AlertDialog(
+                                  backgroundColor: Colors.deepPurple,
+                                  content: Container(
+                height: 100,
+                width: 100,
+                color: Colors.deepPurple,
+                child: Center(
+                  child: CircularProgressIndicator(),
                 ),
+                                  ),
+                                );
+
+                              case ConnectionState.active:
+                                print("active");
+                                return Stack(
+                                  children: <Widget>[
+                // Background(),
+                Center(
+                  child: Container(
+                    child: CircularProgressIndicator(),
+                    height: 100,
+                    width: 100,
+                  ),
+                )
+                                  ],
+                                );
+
+                              case ConnectionState.none:
+                                print("none");
+                                return Stack(
+                                  children: <Widget>[
+                // Background(),
+                Center(
+                  child: Container(
+                    child: CircularProgressIndicator(),
+                    height: 100,
+                    width: 100,
+                  ),
+                )
+                                  ],
+                                );
+
+                              case ConnectionState.done:
+                                return Stack(
+                children: <Widget>[
+                  Background(),
+                  Column(children: <Widget>[
+                    //  Padding(padding: EdgeInsets.only(top: 50),),
+                    Container(
+                      height: 149,
+                      width: MediaQuery.of(context)
+                              .size
+                              .width *
+                          1.2,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (_, i) =>
+                            WorkshopDetailCardSup(
+                          workshop: supervisorWorkshops[i],
+                        ),
+                        itemCount:
+                            supervisorWorkshops.length,
+                      ),
+                    ),
+                  ])
+                ],
+                                );
+                            }
+                          })
+                          ),
               ],
             ),
           ),
@@ -319,7 +292,8 @@ class _ProCardState extends State<ProCard> {
                             );
 
                           case ConnectionState.none:
-                            print("none");
+                            print("noneavaran");
+
                             return Stack(
                               children: <Widget>[
                                 // Background(),
@@ -334,29 +308,28 @@ class _ProCardState extends State<ProCard> {
                             );
 
                           case ConnectionState.done:
-                            return SingleChildScrollView(
-                              child: Stack(
-                                children: <Widget>[
-                                  Background(),
-                                  Column(children: <Widget>[
-                                    //  Padding(padding: EdgeInsets.only(top: 50),),
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.9,
-                                      width: MediaQuery.of(context).size.width *
-                                          1.2,
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.vertical,
-                                        itemBuilder: (_, i) => WorkCardDetail(
-                                          workshop: taWorkshops[i],
-                                        ),
-                                        itemCount: taWorkshops.length,
+                          print("noneavaran");
+                          print(taWorkshops);
+                          
+                            return Stack(
+                              children: <Widget>[
+                                // Background(),
+                                Column(children: <Widget>[
+                                  //  Padding(padding: EdgeInsets.only(top: 50),),
+                                  Container(
+                                    height:149,
+                                    width: MediaQuery.of(context).size.width *
+                                        1.2,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (_, i) => WorkCardDetail(
+                                        workshop: taWorkshops[i],
                                       ),
+                                      itemCount: taWorkshops.length,
                                     ),
-                                  ])
-                                ],
-                              ),
+                                  ),
+                                ])
+                              ],
                             );
                         }
                       }),
@@ -390,7 +363,9 @@ class _PersonCardState extends State<PersonCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+      children: <Widget>[
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -402,10 +377,10 @@ class _PersonCardState extends State<PersonCard> {
         alignment: Alignment.center,
         child: Container(
           // color: Colors.yellow,
-          width: MediaQuery.of(context).size.width * 0.5, height: 150,
+          width: MediaQuery.of(context).size.width * 0.75, height: 150,
           // alignment: FractionalOffset.center,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Container(
                 // color: Colors.green,

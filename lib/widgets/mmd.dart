@@ -8,10 +8,8 @@ class MmdCard extends StatefulWidget {
   @override
   _MmdCardState createState() => _MmdCardState();
 }
-
 class _MmdCardState extends State<MmdCard> {
 
-  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -214,7 +214,7 @@ class _ProCardState extends State<ProCard> {
                               .width *
                           1.2,
                       child: ListView.builder(
-                        scrollDirection: Axis.vertical,
+                        scrollDirection: Axis.horizontal,
                         itemBuilder: (_, i) =>
                             WorkshopDetailCardSup(
                           workshop: supervisorWorkshops[i],
@@ -310,7 +310,7 @@ class _ProCardState extends State<ProCard> {
                           case ConnectionState.done:
                           print("noneavaran");
                           print(taWorkshops);
-                          
+
                             return Stack(
                               children: <Widget>[
                                 // Background(),

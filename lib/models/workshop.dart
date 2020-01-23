@@ -234,7 +234,7 @@ Future<http.Response> getTAworkshops() async{
   String tk = prefs.getString('token');
   taWorkshops.clear();
     var response = await http
-        .get('http://192.168.43.59:8080/api/v1/workshop/listAsTa', headers: {
+        .get('http://192.168.43.59:8080/api/v1/workshop/listAsTA', headers: {
       "Accept": "application/json",
       "content-type": "application/json",
       "Authorization": "Bearer " + tk,

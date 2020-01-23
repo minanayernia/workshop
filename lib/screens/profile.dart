@@ -89,9 +89,8 @@ class _ProfileState extends State<Profile> {
                             );
 
                           case ConnectionState.done:
-                            print(
-                                "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-                            print(boz.name);
+                          print("bastin khare va gave");
+                          print(profile) ;
                             return SingleChildScrollView(
                               child: Stack(
                                 children: <Widget>[
@@ -105,7 +104,7 @@ class _ProfileState extends State<Profile> {
                                           1.2,
                                       child: SingleChildScrollView(
                                           child: ProCard(
-                                        user: boz,
+                                        user: profile,
                                       )),
                                     ),
                                   ])
@@ -264,7 +263,7 @@ class _PopupMenuState extends State<PopupMenu> {
   }
 }
 
-User boz = User();
+User profile = User();
 
 Future<http.Response> sendPersonDetail() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -278,13 +277,13 @@ Future<http.Response> sendPersonDetail() async {
   });
   print("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
   print(response.body);
-  print(boz);
-  boz.name = json.decode(response.body)["name"];
-  boz.ncode = json.decode(response.body)["nationalCode"];
-  boz.phone = json.decode(response.body)["phoneNumber"];
+  print(profile);
+  profile.name = json.decode(response.body)["name"];
+  profile.ncode = json.decode(response.body)["nationalCode"];
+  profile.phone = json.decode(response.body)["phoneNumber"];
 
-  print(boz);
-  print(boz.name);
+  print(profile);
+  print(profile.name);
 
   return response;
 }

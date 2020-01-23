@@ -727,7 +727,7 @@ Future<http.Response> sendRequest(Workshop workshop) async {
       body: json.encode(data),
       headers: {
         "Accept": "application/json",
-        "content-type": "application/json",
+        "content-type": "application/json;charset=UTF-8",
         "Authorization": "Bearer " + tk,
       });
   print("minakhare");

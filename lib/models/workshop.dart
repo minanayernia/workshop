@@ -239,7 +239,8 @@ Future<http.Response> getTAworkshops() async{
       "content-type": "application/json",
       "Authorization": "Bearer " + tk,
     });
-    // print(1122222222);
+    print("shay");
+    print(tk);
     print(json.decode(response.body));
 
     for (int i = 0; i < json.decode(response.body).length; i++) {
@@ -258,6 +259,7 @@ Future<http.Response> getTAworkshops() async{
 
       taWorkshops.add(workshop);
     }
+    return response;
   }
 
 

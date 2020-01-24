@@ -9,12 +9,14 @@ class User with ChangeNotifier {
   String ncode;
   String phone;
   String token;
+  int id ;
 
   User({
      this.name,
      this.ncode,
      this.phone,
     this.token,
+    this.id ,
   });
 
   Future get_user() async {

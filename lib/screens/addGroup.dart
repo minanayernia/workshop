@@ -1,14 +1,25 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:workshop/models/user.dart';
 // import 'package:workshop/screens/form.dart';
 import 'package:workshop/widgets/topbar.dart';
 import 'package:workshop/models/Participant.dart';
 import 'package:workshop/models/TA.dart';
+import 'package:workshop/models/workshop.dart';
+import 'package:http/http.dart' as http;
 
 
 int groupTAs ;
 int groupParticipants ;
 int selectedTAs = 0;
 int selectedParticipants = 0;
+
+Workshop thisWorkshop = Workshop();
+List<int> acceptedTAs = [] ;
+List<int> acceptedPar = [] ;
+
 
 
 
@@ -20,7 +31,52 @@ class AddGroupPage extends StatefulWidget {
 class _AddGroupPageState extends State<AddGroupPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final Workshop args = ModalRoute.of(context).settings.arguments;
+    thisWorkshop = args ;
+    return FutureBuilder(
+        future: getTAandParticipant(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return AlertDialog(
+                backgroundColor: Colors.transparent,
+                content: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              );
+            case ConnectionState.active:
+              return Stack(
+                children: <Widget>[
+                  // Background(),
+                  Center(
+                    child: Container(
+                      child: CircularProgressIndicator(),
+                      height: 100,
+                      width: 100,
+                    ),
+                  )
+                ],
+              );
+            case ConnectionState.none:
+              return Stack(
+                children: <Widget>[
+                  // Background(),
+                  Center(
+                    child: Container(
+                      child: CircularProgressIndicator(),
+                      height: 100,
+                      width: 100,
+                    ),
+                  )
+                ],
+              );
+            case ConnectionState.done:
+              return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: Center(
         child: Column(
@@ -34,6 +90,22 @@ class _AddGroupPageState extends State<AddGroupPage> {
         ),
       ),
     );
+          }
+        });
+    // return Scaffold(
+    //   backgroundColor: Colors.deepPurple,
+    //   body: Center(
+    //     child: Column(
+    //       children: <Widget>[
+    //         TopBar(
+    //           foo: "Add Group",
+    //         ),
+    //         AddGroupBox(),
+    //         SubmittButton(),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
 
@@ -114,8 +186,8 @@ class _AddGroupBoxState extends State<AddGroupBox> {
             // ),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemBuilder: (_, i) => TACard(ta: t[i]),
-              itemCount: t.length,
+              itemBuilder: (_, i) => TACard(ta: allTAs[i]),
+              itemCount: allTAs.length,
             ),
           ),
           Padding(
@@ -172,8 +244,8 @@ class _AddGroupBoxState extends State<AddGroupBox> {
 
             child: ListView.builder(
               scrollDirection: Axis.vertical,
-              itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
-              itemCount: p.length,
+              itemBuilder: (_, i) => ParticipantCard(prt: allParticipants[i]),
+              itemCount: allParticipants.length,
             ),
           )
         ],
@@ -183,7 +255,7 @@ class _AddGroupBoxState extends State<AddGroupBox> {
 }
 
 class TACard extends StatefulWidget {
-  TA ta;
+  User ta;
   TACard({@required this.ta});
   @override
   _TACardState createState() => _TACardState();
@@ -199,10 +271,12 @@ class _TACardState extends State<TACard> {
               selected = !selected;
               if (selected == true){
                 selectedTAs++ ;
+                acceptedTAs.add(widget.ta.id) ;
                 print(selectedTAs);
               }if (selected == false){
                 if(selectedTAs != -1){
                   selectedTAs-- ;
+                  acceptedTAs.remove(widget.ta.id) ;
                 }
               }
             });
@@ -228,7 +302,7 @@ class _TACardState extends State<TACard> {
             Padding(
               padding: EdgeInsets.only(left: 6),
             ),
-            Text("TA name")
+            Text(widget.ta.name),
           ],
         ),
       ),
@@ -261,14 +335,15 @@ class _SubmittButtonState extends State<SubmittButton> {
               onPressed: () {
                 // Navigator.pop(context);
                 // Navigator.pushNamed(context, '/home');
-                Navigator.popAndPushNamed(context, '/login');
+                sendTAandParticipant();
+                Navigator.popAndPushNamed(context, '/home');
               })),
     );
   }
 }
 
 class ParticipantCard extends StatefulWidget {
-  Participant prt;
+  User prt;
   ParticipantCard({@required this.prt});
 
   @override
@@ -304,15 +379,17 @@ class _ParticipantCardState extends State<ParticipantCard> {
           Container(
             // height: ,
             width: MediaQuery.of(context).size.width * 0.45,
-            child: Text("Participant name"),
+            child: Text(widget.prt.name),
           ),
           GestureDetector(
             onTap: () {
               setState(() {
                 if (selected == "+") {
                   selected = "-";
+                  acceptedPar.remove(widget.prt.id);
                 } else {
                   selected = "+";
+                  acceptedPar.add(widget.prt.id) ;
                 }
               });
             },
@@ -335,4 +412,68 @@ class _ParticipantCardState extends State<ParticipantCard> {
       ),
     );
   }
+}
+
+///////////////////////////////////////////////////////////////////////////
+///get TAs and Participants
+///
+
+List<User> allTAs = [] ;
+List<User> allParticipants = [] ;
+
+Future<http.Response> getTAandParticipant()async{
+  allTAs.clear() ;
+  allParticipants.clear() ;
+  
+  Map data = {'id': thisWorkshop.id} ;
+  var response = await http.post('http://192.168.43.59:8080/api/v1/workshop/detail' ,
+      headers: {"Accept": "application/json", "content-type": "application/json",
+      } ,
+      body: json.encode(data),
+  );
+  print("start getting");
+  print(response.body) ;
+  for (int i = 0 ; i < json.decode(response.body)["tas"].length ; i++){
+    User tempPar = User() ;
+    print("getting ta");
+    tempPar.name = json.decode(response.body)["tas"][i]["name"] ;
+    print(tempPar.name);
+    // tempPar.token = json.decode(response.body)["tas"][i]["userId"] ;
+    // print( tempPar.token) ;
+    allParticipants.add(tempPar);
+    
+
+  }
+  print("exit for") ;
+  for (int i = 0 ; i < json.decode(response.body)["participants"].length ; i++){
+    User tempTA = User() ;
+    print("getting par");
+    tempTA.name = json.decode(response.body)["participants"][i]["name"] ;
+    // tempTA.token = json.decode(response.body)["participants"][i]["userId"] ;
+    allTAs.add(tempTA) ;
+  }
+
+  return response ;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///send selected TAs and Participants
+///
+
+
+Future<http.Response> sendTAandParticipant()async{
+  print("first") ;
+   Map data = {'id': thisWorkshop.id , 'tAList': acceptedTAs, 'participantList':acceptedPar} ;
+  acceptedPar.clear();
+  acceptedTAs.clear();
+  var response = await http.post('http://192.168.43.59:8080/api/v1/workshop/group/create' ,
+  headers: {"Accept": "application/json", "content-type": "application/json",
+      } ,
+      body: json.encode(data),
+
+  ) ;
+  print("yep") ;
+  print(json.decode(response.body)) ;
+  print("nop");
+  return response ;
 }

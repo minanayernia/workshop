@@ -111,7 +111,7 @@ class _PageState extends State<Page> {
         Workshopimage(),
         Detailcard(workshop: widget.workshop),
         FormButton(),
-        MyGroupDetail(),
+        MyGroupDetail(workshop: widget.workshop,),
         TADetail(),
         ParticipantDetails(
           workshop: widget.workshop,
@@ -265,6 +265,8 @@ class _FormButtonState extends State<FormButton> {
 }
 
 class MyGroupDetail extends StatefulWidget {
+  Workshop workshop ;
+  MyGroupDetail({@required this.workshop});
   @override
   _MyGroupDetailState createState() => _MyGroupDetailState();
 }
@@ -318,7 +320,7 @@ class _MyGroupDetailState extends State<MyGroupDetail> {
                           ),
                           onPressed: () {
                             // Navigator.pop(context);
-                            // Navigator.pushNamed(context, '/home');
+                            Navigator.pushNamed(context, '/addGroup' , arguments: widget.workshop);
                             // Navigator.popAndPushNamed(context, '/login');
                           },
                         )),

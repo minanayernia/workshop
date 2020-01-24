@@ -5,9 +5,6 @@ class Group with ChangeNotifier {
   int participant;
   int ta;
 
-  Group({@required this.name, @required this.participant, @required this.ta});
+  Group({ this.name, this.participant,this.ta});
 }
 
-List<Group> g = [
-  Group(name: "mina", participant: 10, ta: 1),
-];

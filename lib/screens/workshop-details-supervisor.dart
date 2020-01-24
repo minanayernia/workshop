@@ -344,8 +344,8 @@ class _MyGroupDetailState extends State<MyGroupDetail> {
 
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => GroupCard(grp: g[i]),
-                  itemCount: g.length,
+                  itemBuilder: (_, i) => GroupCard(group: grouplistsup[i]),
+                  itemCount: grouplistsup.length,
                 ),
               )
             ],
@@ -398,7 +398,9 @@ class _TADetailState extends State<TADetail> {
                 // ),
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => TAImageCard(user: talistsup[i],),
+                  itemBuilder: (_, i) => TAImageCard(
+                    user: talistsup[i],
+                  ),
                   itemCount: talistsup.length,
                 ),
                 height: 50,
@@ -428,7 +430,9 @@ class _TADetailState extends State<TADetail> {
                 // )
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => TARequestCard(user: requestlistsup[i],),
+                  itemBuilder: (_, i) => TARequestCard(
+                    user: requestlistsup[i],
+                  ),
                   itemCount: requestlistsup.length,
                 ),
               ),
@@ -504,10 +508,11 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
 
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, i) => ParticipantCard(user: participantlistsup[i],),
+                  itemBuilder: (_, i) => ParticipantCard(
+                    user: participantlistsup[i],
+                  ),
                   itemCount: participantlistsup.length,
                 ),
-
               ),
             ],
           ),
@@ -517,16 +522,20 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
   }
 }
 
-List participantlistsup = [];
-List talistsup = [];
-List grouplistsup = [];
-List requestlistsup = [];
+List<User> participantlistsup = [];
+List<User> talistsup = [];
+List<Group> grouplistsup = [];
+List<User> requestlistsup = [];
 
 Future<http.Response> getworkshopsup(int id) async {
+
   print(1122334455);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String tk = prefs.getString('token');
+  grouplistsup.clear();
   participantlistsup.clear();
+  talistsup.clear();
+  requestlistsup.clear();
   Map data = {"id": id};
   var response = await http.post(
       'http://192.168.43.59:8080/api/v1/workshop/detailForSupervisor',
@@ -535,24 +544,89 @@ Future<http.Response> getworkshopsup(int id) async {
         "content-type": "application/json",
         "Authorization": "Bearer " + tk,
       },
-      
       body: json.encode(data));
-      print(response.body) ;
-      print("hereeeeeeeeeeeee") ;
+  print(response.body);
+  print("hereeeeeeeeeeeee");
 
-
-      for(int i = 0 ; i < json.decode(response.body)["groups"]["groupDatas"].length ; i++){
-        grouplistsup.add(json.decode(response.body)["groups"]["groupDatas"][i]) ;
-      }
-      print("rrrrrrrrr") ;
-
-  talistsup = json.decode(response.body)["acceptedRequests"];
-  requestlistsup = json.decode(response.body)["requests"];
-
-  for(int i = 0 ; i < json.decode(response.body)["groups"]["groupDatas"]["participants"].length ; i++){
-    participantlistsup.add(json.decode(response.body)["groups"]["groupDatas"]["participants"][i]) ;
+  for (int i = 0;
+      i < json.decode(response.body)["groups"]["groupDatas"].length;
+      i++) {
+    print('loop');
+    
+    Group group = Group();
+    group.name = i.toString();
+    group.participant = json
+        .decode(response.body)["groups"]["groupDatas"][i]
+            ["participants"]
+        .length;
+        // print('loop');
+    print(group.participant);
+    group.ta = json
+        .decode(response.body)["groups"]["groupDatas"][i]["tAs"]
+        .length;
+        // print('loop');
+    grouplistsup.add(group);
+    // print("well") ;
   }
-  print(participantlistsup[0]) ;
+  
+
+  // talistsup = json.decode(response.body)["acceptedRequests"];
+  // requestlistsup = json.decode(response.body)["requests"];
+//   print("t") ;
+// print(json
+//         .decode(response.body)["participants"]);
+//         print("a") ;
+  for (int i = 0;
+      i <
+          json
+              .decode(response.body)["participants"]
+              .length;
+      i++) {
+        print(json.decode(response.body)
+        ["participants"]);
+    User user = User();
+    print("ti");
+    user.name = json.decode(response.body)
+        ["participants"][i]["name"];
+       
+    participantlistsup.add(user);
+  }
+
+print(json
+              .decode(response.body)["acceptedRequests"]);
+
+  for (int i = 0;
+      i <
+          json
+              .decode(response.body)["acceptedRequests"]
+              .length;
+      i++) {
+        
+    User user = User();
+    print("ti");
+    user.name = json.decode(response.body)
+        ["acceptedRequests"][i]["name"];
+       
+    talistsup.add(user);
+  }
+
+
+
+  for (int i = 0;
+      i <
+          json
+              .decode(response.body)["requests"]
+              .length;
+      i++) {
+        
+    User user = User();
+    print("ti");
+    user.name = json.decode(response.body)
+        ["requests"][i]["name"];
+       
+    requestlistsup.add(user);
+  }
+  // print(participantlistsup[0]);
   // print(22222222);
   // // print(777777777777777777);
   print("fml");

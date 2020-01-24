@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workshop/models/Request.dart';
 import 'package:workshop/models/user.dart';
 
-class TARequestCard extends StatefulWidget {
+class  TARequestCard extends StatefulWidget {
   User user ;
   TARequestCard({@required this.user});
   @override

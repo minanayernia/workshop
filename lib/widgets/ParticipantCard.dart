@@ -14,7 +14,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 118,
+      width: 128,
       height: 72,
       margin: EdgeInsets.only(left: 10, top: 10),
       decoration: BoxDecoration(

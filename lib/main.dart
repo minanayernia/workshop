@@ -47,8 +47,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryIconTheme: IconThemeData(color: Colors.redAccent),
+        primarySwatch: Colors.red,
         accentColor: Colors.deepPurple,
+        appBarTheme: AppBarTheme(color: Colors.blueAccent, iconTheme: IconThemeData(color: Colors.redAccent))
       ),
       initialRoute: '/',
       routes: {

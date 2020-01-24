@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:workshop/models/Request.dart';
+import 'package:workshop/models/user.dart';
 
 class TARequestCard extends StatefulWidget {
-  Request tar ;
-  TARequestCard({@required this.tar});
+  User user ;
+  TARequestCard({@required this.user});
   @override
   _TARequestCardState createState() => _TARequestCardState();
 }
@@ -37,7 +38,7 @@ class _TARequestCardState extends State<TARequestCard> {
                 Container(
                   margin: EdgeInsets.only(left: 5),
                   child: Text(
-                    'Bahar',
+                    widget.user.name,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

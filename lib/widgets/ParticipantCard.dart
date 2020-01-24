@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:workshop/models/user.dart';
 import 'package:workshop/screens/addGroup.dart';
 import 'package:workshop/models/Participant.dart';
 
 class ParticipantCard extends StatefulWidget {
-  Participant prt ;
-  ParticipantCard({@required this.prt});
+  User user ; 
+  ParticipantCard({@required this.user});
   @override
   _ParticipantCardState createState() => _ParticipantCardState();
 }
@@ -31,7 +32,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
           ),
           Container(
             margin: EdgeInsets.only(left: 5),
-            child: Text('Bahara'),
+            child: Text(widget.user.name),
           ),
         ],
       ),

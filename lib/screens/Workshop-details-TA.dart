@@ -209,11 +209,11 @@ class _GroupDetailsState extends State<GroupDetails> {
                   //   ],
                   // )
 
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
-                    itemCount: p.length,
-                  ),
+                  // child: ListView.builder(
+                  //   scrollDirection: Axis.horizontal,
+                  //   itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                  //   itemCount: p.length,
+                  // ),
                 ),
               ],
             ),
@@ -282,11 +282,11 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                   //     ParticipantCard(),
                   //   ],
                   // ),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
-                    itemCount: p.length,
-                  ),
+                  // child: ListView.builder(
+                  //   scrollDirection: Axis.horizontal,
+                  //   itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
+                  //   itemCount: p.length,
+                  // ),
                 ),
               ],
             ),

@@ -121,7 +121,7 @@ class _ProfileState extends State<Profile> {
   }
 }
 
-enum WhyFarther { harder, smarter, selfStarter, tradingCharter }
+
 
 class ProfileAppBar extends StatefulWidget {
   @override
@@ -233,28 +233,34 @@ class _PopupMenuState extends State<PopupMenu> {
         ),
         color: Colors.deepPurple.withOpacity(0.9),
         // shape: ShapeBorder.lerp(3, , 5),
-        onSelected: (WhyFarther result) {
-          setState(() {});
+        onSelected: ( result) {
+          setState(() {
+            if(result == 4){
+                logout(context);
+            }
+            
+          });
         },
-        itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
-          const PopupMenuItem<WhyFarther>(
-            value: WhyFarther.harder,
+        itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+          const PopupMenuItem(
+            value: 0,
             child: Text(
               'Forms compeleted for you',
               style: TextStyle(color: Colors.white),
             ),
           ),
-          const PopupMenuItem<WhyFarther>(
-            value: WhyFarther.smarter,
+          const PopupMenuItem(
+            value: 2,
             child: Text('Forms compeleted by you',
                 style: TextStyle(color: Colors.white)),
           ),
-          const PopupMenuItem<WhyFarther>(
-            value: WhyFarther.selfStarter,
+          const PopupMenuItem(
+            value:3,
             child: Text('Debts', style: TextStyle(color: Colors.white)),
           ),
-          const PopupMenuItem<WhyFarther>(
-            value: WhyFarther.tradingCharter,
+          const PopupMenuItem(
+            
+            value: 4,
             child: Text('Logout', style: TextStyle(color: Colors.white)),
           ),
         ],
@@ -286,4 +292,23 @@ Future<http.Response> sendPersonDetail() async {
   print(profile.name);
 
   return response;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+///logout 
+///
+
+void logout(context)async{
+
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  for(String key in preferences.getKeys()) {
+          if(key == "token") {
+            preferences.remove(key);
+          }
+        }
+        Navigator.popUntil(context, ModalRoute.withName('/login'));
+        Navigator.pushNamed(context, '/login');
+
+
 }

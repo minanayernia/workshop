@@ -287,7 +287,6 @@ class _SignupbuttonState extends State<Signupbutton> {
              Future<http.Response> sendPersonDetail() async{
                var response = 
                 await http.post('http://192.168.43.59:8080/api/v1/signup',
-                body: json.encode(data) ,
                 headers: {"Accept": "application/json", "content-type": "application/json"} 
                 );
 

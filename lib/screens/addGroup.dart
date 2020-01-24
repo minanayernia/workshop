@@ -437,6 +437,7 @@ Future<http.Response> getTAandParticipant()async{
     User tempPar = User() ;
     print("getting ta");
     tempPar.name = json.decode(response.body)["tas"][i]["name"] ;
+    tempPar.id = json.decode(response.body)["tas"][i]["userId"];
     print(tempPar.name);
     // tempPar.token = json.decode(response.body)["tas"][i]["userId"] ;
     // print( tempPar.token) ;
@@ -445,10 +446,13 @@ Future<http.Response> getTAandParticipant()async{
 
   }
   print("exit for") ;
+
   for (int i = 0 ; i < json.decode(response.body)["participants"].length ; i++){
+    
     User tempTA = User() ;
     print("getting par");
     tempTA.name = json.decode(response.body)["participants"][i]["name"] ;
+    tempTA.id = json.decode(response.body)["participants"][i]["userId"] ;
     // tempTA.token = json.decode(response.body)["participants"][i]["userId"] ;
     allTAs.add(tempTA) ;
   }
@@ -463,6 +467,14 @@ Future<http.Response> getTAandParticipant()async{
 
 Future<http.Response> sendTAandParticipant()async{
   print("first") ;
+  print(acceptedTAs);
+  Map<String, int> ta = {};
+  for (int i =0; i<acceptedTAs.length;i++){
+    Map pp = {"id": i};
+    ta.addAll(pp);
+  }
+  print(ta);
+  print("test4");
    Map data = {'id': thisWorkshop.id , 'tAList': acceptedTAs, 'participantList':acceptedPar} ;
   acceptedPar.clear();
   acceptedTAs.clear();

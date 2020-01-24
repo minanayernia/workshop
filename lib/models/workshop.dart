@@ -239,22 +239,29 @@ Future<http.Response> getTAworkshops() async{
       "content-type": "application/json",
       "Authorization": "Bearer " + tk,
     });
-    print("shay");
-    print(tk);
+    print("shaytunak");
+    // print(tk);
     print(json.decode(response.body));
 
-    for (int i = 0; i < json.decode(response.body).length; i++) {
-      Workshop workshop;
-
-      workshop.name = json.decode(response.body)["list"][i]["offeredWorkshop"]["workshop"]["workshopName"];
-      workshop.supervisor = json.decode(response.body)["list"][i]["supervisor"]["name"];
-      workshop.capacity = json.decode(response.body)["list"][i]["offeredWorkshop"]["capacity"];
-      workshop.location = json.decode(response.body)["list"][i]["offeredWorkshop"]["location"];
-      workshop.time = json.decode(response.body)["list"][i]["offeredWorkshop"]["time"];
+    for (int i = 0; i < json.decode(response.body)["list"].length; i++) {
+      Workshop workshop = Workshop();
+      print("oskol u");
       workshop.id = json.decode(response.body)["list"][i]["offeredWorkshop"]["offeredWorkshopId"];
-      workshop.date = json.decode(response.body)["list"][i]["offeredWorkshop"]["date"];
-      // workshop.precourse = json.decode(response.body)["list"][i]["precourse"];
-      // workshop.about = json.decode(response.body)["list"][i]["about"];
+      // print(4);
+      workshop.supervisor = json.decode(response.body)["list"][i]["supervisor"]["name"];
+      // print(5);
+      workshop.capacity = json.decode(response.body)["list"][i]["offeredWorkshop"]["capacity"];
+      // print(6);
+      workshop.location = json.decode(response.body)["list"][i]["offeredWorkshop"]["location"];
+      // print(7);
+      workshop.time = json.decode(response.body)["list"][i]["offeredWorkshop"]["startTime"];
+      // print(8);
+      workshop.name = json.decode(response.body)["list"][i]["offeredWorkshop"]["workshop"]["workshopName"];
+      // print(9);
+      workshop.date = json.decode(response.body)["list"][i]["offeredWorkshop"]["startDate"];
+      // print(10);
+      // workshop.precourse = json.decode(response.body)[i]["precourse"];
+      // workshop.about = json.decode(response.body)[i]["about"];
       workshop.price = json.decode(response.body)["list"][i]["offeredWorkshop"]["price"];
 
       taWorkshops.add(workshop);

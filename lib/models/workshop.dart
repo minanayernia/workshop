@@ -257,7 +257,7 @@ Future<http.Response> getTAworkshops() async{
       // workshop.about = json.decode(response.body)["list"][i]["about"];
       workshop.price = json.decode(response.body)["list"][i]["offeredWorkshop"]["price"];
 
-      taWorkshops.add(workshop);
+      taWorkshops.add(workshop );
     }
     return response;
   }

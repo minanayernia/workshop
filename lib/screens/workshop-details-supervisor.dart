@@ -256,7 +256,7 @@ class _FormButtonState extends State<FormButton> {
         ),
         onPressed: () {
           // Navigator.pop(context);
-          // Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/add form');
           // Navigator.popAndPushNamed(context, '/login');
         },
       ),
@@ -412,7 +412,7 @@ class _TADetailState extends State<TADetail> {
                 width: 80,
                 margin: EdgeInsets.only(left: 10, top: 5),
                 child:
-                    Text('5 Requests', style: TextStyle(color: Colors.white)),
+                    Text(requestlistsup.length.toString() + " Requests", style: TextStyle(color: Colors.white)),
                 height: 20,
                 decoration: BoxDecoration(
                     color: Colors.pinkAccent,
@@ -489,7 +489,7 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                             color: Colors.deepPurple[300],
                             borderRadius: BorderRadius.circular(15)),
                         child: Text(
-                          '53',
+                          participantlistsup.length.toString(),
                           style: TextStyle(color: Colors.white),
                         ))
                   ],
@@ -635,6 +635,6 @@ print(json
   print(id);
   print(json.decode(response.body));
 
-  for (int i = 0; i < json.decode(response.body).length; i++) {}
+  // for (int i = 0; i < json.decode(response.body).length; i++) {}
   return response;
 }

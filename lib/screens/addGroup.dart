@@ -283,7 +283,7 @@ class _TACardState extends State<TACard> {
           },
         child: Container(
         height: 70 ,
-        width: 150,
+        // width: 150,
         decoration: BoxDecoration(
             color: selected == true
                 ? Colors.greenAccent[400]
@@ -294,15 +294,16 @@ class _TACardState extends State<TACard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+              margin: EdgeInsets.only(left: 10),
               height: 70,
               width: 60,
               decoration: BoxDecoration(
-                  color: Colors.grey, borderRadius: BorderRadius.circular(15)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
             ),
             Padding(
               padding: EdgeInsets.only(left: 6),
             ),
-            Text(widget.ta.name),
+            Text(widget.ta.name + "   " , style: TextStyle(color: Colors.white),),
           ],
         ),
       ),

@@ -58,22 +58,20 @@ class MyApp extends StatelessWidget {
         //'/jobs': (context) => Jobs() ,
         '/login': (context) => Login(),
         '/signup': (context) => SignUp(),
-        '/workshop': (context) => Workshopdetails(),
-        '/sup': (context) => WorkshopdetailsSupervisor(),
-        '/ta': (context) => WorkshopDetailsTA(),
+        // '/workshop': (context) => Workshopdetails(),
+        // '/sup': (context) => WorkshopdetailsSupervisor(),
+        // '/ta': (context) => WorkshopDetailsTA(),
         '/intro1': (context) => FirstIntroPage(),
         '/intro2': (context) => SecondIntroPage(),
         '/add form': (context) => AddForm(),
         '/add workshop': (context) => AddWorkshop(),
-        '/workshopAccountor': (context) => WorkshopAccountor(),
+        // '/workshopAccountor': (context) => WorkshopAccountor(),
         '/course': (context) => Course(),
         '/form': (context) => FormPage(),
         '/payment': (context) => PaymentPage(),
         '/addGroup': (context) => AddGroupPage(),
         '/instalment': (context) => InstalmentPage(),
-        
-      }
-      ,
+      },
     );
   }
 }
@@ -87,11 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    Mina(),
-    Search(),
-    //Jobs(),
-    // NotificationPage(),
     Jobs(),
+    // Mina(),
+    Search(),
+    NotificationPage(),
+    // Jobs(),
     Profile(),
   ];
 
@@ -151,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        ),
+      ),
     );
   }
 }

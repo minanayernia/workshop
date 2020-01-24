@@ -7,6 +7,14 @@ import 'package:workshop/screens/workshop-details-supervisor.dart';
 import 'package:workshop/models/Participant.dart';
 import 'package:workshop/models/TA.dart';
 import 'package:workshop/models/workshop.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workshop/models/PreCourse.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:workshop/models/Group.dart';
+import 'package:workshop/models/user.dart';
 class WorkshopDetailsTA extends StatefulWidget {
   Workshop workshop ;
   WorkshopDetailsTA({@required this.workshop}) ;
@@ -35,7 +43,7 @@ class _WorkshopDetailsTAState extends State<WorkshopDetailsTA> {
               image: DecorationImage(
                   image: AssetImage('assets/learnoo-pattern.png'),
                   fit: BoxFit.cover)),
-          child: SingleChildScrollView(child: Center(child: Page(workshop: widget.workshop,))),
+          child: SingleChildScrollView(child: Center(child: Page(workshop: args))),
         ),
       ),
     );
@@ -56,7 +64,7 @@ class _PageState extends State<Page> {
     return Column(
       children: <Widget>[
         Workshopimage(),
-        CardDetail(workshop:boz),
+        CardDetail(workshop:widget.workshop),
         GroupDetails(),
         ParticipantDetails(),
         TADetails(),
@@ -99,7 +107,7 @@ class _CardDetailState extends State<CardDetail> {
                       color: Colors.white,
                     ),
                     Text(
-                      widget.workshop.supervisor,
+                      widget.workshop.supervisor != null ? widget.workshop.supervisor : "no name",
                       style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )
                   ],
@@ -263,7 +271,7 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                         decoration: BoxDecoration(
                             color: Colors.deepPurple[300].withOpacity(0.8),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Text('54',
+                        child: Text(participantlistta.length.toString(),
                             style:
                                 TextStyle(color: Colors.white, fontSize: 12.0)),
                       ),
@@ -282,11 +290,11 @@ class _ParticipantDetailsState extends State<ParticipantDetails> {
                   //     ParticipantCard(),
                   //   ],
                   // ),
-                  // child: ListView.builder(
-                  //   scrollDirection: Axis.horizontal,
-                  //   itemBuilder: (_, i) => ParticipantCard(prt: p[i]),
-                  //   itemCount: p.length,
-                  // ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, i) => ParticipantCard(user: participantlistta[i]),
+                    itemCount: participantlistta.length,
+                  ),
                 ),
               ],
             ),
@@ -369,4 +377,68 @@ class _TADetailsState extends State<TADetails> {
       ],
     );
   }
+}
+
+List<User> participantlistta = [];
+List<User> talistta = [] ;
+List<User> grouptaparticipantlist = [] ;
+
+Future<http.Response> getworkshopsup(int id) async {
+
+  print(1122334455);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String tk = prefs.getString('token');
+  participantlistta.clear();
+  talistta.clear() ;
+  grouptaparticipantlist.clear() ;
+  
+  Map data = {"id": id};
+  var response = await http.post(
+      'http://192.168.43.59:8080/api/v1/workshop/detailForTA',
+      headers: {
+        "Accept": "application/json",
+        "content-type": "application/json",
+        "Authorization": "Bearer " + tk,
+      },
+      body: json.encode(data));
+  print(response.body);
+
+  for (int i = 0;
+      i < json.decode(response.body)["participants"].length;
+      i++) {
+        User user = User() ;
+        user.name = json.decode(response.body)["participants"][i]["name"] ;
+        participantlistta.add(user) ;
+    
+    // print("well") ;
+  }
+  for (int i = 0;
+      i < json.decode(response.body)["tas"].length;
+      i++) {
+        User user = User() ;
+        user.name = json.decode(response.body)["tas"][i]["name"] ;
+        talistta.add(user) ;
+        
+    
+    // print("well") ;
+  }
+
+
+  for (int i = 0;
+      i < json.decode(response.body)["group"]["tas"].length;
+      i++) {
+        User user = User() ;
+        user.name = json.decode(response.body)["tas"][i]["name"] ;
+        grouptaparticipantlist.add(user) ;
+        
+    
+    // print("well") ;
+  }
+  
+  print("fml");
+  print(id);
+  print(json.decode(response.body));
+
+  // for (int i = 0; i < json.decode(response.body).length; i++) {}
+  return response;
 }

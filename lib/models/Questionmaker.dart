@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MakeQuestionD with ChangeNotifier {
+class MakeQuestion with ChangeNotifier {
   String ques;
-  MakeQuestionD({@required this.ques});
+  MakeQuestion({this.ques});
 }
 
-class MakeQuestionT with ChangeNotifier {}
 
-List<MakeQuestionD> Dq = [MakeQuestionD(ques: "mina"),];

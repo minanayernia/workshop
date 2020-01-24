@@ -14,7 +14,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 128,
+      // width: 128,
       height: 72,
       margin: EdgeInsets.only(left: 10, top: 10),
       decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
           ),
           Container(
             margin: EdgeInsets.only(left: 5),
-            child: Text(widget.user.name),
+            child: Text(widget.user.name + "   "),
           ),
         ],
       ),

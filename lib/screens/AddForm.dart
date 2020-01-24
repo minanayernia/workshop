@@ -3,10 +3,7 @@ import 'package:workshop/widgets/topbar.dart';
 import 'package:workshop/models/Questionmaker.dart';
 
 // List<String> Dq = [];
-List<QuestionCard> q1 = [];
-List<QuestionContainer> q2 = [];
-
-List<String> TAns = [];
+List<MakeQuestion> questions = [];
 
 TextEditingController quest = TextEditingController();
 
@@ -55,11 +52,12 @@ class _PageState extends State<Page> {
         Container(
           height: 300,
           width: MediaQuery.of(context).size.width * 0.9,
-          child: ListView(
-            children: <Widget>[
-              QuestionCard(),
-              QuestionContainer(),
-            ],
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemBuilder: (_, i) => QuestionCard(
+              question: questions[i],
+            ),
+            itemCount: questions.length,
           ),
         ),
         AddContainer(),
@@ -172,6 +170,8 @@ class _WhoAnswersCardState extends State<WhoAnswersCard> {
 }
 
 class QuestionCard extends StatefulWidget {
+  MakeQuestion question;
+  QuestionCard({this.question});
   @override
   _QuestionCardState createState() => _QuestionCardState();
 }
@@ -205,8 +205,6 @@ class _QuestionCardState extends State<QuestionCard> {
 }
 
 class QuestionContainer extends StatefulWidget {
-  MakeQuestionD q;
-  QuestionContainer({@required this.q});
   @override
   _QuestionContainerState createState() => _QuestionContainerState();
 }
@@ -317,31 +315,27 @@ class _AddContainerState extends State<AddContainer> {
       height: 60,
       width: MediaQuery.of(context).size.width * 0.9,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          // Container(
+          //   width: MediaQuery.of(context).size.width * 0.43,
+          //   height: 40,
+          //   child: RaisedButton(
+          //     child: Text(
+          //       'Add Poll',
+          //       style: TextStyle(color: Colors.white, fontSize: 15.0),
+          //     ),
+          //     color: Colors.pinkAccent,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: new BorderRadius.circular(20.0),
+          //     ),
+          //     onPressed: () {
+          //
+          //     },
+          //   ),
+          // ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.43,
-            height: 40,
-            child: RaisedButton(
-              child: Text(
-                'Add Poll',
-                style: TextStyle(color: Colors.white, fontSize: 15.0),
-              ),
-              color: Colors.pinkAccent,
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(20.0),
-              ),
-              onPressed: () {
-                // ListView.builder(
-                //   scrollDirection: Axis.vertical,
-                //   itemBuilder: (_, i) => QuestionContainer(q: Dq[i]),
-                //   itemCount: Dq.length,
-                // );
-              },
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.43,
+            width: MediaQuery.of(context).size.width * 0.9,
             height: 40,
             child: RaisedButton(
               child: Text(
@@ -352,7 +346,15 @@ class _AddContainerState extends State<AddContainer> {
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(20.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  MakeQuestion q = MakeQuestion();
+                  print("hi");
+                  q.ques = "hi";
+                  questions.add(q);
+                  print(questions[0].ques);
+                });
+              },
             ),
           ),
         ],

@@ -8,33 +8,38 @@ class NotifCard extends StatefulWidget {
 class _NotifCardState extends State<NotifCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 72,
-      width:MediaQuery.of(context).size.width*0.8 ,
-      margin: EdgeInsets.only(top: 10 , left: 10 , right: 10),
-      decoration: BoxDecoration(
-          color: Colors.deepPurple[700],
-          borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        children: <Widget>[
-          ProfileImage(),
-          Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 20 , top: 10),
-                  child: Text('Bahar',
-                      style: TextStyle(color: Colors.white, fontSize: 15.0)),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 15 , top: 5),
-                  child: Text('Bahar',
-                      style: TextStyle(color: Colors.white, fontSize: 15.0)),
-                ),
-              ],
-            ),
-          )
-        ],
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, '/form') ;
+      },
+          child: Container(
+        height: 72,
+        width:MediaQuery.of(context).size.width*0.8 ,
+        margin: EdgeInsets.only(top: 10 , left: 10 , right: 10),
+        decoration: BoxDecoration(
+            color: Colors.deepPurple[700],
+            borderRadius: BorderRadius.circular(10)),
+        child: Row(
+          children: <Widget>[
+            ProfileImage(),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 20 , top: 10),
+                    child: Text('Notification',
+                        style: TextStyle(color: Colors.white, fontSize: 15.0)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 15 , top: 5),
+                    child: Text('Bahar',
+                        style: TextStyle(color: Colors.white, fontSize: 15.0)),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -25,6 +25,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+        final Workshop args = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: Center(
@@ -35,7 +37,7 @@ class _ProfileState extends State<Profile> {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             // TopBar(foo: "Profile",),
-            ProfileAppBar(),
+            ProfileAppBar(workshop:args),
             // PopupMenu(),
             Container(
                 height: MediaQuery.of(context).size.height - 140,
@@ -89,7 +91,7 @@ class _ProfileState extends State<Profile> {
                             );
 
                           case ConnectionState.done:
-                          print("bastin khare va gave");
+                          // print("bastin khare va gave");
                           print(profile) ;
                             return SingleChildScrollView(
                               child: Stack(
@@ -124,6 +126,8 @@ class _ProfileState extends State<Profile> {
 
 
 class ProfileAppBar extends StatefulWidget {
+  Workshop workshop ;
+  ProfileAppBar({@required this.workshop}) ;
   @override
   _ProfileAppBarState createState() => _ProfileAppBarState();
 }
@@ -141,7 +145,7 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
           color: Colors.white, borderRadius: BorderRadius.circular(25)),
       child: Center(
           child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Container(
               margin: EdgeInsets.only(left: 20),
@@ -154,6 +158,8 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
           // PopupMenuButton<WhyFarther>(itemBuilder: (context,),
 
           // ),
+
+          
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, '/course') ;
@@ -164,6 +170,23 @@ class _ProfileAppBarState extends State<ProfileAppBar> {
               margin: EdgeInsets.only(left: 185),
               child: Visibility(
                 child: Icon(Icons.assignment , color: Colors.deepPurple, size: 20,),
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                visible: true,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/instalment' , arguments: widget.workshop) ;
+            },
+            child: Container(
+              height: 24,
+              width: 10,
+              margin: EdgeInsets.only(left: 15),
+              child: Visibility(
+                child: Icon(Icons.monetization_on , color: Colors.deepPurple, size: 20,),
                 maintainSize: true,
                 maintainAnimation: true,
                 maintainState: true,

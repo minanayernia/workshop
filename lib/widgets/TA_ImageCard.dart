@@ -14,7 +14,7 @@ class _TAImageCardState extends State<TAImageCard> {
   Widget build(BuildContext context) {
     return Container(
       height: 72,
-      width: 118,
+      // width: 118,
       margin: EdgeInsets.only(right: 10 , top: 10),
       decoration: BoxDecoration(
               color: Colors.purple[900],

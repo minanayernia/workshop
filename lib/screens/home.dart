@@ -54,44 +54,44 @@ class _HomeBodyState extends State<HomeBody> {
           Padding(
             padding: EdgeInsets.only(top: 100),
           ),
-          RaisedButton(
-              child: Text('login'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/login');
-              }),
-          RaisedButton(
-              child: Text('signup'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/signup');
-              }),
-          RaisedButton(
-              child: Text('workshop'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/workshop');
-              }),
-          RaisedButton(
-              child: Text('sup'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/sup');
-              }),
+          // RaisedButton(
+          //     child: Text('login'),
+          //     onPressed: () {
+          //       // Navigator.pop(context);
+          //       // Navigator.pushNamed(context, '/home');
+          //       Navigator.pushNamed(context, '/login');
+          //     }),
+          // RaisedButton(
+          //     child: Text('signup'),
+          //     onPressed: () {
+          //       // Navigator.pop(context);
+          //       // Navigator.pushNamed(context, '/home');
+          //       Navigator.pushNamed(context, '/signup');
+          //     }),
+          // RaisedButton(
+          //     child: Text('workshop'),
+          //     onPressed: () {
+          //       // Navigator.pop(context);
+          //       // Navigator.pushNamed(context, '/home');
+          //       Navigator.pushNamed(context, '/workshop');
+          //     }),
+          // RaisedButton(
+          //     child: Text('sup'),
+          //     onPressed: () {
+          //       // Navigator.pop(context);
+          //       // Navigator.pushNamed(context, '/home');
+          //       Navigator.pushNamed(context, '/sup');
+          //     }),
 
 
 
-              RaisedButton(
-              child: Text('ta'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/ta');
-              }),
+              // RaisedButton(
+              // child: Text('ta'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/ta');
+              // }),
 
               //  RaisedButton(
               // child: Text('intro1'),
@@ -109,32 +109,32 @@ class _HomeBodyState extends State<HomeBody> {
               //   Navigator.pushNamed(context, '/intro2');
               // }),
 
-              RaisedButton(
-              child: Text('add form'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/add form');
-              }),
+              // RaisedButton(
+              // child: Text('add form'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/add form');
+              // }),
 
 
 
-              RaisedButton(
-              child: Text('add workshop'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/add workshop');
-              }),
+              // RaisedButton(
+              // child: Text('add workshop'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/add workshop');
+              // }),
 
 
-              RaisedButton(
-              child: Text('workshopAccountor'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/workshopAccountor');
-              }),
+              // RaisedButton(
+              // child: Text('workshopAccountor'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/workshopAccountor');
+              // }),
 
 
 
@@ -145,39 +145,39 @@ class _HomeBodyState extends State<HomeBody> {
               //   // Navigator.pushNamed(context, '/home');
               //   Navigator.pushNamed(context, '/course');
               // }),
-              RaisedButton(
-                child: Text('form'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/form');
+              // RaisedButton(
+              //   child: Text('form'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/form');
               
               
-              }),
+              // }),
 
-              RaisedButton(
-              child: Text('payment'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/payment');
-              }),
+              // RaisedButton(
+              // child: Text('payment'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/payment');
+              // }),
 
-              RaisedButton(
-              child: Text('addgroup'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/addGroup');
-              }),
+              // RaisedButton(
+              // child: Text('addgroup'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/addGroup');
+              // }),
 
-              RaisedButton(
-              child: Text('instalment'),
-              onPressed: () {
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/home');
-                Navigator.pushNamed(context, '/instalment');
-              }),
+              // RaisedButton(
+              // child: Text('instalment'),
+              // onPressed: () {
+              //   // Navigator.pop(context);
+              //   // Navigator.pushNamed(context, '/home');
+              //   Navigator.pushNamed(context, '/instalment');
+              // }),
 
 
         ],

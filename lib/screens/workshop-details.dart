@@ -131,6 +131,8 @@ class _DetailcardState extends State<Detailcard> {
             children: <Widget>[
               Row(
                 children: <Widget>[
+                  Icon(Icons.work , color: Colors.deepPurple,),
+                  Padding(padding: EdgeInsets.only(left: 5),),
                   Text(
                     widget.workshop.name != null
                         ? widget.workshop.name
@@ -141,6 +143,8 @@ class _DetailcardState extends State<Detailcard> {
               ),
               Row(
                 children: <Widget>[
+                  Icon(Icons.supervisor_account , color: Colors.deepPurple,),
+                  Padding(padding: EdgeInsets.only(left: 5),),
                   Text(
                     widget.workshop.supervisor != null
                         ? widget.workshop.supervisor
@@ -257,12 +261,13 @@ class _DetailcardState extends State<Detailcard> {
               ),
               Row(
                 children: <Widget>[
+                  // Icon(Icons.short_text),
                   Container(
                     height: 100,
                     child: Text(
                       widget.workshop.about != null
                           ? widget.workshop.about
-                          : " no name ",
+                          :" no about ",
                       style: TextStyle(color: Colors.black, fontSize: 20.0),
                     ),
                   )

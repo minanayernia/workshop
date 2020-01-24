@@ -120,7 +120,7 @@ class _ProCardState extends State<ProCard> {
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (_, i) => WorkCardDetail(
-                                        workshop: participantWorkshops[i],
+                                        workshop: participantWorkshops[i],url: '/workshopAccountor',
                                       ),
                                       itemCount:
                                           participantWorkshops.length,
@@ -293,7 +293,7 @@ class _ProCardState extends State<ProCard> {
                             );
 
                           case ConnectionState.none:
-                            print("noneavaran");
+                            // print("noneavaran");
 
                             return Stack(
                               children: <Widget>[
@@ -309,7 +309,7 @@ class _ProCardState extends State<ProCard> {
                             );
 
                           case ConnectionState.done:
-                          print("noneavaran");
+                          print("arsalan");
                           print(taWorkshops);
 
                             return Stack(
@@ -323,8 +323,8 @@ class _ProCardState extends State<ProCard> {
                                         1.2,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
-                                      itemBuilder: (_, i) => WorkshopDetailCardTA(
-                                        workshop: boz
+                                      itemBuilder: (_, i) => WorkCardDetail(
+                                        workshop: taWorkshops[i],url: '/ta',
                                       ),
                                       itemCount: taWorkshops.length,
                                     ),
@@ -551,8 +551,11 @@ class _PersonPicState extends State<PersonPic> {
 }
 
 class WorkCardDetail extends StatefulWidget {
+  String url ;
   Workshop workshop;
-  WorkCardDetail({@required this.workshop});
+  WorkCardDetail({@required this.workshop,
+                            this.url
+                            });
   @override
   _WorkCardDetailState createState() => _WorkCardDetailState();
 }
@@ -562,7 +565,7 @@ class _WorkCardDetailState extends State<WorkCardDetail> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/workshopAccountor',
+        Navigator.pushNamed(context, widget.url,
             arguments: widget.workshop);
       },
       child: Container(

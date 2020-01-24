@@ -135,7 +135,7 @@ class _WorkshopimageState extends State<Workshopimage> {
         Container(
           margin: EdgeInsets.only(top: 20),
           decoration: BoxDecoration(
-              color: Colors.grey, borderRadius: BorderRadius.circular(10)),
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
           width: 100,
           height: 100,
         )

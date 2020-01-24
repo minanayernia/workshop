@@ -32,7 +32,7 @@ class _ParticipantCardState extends State<ParticipantCard> {
           ),
           Container(
             margin: EdgeInsets.only(left: 5),
-            child: Text(widget.user.name + "   "),
+            child: Text(widget.user.name + "   " , style: TextStyle(color: Colors.deepPurple),),
           ),
         ],
       ),

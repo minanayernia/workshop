@@ -32,7 +32,7 @@ class _NotifCardState extends State<NotifCard> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 15 , top: 5),
-                    child: Text('Bahar',
+                    child: Text('Recieved Form',
                         style: TextStyle(color: Colors.white, fontSize: 15.0)),
                   ),
                 ],
